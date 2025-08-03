@@ -3,133 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rich Land Builders - The Address</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Rich Land Builders - Where Dreams and Designs meet Reality!</title>
+    <meta name="description" content="Rich Land Builders - Crafting Foundations with Compassion in Construction. Discover The Address, our flagship project that exceeds your expectations of a Dream Home.">
+    <meta name="keywords" content="Rich Land Builders, RLB, construction, home builders, The Address, dream home, quality construction">
     
-    <!-- UPDATED: Google Fonts Link for Futuristic Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
 
-    <header class="header">
+    <!-- Header -->
+    <header class="header" id="header">
         <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <!-- Replace with your actual logo file path -->
-                    <img src="assets/updated_logo.png" alt="Rich Land Builders Logo">
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#values">Our Values</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="nav-toggle" aria-label="Toggle navigation">
-                    <span class="hamburger"></span>
+            <div class="header__content">
+                <div class="header__logo">
+                    <img src="assets/updated_logo.png" alt="Rich Land Builders Logo" class="logo-image">
+                </div>
+                
+                <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+                    <ul class="nav__list">
+                        <li><a href="#home" class="nav__link" aria-label="Go to Home section">Home</a></li>
+                        <li><a href="#about" class="nav__link" aria-label="Go to About section">About</a></li>
+                        <li><a href="#values" class="nav__link" aria-label="Go to Values section">Values</a></li>
+                        <li><a href="#address-project" class="nav__link" aria-label="Go to The Address project section">The Address</a></li>
+                        <li><a href="#contact" class="nav__link" aria-label="Go to Contact section">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header__contact">
+                    <a href="tel:+15551234567" class="contact-btn" aria-label="Call us at +1 (555) 123-4567">
+                        <span aria-hidden="true">📞</span>
+                        +1 (555) 123-4567
+                    </a>
+                    <a href="mailto:info@richlandbuilders.com" class="contact-btn" aria-label="Send us an email">
+                        <span aria-hidden="true">✉️</span>
+                        Contact Us
+                    </a>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section id="hero" class="hero-section">
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home" role="banner">
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">RLB's ADDRESS</h1>
-                    <p class="hero-subtitle">Where Dreams and Designs Meet Reality.</p>
-                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <div class="hero__content">
+                    <h1 class="hero__title">RLB's ADDRESS</h1>
+                    <h2 class="hero__subtitle">Where Dreams and Designs meet Reality!</h2>
+                    <p class="hero__description">
+                        Welcome to Rich Land Builders, where your dreams of quality construction and exceptional living spaces become a reality.
+                    </p>
+                    <a href="#address-project" class="btn btn--primary btn--lg hero__cta">Explore The Address</a>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about-section">
+        <!-- About Section -->
+        <section class="about" id="about" role="region" aria-labelledby="about-title">
             <div class="container">
-                <h2>About Us</h2>
-                <p class="section-intro">Founded on a bedrock of trust, integrity & expertise and enriched with compassion and care, Rich Land Builders is delivering this project "The Address" that exceeds your expectations of a Dream Home.</p>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Uncompromising Quality</h3>
-                        <p>The Project Address adheres to stringent quality control measures at every stage, ensuring every milestone meets the highest standards.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Customer Centricity</h3>
-                        <p>We prioritize your needs and preferences, providing personalized solutions that cater to your unique lifestyles and aspirations.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Innovation and Technology</h3>
-                        <p>We embrace cutting-edge technologies to enhance efficiency and deliver sustainable, aesthetically pleasant living spaces.</p>
-                    </div>
-                     <div class="feature-card">
-                        <h3>Transparency and Ethics</h3>
-                        <p>We maintain transparent communication, fostering trust and building long-term relationships based on mutual respect.</p>
+                <div class="section-header">
+                    <h2 class="section-title" id="about-title">About Rich Land Builders</h2>
+                    <p class="section-subtitle">
+                        Founded on a bedrock of trust, integrity & expertise and enriched with compassion and care, Rich Land Builders is delivering this project "The Address" that exceeds your expectations of a Dream Home.
+                    </p>
+                </div>
+
+                <div class="vision-statement">
+                    <h3 class="vision-title">Our Vision</h3>
+                    <p class="vision-text">"Crafting Foundations with Compassion in Construction!"</p>
+                </div>
+
+                <div class="focus-areas">
+                    <div class="focus-grid">
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🏗️</div>
+                                <h3 class="focus-card__title">Uncompromising Quality</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                The Project Address adheres to stringent quality control measures at every stage of the construction process, ensuring that every milestone of the project meets the highest standards of excellence.
+                            </p>
+                        </div>
+
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🎯</div>
+                                <h3 class="focus-card__title">Customer Centricity</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                The Project prioritizes the clients' needs and preferences, providing personalized solutions that cater to their unique lifestyles and aspirations with key preference to spacing and lighting.
+                            </p>
+                        </div>
+
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🚀</div>
+                                <h3 class="focus-card__title">Innovation and Technology</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                The Project embraces cutting-edge technologies and innovative construction techniques to enhance efficiency and at the same time minimizes the environmental impacts in order to deliver a sustainable and aesthetically pleasant living.
+                            </p>
+                        </div>
+
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🤝</div>
+                                <h3 class="focus-card__title">Transparency and Ethics</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                We, as a team maintain transparent communication with our clients, fostering trust and building long-term relationships based on mutual respect and ethical practices.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="values" class="values-section">
+        <!-- Core Values Section -->
+        <section class="values" id="values" role="region" aria-labelledby="values-title">
             <div class="container">
-                <h2>Our Core Values</h2>
+                <div class="section-header">
+                    <h2 class="section-title" id="values-title">Our Core Values</h2>
+                    <p class="section-subtitle">The principles that guide everything we do</p>
+                </div>
+
                 <div class="values-grid">
-                    <div class="value-item">
-                        <h4>Integrity</h4>
-                        <p>We uphold honesty and ethical practices in all our dealings.</p>
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">💎</div>
+                        <h3 class="value-card__title">Integrity</h3>
+                        <p class="value-card__description">
+                            We uphold honesty and ethical practices in all our dealings.
+                        </p>
                     </div>
-                    <div class="value-item">
-                        <h4>Innovation</h4>
-                        <p>We embrace creativity and cutting-edge technology.</p>
+
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">💡</div>
+                        <h3 class="value-card__title">Innovation</h3>
+                        <p class="value-card__description">
+                            We embrace creativity and cutting-edge technology to deliver unique solutions.
+                        </p>
                     </div>
-                    <div class="value-item">
-                        <h4>Excellence</h4>
-                        <p>We strive for perfection in every detail, from design to execution.</p>
+
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">⭐</div>
+                        <h3 class="value-card__title">Excellence</h3>
+                        <p class="value-card__description">
+                            We strive for perfection in every detail, from design to execution.
+                        </p>
                     </div>
-                    <div class="value-item">
-                        <h4>Sustainability</h4>
-                        <p>We are dedicated to building a greener future with eco-friendly practices.</p>
+
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">🌱</div>
+                        <h3 class="value-card__title">Sustainability</h3>
+                        <p class="value-card__description">
+                            We are dedicated to building a greener future by incorporating eco-friendly practices.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <!-- The Address Project Section -->
+        <section class="address-project" id="address-project" role="region" aria-labelledby="project-title">
             <div class="container">
-                <h2>Contact Us</h2>
-                <p class="section-intro">Ready to build your dream? Reach out to us today.</p>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required placeholder="Your Name">
-                        <label for="name">Name</label>
+                <div class="project-content">
+                    <div class="project-info">
+                        <h2 class="project-title" id="project-title">The Address</h2>
+                        <h3 class="project-subtitle">Our Flagship Project</h3>
+                        <p class="project-description">
+                            Our flagship project that exceeds your expectations of a Dream Home. The Address represents the pinnacle of luxury living, combining innovative design with superior construction quality.
+                        </p>
+                        
+                        <div class="project-features">
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🏡</span>
+                                <span class="feature-text">Premium Living Spaces</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🌟</span>
+                                <span class="feature-text">Exceptional Quality Standards</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🌿</span>
+                                <span class="feature-text">Sustainable Construction</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🎨</span>
+                                <span class="feature-text">Personalized Design Solutions</span>
+                            </div>
+                        </div>
+
+                        <a href="#contact" class="btn btn--primary btn--lg">Learn More About The Address</a>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required placeholder="Your Email">
-                        <label for="email">Email</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact" role="region" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="contact-title">Get In Touch</h2>
+                    <p class="section-subtitle">Ready to make your dream home a reality? Contact us today!</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Name *</label>
+                                    <input type="text" id="name" name="name" class="form-control" required aria-describedby="name-error">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" id="email" name="email" class="form-control" required aria-describedby="email-error">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="service" class="form-label">Service Interest</label>
+                                    <select id="service" name="service" class="form-control">
+                                        <option value="">Select a service</option>
+                                        <option value="the-address">The Address Project</option>
+                                        <option value="custom-construction">Custom Construction</option>
+                                        <option value="consultation">Design Consultation</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea id="message" name="message" rows="5" class="form-control" required aria-describedby="message-error" placeholder="Tell us about your dream home..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
-                        <label for="message">Message</label>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">📞</div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">✉️</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">📍</div>
+                            <div class="contact-details">
+                                <h4>Office Address</h4>
+                                <p>123 Construction Avenue<br>Builder City, BC 12345<br>United States</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <h4>Follow Us</h4>
+                            <div class="social-icons">
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on Facebook">
+                                    <span aria-hidden="true">📘</span>
+                                </a>
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on Instagram">
+                                    <span aria-hidden="true">📸</span>
+                                </a>
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on Twitter">
+                                    <span aria-hidden="true">🐦</span>
+                                </a>
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on LinkedIn">
+                                    <span aria-hidden="true">💼</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <p>&copy; 2024 Rich Land Builders. All Rights Reserved.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">RLB</h3>
+                    <p class="footer-tagline">Where Dreams and Designs meet Reality!</p>
+                    <p class="vision-text">"Crafting Foundations with Compassion in Construction!"</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#values">Values</a></li>
+                            <li><a href="#address-project">The Address</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#" target="_blank">Custom Construction</a></li>
+                            <li><a href="#" target="_blank">Design Consultation</a></li>
+                            <li><a href="#" target="_blank">Project Management</a></li>
+                            <li><a href="#" target="_blank">Quality Assurance</a></li>
+                            <li><a href="#" target="_blank">Sustainable Building</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Contact Info</h4>
+                        <ul>
+                            <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+                            <li><a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a></li>
+                            <li>123 Construction Avenue<br>Builder City, BC 12345</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rich Land Builders (RLB). All rights reserved. | Crafting quality homes with integrity and innovation.</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        const navToggle = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.nav-links');
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top of page">
+        <span aria-hidden="true">↑</span>
+    </button>
 
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-    </script>
-
+    <!-- JavaScript -->
+    <script src="app.js"></script>
 </body>
 </html>
