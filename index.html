@@ -21,458 +21,349 @@
 
     <!-- Header -->
     <header class="header" id="header">
-        <div class="header__container">
-            <div class="header__logo-container">
-                <img src="assets/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <img src="assets/updated_logo.png" alt="Rich Land Builders Logo" class="logo-image">
+                </div>
+                
+                <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+                    <ul class="nav__list">
+                        <li><a href="#home" class="nav__link" aria-label="Go to Home section">Home</a></li>
+                        <li><a href="#about" class="nav__link" aria-label="Go to About section">About</a></li>
+                        <li><a href="#values" class="nav__link" aria-label="Go to Values section">Values</a></li>
+                        <li><a href="#address-project" class="nav__link" aria-label="Go to The Address project section">The Address</a></li>
+                        <li><a href="#contact" class="nav__link" aria-label="Go to Contact section">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header__contact">
+                    <a href="tel:+15551234567" class="contact-btn" aria-label="Call us at +1 (555) 123-4567">
+                        <span aria-hidden="true">📞</span>
+                        +1 (555) 123-4567
+                    </a>
+                    <a href="mailto:info@richlandbuilders.com" class="contact-btn" aria-label="Send us an email">
+                        <span aria-hidden="true">✉️</span>
+                        Contact Us
+                    </a>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <nav class="nav" id="nav">
-                <a href="#hero" class="nav__link active">Home</a>
-                <a href="#about" class="nav__link">About</a>
-                <a href="#values" class="nav__link">Values</a>
-                <a href="#project" class="nav__link">The Address</a>
-                <a href="#contact" class="contact-btn">Contact Us</a>
-            </nav>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
-    <!-- Hero Section with Carousel -->
-    <section class="hero" id="hero">
-        <div class="carousel">
-            <div class="carousel__track">
-                <!-- Slide 1: Welcome / Brand Introduction -->
-                <div class="carousel__slide active">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80" alt="Luxury Modern Home Exterior" class="carousel__image">
-                    <div class="carousel__content">
-                        <div class="carousel__text">
-                            <div class="carousel__badge fade-in">Welcome to Excellence</div>
-                            <h1 class="carousel__title">Rich Land Builders</h1>
-                            <p class="carousel__subtitle">Where Dreams and Designs meet Reality</p>
-                            <p class="carousel__description">Pioneering a new era of construction excellence with compassion, innovation, and unwavering commitment to quality.</p>
-                            <div class="carousel__actions">
-                                <a href="#about" class="btn btn--primary btn--lg">Discover Our Story</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Slide 2: Quality & Craftsmanship -->
-                <div class="carousel__slide">
-                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Premium Interior Design" class="carousel__image">
-                    <div class="carousel__content">
-                        <div class="carousel__text">
-                            <div class="carousel__badge fade-in">Uncompromising Quality</div>
-                            <h1 class="carousel__title">Crafted to Perfection</h1>
-                            <p class="carousel__subtitle">Every Detail Tells a Story</p>
-                            <p class="carousel__description">From foundation to finish, we blend traditional craftsmanship with modern innovation to create homes that stand the test of time.</p>
-                            <div class="carousel__actions">
-                                <a href="#about" class="btn btn--primary btn--lg">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: Innovation & Technology -->
-                <div class="carousel__slide">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" alt="Modern Smart Kitchen" class="carousel__image">
-                    <div class="carousel__content">
-                        <div class="carousel__text">
-                            <div class="carousel__badge fade-in">Innovation First</div>
-                            <h1 class="carousel__title">Building Tomorrow, Today</h1>
-                            <p class="carousel__subtitle">Smart Homes for Modern Living</p>
-                            <p class="carousel__description">Integrating cutting-edge technology with timeless design principles to create intelligent, sustainable, and energy-efficient living spaces.</p>
-                            <div class="carousel__actions">
-                                <a href="#values" class="btn btn--primary btn--lg">Our Approach</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Slide 4: The Address Project -->
-                <div class="carousel__slide">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80" alt="The Address Project" class="carousel__image">
-                    <div class="carousel__content">
-                        <div class="carousel__text">
-                            <div class="carousel__badge fade-in">Flagship Project</div>
-                            <h1 class="carousel__title">The Address</h1>
-                            <p class="carousel__subtitle">Redefining Luxury Living</p>
-                            <p class="carousel__description">Our premier residential project featuring cutting-edge design, sustainable materials, and amenities that exceed expectations. Your dream home awaits.</p>
-                            <div class="carousel__actions">
-                                <a href="address.html" target="_blank" class="btn btn--primary btn--lg">Explore The Address</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                
-    
-                <!-- Slide 5: Customer Promise -->
-                <div class="carousel__slide">
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80" alt="Happy Family in New Home" class="carousel__image">
-                    <div class="carousel__content">
-                        <div class="carousel__text">
-                            <div class="carousel__badge fade-in">Our Promise</div>
-                            <h1 class="carousel__title">Your Dream, Our Mission</h1>
-                            <p class="carousel__subtitle">Transparency. Trust. Excellence.</p>
-                            <p class="carousel__description">As a new player in the industry, we're committed to building lasting relationships through transparent communication, ethical practices, and exceptional results.</p>
-                            <div class="carousel__actions">
-                                <a href="#contact" class="btn btn--primary btn--lg">Start Your Journey</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Enhanced Carousel Controls -->
-            <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous slide">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </button>
-            <button class="carousel__arrow carousel__arrow--next" aria-label="Next slide">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </button>
-            
-            <div class="carousel__controls">
-                <button class="carousel__dot active" aria-label="Welcome">
-                </button>
-                <button class="carousel__dot" aria-label="Quality">
-                </button>
-                <button class="carousel__dot" aria-label="Innovation">
-                </button>
-                <button class="carousel__dot" aria-label="The Address">
-                </button>
-                <button class="carousel__dot" aria-label="Promise">
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container about__container">
-            <!-- Left: main story -->
-            <article class="about-card about-card--primary fade-in">
-                <p class="about-card__eyebrow">About Rich Land Builders</p>
-                <h2 class="about-card__title">Thoughtful homes, built with care and clarity.</h2>
-                <p class="about-card__lead">
-                    Rich Land Builders is a residential-focused team in Coimbatore,
-                    bringing empathy, precision, and accountability to every stage of construction.
-                </p>
-                <p class="about-card__body">
-                    Our flagship development, <strong>The Address</strong>, is where this philosophy comes to life:
-                    deeper involvement, and complete transparency for every family that chooses us.
-                </p>
-
-                <div class="about-pill">
-                    <span>Specialist‑led planning & execution</span>
-                    <span>Transparent, no‑surprise communication</span>
-                    <span>Respect for timelines and commitments</span>
-                </div>
-            </article>
-
-            <!-- Right: two simple pillars -->
-            <div class="about-side">
-                <article class="about-mini fade-in">
-                    <h3 class="about-mini__title">How we work</h3>
-                    <p class="about-mini__body">
-                        We begin by mapping how you and your family actually live, then bring architects,
-                        engineers, and site teams around a clear, shared plan.
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home" role="banner">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">RLB's ADDRESS</h1>
+                    <h2 class="hero__subtitle">Where Dreams and Designs meet Reality!</h2>
+                    <p class="hero__description">
+                        Welcome to Rich Land Builders, where your dreams of quality construction and exceptional living spaces become a reality.
                     </p>
-                    <ul class="about-mini__list">
-                        <li>Single, accountable project lead</li>
-                        <li>Every decision recorded and shared</li>
-                    </ul>
-                </article>
+                    <a href="#address-project" class="btn btn--primary btn--lg hero__cta">Explore The Address</a>
+                </div>
+            </div>
+        </section>
 
-                <article class="about-mini fade-in">
-                    <h3 class="about-mini__title">What you can expect</h3>
-                    <p class="about-mini__body">
-                        Calm, predictable progress. Real timelines. And a home that feels considered, not rushed.
+        <!-- About Section -->
+        <section class="about" id="about" role="region" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="about-title">About Rich Land Builders</h2>
+                    <p class="section-subtitle">
+                        Founded on a bedrock of trust, integrity & expertise and enriched with compassion and care, Rich Land Builders is delivering this project "The Address" that exceeds your expectations of a Dream Home.
                     </p>
-                    <ul class="about-mini__list">
-                        <li>Clear timelines and responsibilities</li>
-                        <li>A home you’re proud to grow into</li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Values Section -->
-    <section class="values" id="values">
-        <div class="container">
-            <header class="values__header">
-                <p class="values__eyebrow">Our Values</p>
-                <h2 class="values__title">What shapes every Rich Land Builders home.</h2>
-                <p class="values__intro">
-                    Four anchors that guide how we design, plan, and build—on site and with every family we work with.
-                </p>
-            </header>
-
-            <div class="values__grid">
-                <article class="values-card">
-                    <div class="values-card__image-wrap">
-                        <img
-                            src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80"
-                            alt="Team in discussion symbolising honesty and accountability"
-                            class="values-card__image"
-                        >
-                    </div>
-                    <div class="values-card__body">
-                        <h3 class="values-card__title">Integrity</h3>
-                        <p class="values-card__text">
-                            We keep our word, document decisions, and stay answerable from the first meeting to handover.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="values-card">
-                    <div class="values-card__image-wrap">
-                        <img
-                            src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80"
-                            alt="Architect reviewing drawings symbolising innovative thinking"
-                            class="values-card__image"
-                        >
-                    </div>
-                    <div class="values-card__body">
-                        <h3 class="values-card__title">Innovation</h3>
-                        <p class="values-card__text">
-                            We keep learning and refining, bringing better methods and details into every new home.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="values-card">
-                    <div class="values-card__image-wrap">
-                        <img
-                            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"
-                            alt="Crafted interior space representing quality construction"
-                            class="values-card__image"
-                        >
-                    </div>
-                    <div class="values-card__body">
-                        <h3 class="values-card__title">Crafted Quality</h3>
-                        <p class="values-card__text">
-                            Specialists resolve drawings, details, and interfaces before they reach site, so execution is calm.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="values-card">
-                    <div class="values-card__image-wrap">
-                        <img
-                            src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80"
-                            alt="Green outdoor space representing responsibility and care"
-                            class="values-card__image"
-                        >
-                    </div>
-                    <div class="values-card__body">
-                        <h3 class="values-card__title">Responsibility</h3>
-                        <p class="values-card__text">
-                            We think long term—comfort, safety, maintenance, and how your home will feel years from now.
-                        </p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Address Project Section -->
-        
-    <section class="address-project" id="project">
-        <div class="container address-project__container">
-            <div class="address-project__image-wrap fade-in">
-                <img
-                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
-                    alt="Exterior view representing The Address by Rich Land Builders"
-                    class="address-project__image"
-                >
-            </div>
-
-            <div class="address-project__content fade-in">
-                <p class="address-project__eyebrow">Flagship Residence</p>
-                <h2 class="address-project__title">The Address</h2>
-                <p class="address-project__subtitle">Thoughtfully planned homes in Coimbatore.</p>
-                <p class="address-project__body">
-                    The Address is our first fully‑owned residential project—limited homes planned around light,
-                    ventilation, and everyday ease. It brings together careful design, disciplined engineering,
-                    and the attention only a single‑project team can offer.
-                </p>
-
-                <div class="address-project__tags">
-                    <span>Low‑density living</span>
-                    <span>Planned for natural light</span>
-                    <span>Detail‑driven finishes</span>
                 </div>
 
-                <div class="address-project__footer">
-                    <p class="address-project__note">
-                        Want to see floor plans, amenities, and live construction progress?
-                    </p>
-                    <a href="address.html" target="_blank" class="btn btn--primary address-project__btn">
-                        Explore The Address
-                    </a>
+                <div class="vision-statement">
+                    <h3 class="vision-title">Our Vision</h3>
+                    <p class="vision-text">"Crafting Foundations with Compassion in Construction!"</p>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact__header">
-                <div>
-                    <p class="contact__eyebrow">Start a Conversation</p>
-                    <h2 class="contact__title">Let’s talk about your next home.</h2>
-                </div>
-                <p class="contact__subtitle">
-                    Share a few details and we’ll get back with clear next steps—no pressure, no spam.
-                </p>
-            </div>
-
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item fade-in">
-                        <div class="contact-item__icon" aria-hidden="true">
-                            <!-- Phone icon -->
-                            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M6.6 10.8a14.9 14.9 0 006.6 6.6l2.2-2.2a1.1 1.1 0 011.1-.26 12.3 12.3 0 003.9.62 1.1 1.1 0 011.1 1.1v3.6A1.1 1.1 0 0120.4 22 18.4 18.4 0 012 3.6 1.1 1.1 0 013.1 2.5H6.7A1.1 1.1 0 017.8 3.6a12.3 12.3 0 00.62 3.9 1.1 1.1 0 01-.28 1.11L6.6 10.8z"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item__content">
-                            <h3 class="contact-item__title">Call us</h3>
-                            <p class="contact-item__text">+1 (555) 123-4567</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item fade-in">
-                        <div class="contact-item__icon" aria-hidden="true">
-                            <!-- Mail icon -->
-                            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M4 5h16a1.5 1.5 0 011.5 1.5v11A1.5 1.5 0 0120 19H4a1.5 1.5 0 01-1.5-1.5v-11A1.5 1.5 0 014 5zm0 1.5l8 5 8-5"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item__content">
-                            <h3 class="contact-item__title">Write to us</h3>
-                            <p class="contact-item__text">info@richlandbuilders.com</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item fade-in">
-                        <div class="contact-item__icon" aria-hidden="true">
-                            <!-- Location pin icon -->
-                            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M12 3.5A6 6 0 006 9.5c0 3.9 4.5 8.3 5.6 9.4a0.7 0.7 0 001 0C13.7 17.8 18 13.4 18 9.5a6 6 0 00-6-6z"/>
-                                <circle cx="12" cy="9.5" r="2.3"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item__content">
-                            <h3 class="contact-item__title">Visit us</h3>
-                            <p class="contact-item__text">
-                                123 Construction Avenue<br>
-                                Builder City, BC 12345<br>
-                                United States
+                <div class="focus-areas">
+                    <div class="focus-grid">
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🏗️</div>
+                                <h3 class="focus-card__title">Uncompromising Quality</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                The Project Address adheres to stringent quality control measures at every stage of the construction process, ensuring that every milestone of the project meets the highest standards of excellence.
                             </p>
                         </div>
 
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🎯</div>
+                                <h3 class="focus-card__title">Customer Centricity</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                The Project prioritizes the clients' needs and preferences, providing personalized solutions that cater to their unique lifestyles and aspirations with key preference to spacing and lighting.
+                            </p>
+                        </div>
+
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🚀</div>
+                                <h3 class="focus-card__title">Innovation and Technology</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                The Project embraces cutting-edge technologies and innovative construction techniques to enhance efficiency and at the same time minimizes the environmental impacts in order to deliver a sustainable and aesthetically pleasant living.
+                            </p>
+                        </div>
+
+                        <div class="focus-card">
+                            <div class="focus-card__header">
+                                <div class="focus-card__icon" aria-hidden="true">🤝</div>
+                                <h3 class="focus-card__title">Transparency and Ethics</h3>
+                            </div>
+                            <p class="focus-card__description">
+                                We, as a team maintain transparent communication with our clients, fostering trust and building long-term relationships based on mutual respect and ethical practices.
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <!-- required by Web3Forms -->
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-                    <input type="hidden" name="subject" value="New enquiry from Rich Land Builders website">
-                    <!-- optional: where user came from -->
-                    <input type="hidden" name="from_page" value="Rich Land Builders – Home">
+            </div>
+        </section>
 
-                    <div class="form-group">
-                        <label for="name" class="form-label">Full Name *</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
+        <!-- Core Values Section -->
+        <section class="values" id="values" role="region" aria-labelledby="values-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="values-title">Our Core Values</h2>
+                    <p class="section-subtitle">The principles that guide everything we do</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email Address *</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message" class="form-label">Message *</label>
-                        <textarea id="message" name="message" class="form-control" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <p class="checkbox-disclaimer">
-                            I authorise Rich Land Builders and its representatives to contact me with updates and
-                            notifications via Email / SMS / WhatsApp / Call. This may override DND / NDNC settings.
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">💎</div>
+                        <h3 class="value-card__title">Integrity</h3>
+                        <p class="value-card__description">
+                            We uphold honesty and ethical practices in all our dealings.
                         </p>
                     </div>
 
-                    <button type="submit" class="btn btn--submit" id="contact-submit-btn">Submit</button>
-                    <p class="form-status" id="form-status" aria-live="polite"></p>
-                </form>
-            </div>
-        </div>
-    </section>
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">💡</div>
+                        <h3 class="value-card__title">Innovation</h3>
+                        <p class="value-card__description">
+                            We embrace creativity and cutting-edge technology to deliver unique solutions.
+                        </p>
+                    </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">↑</button>
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">⭐</div>
+                        <h3 class="value-card__title">Excellence</h3>
+                        <p class="value-card__description">
+                            We strive for perfection in every detail, from design to execution.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-card__icon" aria-hidden="true">🌱</div>
+                        <h3 class="value-card__title">Sustainability</h3>
+                        <p class="value-card__description">
+                            We are dedicated to building a greener future by incorporating eco-friendly practices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Address Project Section -->
+        <section class="address-project" id="address-project" role="region" aria-labelledby="project-title">
+            <div class="container">
+                <div class="project-content">
+                    <div class="project-info">
+                        <h2 class="project-title" id="project-title">The Address</h2>
+                        <h3 class="project-subtitle">Our Flagship Project</h3>
+                        <p class="project-description">
+                            Our flagship project that exceeds your expectations of a Dream Home. The Address represents the pinnacle of luxury living, combining innovative design with superior construction quality.
+                        </p>
+                        
+                        <div class="project-features">
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🏡</span>
+                                <span class="feature-text">Premium Living Spaces</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🌟</span>
+                                <span class="feature-text">Exceptional Quality Standards</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🌿</span>
+                                <span class="feature-text">Sustainable Construction</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon" aria-hidden="true">🎨</span>
+                                <span class="feature-text">Personalized Design Solutions</span>
+                            </div>
+                        </div>
+
+                        <a href="#contact" class="btn btn--primary btn--lg">Learn More About The Address</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact" role="region" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="contact-title">Get In Touch</h2>
+                    <p class="section-subtitle">Ready to make your dream home a reality? Contact us today!</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Name *</label>
+                                    <input type="text" id="name" name="name" class="form-control" required aria-describedby="name-error">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" id="email" name="email" class="form-control" required aria-describedby="email-error">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="service" class="form-label">Service Interest</label>
+                                    <select id="service" name="service" class="form-control">
+                                        <option value="">Select a service</option>
+                                        <option value="the-address">The Address Project</option>
+                                        <option value="custom-construction">Custom Construction</option>
+                                        <option value="consultation">Design Consultation</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea id="message" name="message" rows="5" class="form-control" required aria-describedby="message-error" placeholder="Tell us about your dream home..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">📞</div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">✉️</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">📍</div>
+                            <div class="contact-details">
+                                <h4>Office Address</h4>
+                                <p>123 Construction Avenue<br>Builder City, BC 12345<br>United States</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <h4>Follow Us</h4>
+                            <div class="social-icons">
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on Facebook">
+                                    <span aria-hidden="true">📘</span>
+                                </a>
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on Instagram">
+                                    <span aria-hidden="true">📸</span>
+                                </a>
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on Twitter">
+                                    <span aria-hidden="true">🐦</span>
+                                </a>
+                                <a href="#" target="_blank" class="social-icon" aria-label="Follow us on LinkedIn">
+                                    <span aria-hidden="true">💼</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <img
-                        src="assets/updated_logo.png"
-                        alt="Rich Land Builders"
-                        class="footer-logo-image"
-                    >
+                    <h3 class="footer-logo">RLB</h3>
                     <p class="footer-tagline">Where Dreams and Designs meet Reality!</p>
-                    <p class="vision-text">Crafting foundations with compassion in construction.</p>
+                    <p class="vision-text">"Crafting Foundations with Compassion in Construction!"</p>
                 </div>
 
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#hero">Home</a></li>
+                            <li><a href="#home">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#values">Values</a></li>
-                            <li><a href="#project">The Address</a></li>
+                            <li><a href="#address-project">The Address</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-column">
-                        <h4>Contact</h4>
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#" target="_blank">Custom Construction</a></li>
+                            <li><a href="#" target="_blank">Design Consultation</a></li>
+                            <li><a href="#" target="_blank">Project Management</a></li>
+                            <li><a href="#" target="_blank">Quality Assurance</a></li>
+                            <li><a href="#" target="_blank">Sustainable Building</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Contact Info</h4>
                         <ul>
                             <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
                             <li><a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a></li>
-                            <li>
-                                123 Construction Avenue<br>
-                                Builder City, BC 12345
-                            </li>
+                            <li>123 Construction Avenue<br>Builder City, BC 12345</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Rich Land Builders (RLB). All rights reserved.</p>
+                <p>&copy; 2025 Rich Land Builders (RLB). All rights reserved. | Crafting quality homes with integrity and innovation.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top of page">
+        <span aria-hidden="true">↑</span>
+    </button>
 
     <!-- JavaScript -->
     <script src="app.js"></script>
