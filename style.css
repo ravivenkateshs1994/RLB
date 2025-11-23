@@ -1,5 +1,6 @@
 :root {
     --color-white: #ffffff;
+    --color-black: #000000;
     --color-bg: #faf6f0;
     --color-surface: #fffaf3;
     --color-primary: #79110e;
@@ -191,7 +192,7 @@ main {
     position: relative;
     margin-top: var(--header-height);
     height: min(100vh, 760px);
-    background: #000; /* Using black for hero carousel background */
+    background: var(--color-black);
     overflow: hidden;
 }
 
