@@ -206,15 +206,7 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const nav = document.getElementById('nav');
 
 mobileMenuBtn.addEventListener('click', () => {
-    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    nav.style.position = 'absolute';
-    nav.style.top = '100%';
-    nav.style.left = '0';
-    nav.style.right = '0';
-    nav.style.background = 'white';
-    nav.style.flexDirection = 'column';
-    nav.style.padding = '1rem';
-    nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+    nav.classList.toggle('mobile-menu-open');
 });
 
 // Contact form submission with Web3Forms
