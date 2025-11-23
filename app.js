@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             root: null,
-            threshold: 0.4 // section is active when 40% visible
+            threshold: 0.2 // section is active when 20% visible
         }
     );
 
