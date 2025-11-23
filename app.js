@@ -194,7 +194,11 @@ contactForm.addEventListener('submit', (e) => {
 
     // Simulate form submission
     setTimeout(() => {
-        alert('Thank you for your message! We will get back to you within 24 hours.');
+        const formStatus = document.getElementById('form-status');
+        if (formStatus) {
+            formStatus.textContent = 'Thank you for your message! We will get back to you within 24 hours.';
+            formStatus.style.display = 'block';
+        }
         contactForm.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
