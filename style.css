@@ -191,7 +191,7 @@ main {
     position: relative;
     margin-top: var(--header-height);
     height: min(100vh, 760px);
-    background: #000;
+    background: #000; /* Using black for hero carousel background */
     overflow: hidden;
 }
 
@@ -310,7 +310,7 @@ main {
 }
 
 .btn--primary {
-    background: #ffffff;
+    background: var(--color-white);
     color: var(--color-primary);
     box-shadow: var(--shadow-sm);
 }
@@ -1034,6 +1034,10 @@ textarea.form-control {
     display: none;
 }
 
+.scroll-to-top.visible {
+    display: block;
+}
+
 /* Under construction banner -------------------------------------------------- */
 .under-construction {
     min-height: calc(100vh - var(--header-height) - 200px);
@@ -1064,6 +1068,18 @@ textarea.form-control {
 @media (max-width: 960px) {
     .nav {
         display: none;
+    }
+
+    .nav.mobile-menu-open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
     .mobile-menu-btn {

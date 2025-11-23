@@ -87,15 +87,13 @@ class Carousel {
 
         carousel.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe();
+            this.handleSwipe(touchStartX, touchEndX);
         });
+    }
 
-        const handleSwipe = () => {
-            if (touchEndX < touchStartX - 50) this.nextSlide();
-            if (touchEndX > touchStartX + 50) this.prevSlide();
-        };
-
-        this.handleSwipe = handleSwipe;
+    handleSwipe(touchStartX, touchEndX) {
+        if (touchEndX < touchStartX - 50) this.nextSlide();
+        if (touchEndX > touchStartX + 50) this.prevSlide();
     }
 }
 
@@ -194,7 +192,11 @@ contactForm.addEventListener('submit', (e) => {
 
     // Simulate form submission
     setTimeout(() => {
-        alert('Thank you for your message! We will get back to you within 24 hours.');
+        const formStatus = document.getElementById('form-status');
+        if (formStatus) {
+            formStatus.textContent = 'Thank you for your message! We will get back to you within 24 hours.';
+            formStatus.style.display = 'block';
+        }
         contactForm.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
@@ -206,18 +208,13 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const nav = document.getElementById('nav');
 
 mobileMenuBtn.addEventListener('click', () => {
-    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    nav.style.position = 'absolute';
-    nav.style.top = '100%';
-    nav.style.left = '0';
-    nav.style.right = '0';
-    nav.style.background = 'white';
-    nav.style.flexDirection = 'column';
-    nav.style.padding = '1rem';
-    nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+    nav.classList.toggle('mobile-menu-open');
 });
 
 // Contact form submission with Web3Forms
+// NOTE: This is the full Web3Forms integration implementation.
+// To enable: 1) Replace YOUR_WEB3FORMS_ACCESS_KEY in index.html with your actual key
+//            2) Uncomment this code block and remove the simpler form handler above
 /*document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form');
     const statusEl = document.getElementById('form-status');
@@ -323,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             root: null,
-            threshold: 0.4 // section is active when 40% visible
+            threshold: 0.2 // section is active when 20% visible
         }
     );
 
