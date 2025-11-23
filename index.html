@@ -128,16 +128,19 @@
             </div>
     
             <!-- Enhanced Carousel Controls -->
-            <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous slide">
+            <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous slide, currently on slide 1 of 5" disabled>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </button>
-            <button class="carousel__arrow carousel__arrow--next" aria-label="Next slide">
+            <button class="carousel__arrow carousel__arrow--next" aria-label="Next slide, currently on slide 1 of 5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
             </button>
+            <div class="sr-only" aria-live="polite" aria-atomic="true" id="carousel-status">
+                Slide 1 of 5
+            </div>
             
             <div class="carousel__controls">
                 <button class="carousel__dot active" aria-label="Welcome">
