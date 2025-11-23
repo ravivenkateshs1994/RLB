@@ -87,15 +87,13 @@ class Carousel {
 
         carousel.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe();
+            this.handleSwipe(touchStartX, touchEndX);
         });
+    }
 
-        const handleSwipe = () => {
-            if (touchEndX < touchStartX - 50) this.nextSlide();
-            if (touchEndX > touchStartX + 50) this.prevSlide();
-        };
-
-        this.handleSwipe = handleSwipe;
+    handleSwipe(touchStartX, touchEndX) {
+        if (touchEndX < touchStartX - 50) this.nextSlide();
+        if (touchEndX > touchStartX + 50) this.prevSlide();
     }
 }
 
@@ -214,6 +212,9 @@ mobileMenuBtn.addEventListener('click', () => {
 });
 
 // Contact form submission with Web3Forms
+// NOTE: This is the full Web3Forms integration implementation.
+// To enable: 1) Replace YOUR_WEB3FORMS_ACCESS_KEY in index.html with your actual key
+//            2) Uncomment this code block and remove the simpler form handler above
 /*document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form');
     const statusEl = document.getElementById('form-status');

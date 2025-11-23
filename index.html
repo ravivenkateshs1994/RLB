@@ -128,6 +128,7 @@
             </div>
     
             <!-- Enhanced Carousel Controls -->
+
             <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous slide, currently on slide 1 of 5" disabled>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="15 18 9 12 15 6"></polyline>
@@ -143,15 +144,15 @@
             </div>
             
             <div class="carousel__controls">
-                <button class="carousel__dot active" aria-label="Welcome">
+                <button class="carousel__dot active" aria-label="Go to slide 1: Welcome" aria-current="true">
                 </button>
-                <button class="carousel__dot" aria-label="Quality">
+                <button class="carousel__dot" aria-label="Go to slide 2: Quality">
                 </button>
-                <button class="carousel__dot" aria-label="Innovation">
+                <button class="carousel__dot" aria-label="Go to slide 3: Innovation">
                 </button>
-                <button class="carousel__dot" aria-label="The Address">
+                <button class="carousel__dot" aria-label="Go to slide 4: The Address">
                 </button>
-                <button class="carousel__dot" aria-label="Promise">
+                <button class="carousel__dot" aria-label="Go to slide 5: Promise">
                 </button>
             </div>
         </div>
@@ -388,7 +389,7 @@
                     </div>
                 </div>
                 <form class="contact-form" id="contact-form">
-                    <!-- required by Web3Forms -->
+                    <!-- required by Web3Forms - Replace YOUR_WEB3FORMS_ACCESS_KEY with actual key from https://web3forms.com -->
                     <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
                     <input type="hidden" name="subject" value="New enquiry from Rich Land Builders website">
                     <!-- optional: where user came from -->
