@@ -23,8 +23,9 @@
     <header class="header" id="header">
         <div class="header__container">
             <div class="header__logo-container">
-                <img src="assets/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo">
+                <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo">
             </div>
+
             <nav class="nav" id="nav">
                 <a href="#hero" class="nav__link active">Home</a>
                 <a href="#about" class="nav__link">About</a>
@@ -32,14 +33,30 @@
                 <a href="#project" class="nav__link">The Address</a>
                 <a href="#contact" class="contact-btn">Contact Us</a>
             </nav>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+
+            <button
+                class="mobile-menu-btn"
+                id="mobile-menu-btn"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
-    </header>
 
+        <!-- Mobile nav + backdrop -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#hero" class="mobile-nav__link">Home</a>
+            <a href="#about" class="mobile-nav__link">About</a>
+            <a href="#values" class="mobile-nav__link">Values</a>
+            <a href="#project" class="mobile-nav__link">The Address</a>
+            <a href="#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
+        </nav>
+    </header>
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    
     <!-- Hero Section with Carousel -->
     <section class="hero" id="hero">
         <div class="carousel">
@@ -215,13 +232,13 @@
                     Four anchors that guide how we design, plan, and build—on site and with every family we work with.
                 </p>
             </header>
-
             <div class="values__grid">
+                <!-- Integrity -->
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80"
-                            alt="Team in discussion symbolising honesty and accountability"
+                            src="assets/cards/integrity_trust.jpg"
+                            alt="Builder and homeowner shaking hands at a house site representing integrity and trust"
                             class="values-card__image"
                         >
                     </div>
@@ -232,12 +249,13 @@
                         </p>
                     </div>
                 </article>
-
+            
+                <!-- Innovation -->
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80"
-                            alt="Architect reviewing drawings symbolising innovative thinking"
+                            src="assets/cards/reviewing_plans.jpg"
+                            alt="Architect reviewing plans on a tablet at a modern construction site symbolising innovation"
                             class="values-card__image"
                         >
                     </div>
@@ -248,12 +266,13 @@
                         </p>
                     </div>
                 </article>
-
+            
+                <!-- Crafted Quality -->
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"
-                            alt="Crafted interior space representing quality construction"
+                            src="assets/cards/quality.jpg"
+                            alt="Detail view of a finely finished living room illustrating crafted construction quality"
                             class="values-card__image"
                         >
                     </div>
@@ -264,12 +283,13 @@
                         </p>
                     </div>
                 </article>
-
+            
+                <!-- Responsibility -->
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80"
-                            alt="Green outdoor space representing responsibility and care"
+                            src="assets/cards/responsibility.png"
+                            alt="Modern residential building with greenery and solar panels showing long term responsibility"
                             class="values-card__image"
                         >
                     </div>
@@ -434,7 +454,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <img
-                        src="assets/updated_logo.png"
+                        src="assets/logo/updated_logo.png"
                         alt="Rich Land Builders"
                         class="footer-logo-image"
                     >
@@ -469,7 +489,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Rich Land Builders (RLB). All rights reserved.</p>
+                <p>&copy; 2025 Rich Land Builders. All rights reserved.</p>
             </div>
         </div>
     </footer>
