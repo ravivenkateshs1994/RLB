@@ -18,7 +18,7 @@
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="sr-only">Skip to main content</a>
+    <a href="#address-page" class="sr-only">Skip to main content</a>
 
     <!-- Header -->
     <header class="header" id="header">
@@ -33,14 +33,31 @@
                 <a href="#" class="nav__link">The Address</a>
                 <a href="index.html#contact" class="contact-btn">Contact Us</a>
             </nav>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button
+                class="mobile-menu-btn"
+                id="mobile-menu-btn"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                <svg class="mobile-menu-icon mobile-menu-icon--menu" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" />
+                </svg>
+                <svg class="mobile-menu-icon mobile-menu-icon--close" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6l-12 12" />
+                </svg>
             </button>
         </div>
     </header>
-    <div id="main-content" class="address-page">
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="index.html" class="mobile-nav__link">Home</a>
+        <a href="index.html#about" class="mobile-nav__link">About</a>
+        <a href="index.html#values" class="mobile-nav__link">Values</a>
+        <a href="#" class="mobile-nav__link">The Address</a>
+        <a href="index.html#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
+    </nav>
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+
+    <div id="address-page" class="address-page">
         <!-- Intro -->
         <section class="address-hero">
             <div class="container address-hero__container">

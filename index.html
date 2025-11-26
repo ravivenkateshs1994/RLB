@@ -18,7 +18,7 @@
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="sr-only">Skip to main content</a>
+    <a href="#home-page" class="sr-only">Skip to main content</a>
 
     <!-- Header -->
     <header class="header" id="header">
@@ -37,29 +37,32 @@
                 <a href="#contact" class="contact-btn">Contact Us</a>
             </nav>
 
-            <button
-                class="mobile-menu-btn"
-                id="mobile-menu-btn"
-                aria-label="Open menu"
-                aria-expanded="false"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+                <button
+                    class="mobile-menu-btn"
+                    id="mobile-menu-btn"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                >
+                    <svg class="mobile-menu-icon mobile-menu-icon--menu" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 7h16M4 12h16M4 17h16" />
+                    </svg>
+                    <svg class="mobile-menu-icon mobile-menu-icon--close" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6l-12 12" />
+                    </svg>
+                </button>
         </div>
-
-        <!-- Mobile nav + backdrop -->
-        <nav class="mobile-nav" id="mobile-nav">
-            <a href="#hero" class="mobile-nav__link">Home</a>
-            <a href="#about" class="mobile-nav__link">About</a>
-            <a href="#values" class="mobile-nav__link">Values</a>
-            <a href="#project" class="mobile-nav__link">The Address</a>
-            <a href="#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
-        </nav>
     </header>
+    <!-- Mobile nav + backdrop -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="#hero" class="mobile-nav__link">Home</a>
+        <a href="#about" class="mobile-nav__link">About</a>
+        <a href="#values" class="mobile-nav__link">Values</a>
+        <a href="#project" class="mobile-nav__link">The Address</a>
+        <a href="#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
+    </nav>
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
 
+    <div id="home-page">
     <!-- Hero Section with Carousel -->
     <section class="hero" id="hero">
         <div class="carousel">
@@ -496,6 +499,8 @@
             </div>
         </div>
     </footer>
+
+    </div>
 
     <!-- JavaScript -->
     <script src="scripts/common.js"></script>
