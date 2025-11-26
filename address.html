@@ -10,14 +10,15 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/address-page.css">
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="sr-only">Skip to main content</a>
+    <a href="#address-page" class="sr-only">Skip to main content</a>
 
     <!-- Header -->
     <header class="header" id="header">
@@ -26,25 +27,483 @@
                 <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo">
             </div>
             <nav class="nav" id="nav">
-                <a href="#hero" class="nav__link active">Home</a>
-                <a href="#about" class="nav__link">About</a>
-                <a href="#values" class="nav__link">Values</a>
-                <a href="#project" class="nav__link">The Address</a>
-                <a href="#contact" class="contact-btn">Contact Us</a>
+                <a href="index.html" class="nav__link active">Home</a>
+                <a href="index.html#about" class="nav__link">About</a>
+                <a href="index.html#values" class="nav__link">Values</a>
+                <a href="#" class="nav__link">The Address</a>
+                <a href="index.html#contact" class="contact-btn">Contact Us</a>
             </nav>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button
+                class="mobile-menu-btn"
+                id="mobile-menu-btn"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                <svg class="mobile-menu-icon mobile-menu-icon--menu" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" />
+                </svg>
+                <svg class="mobile-menu-icon mobile-menu-icon--close" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6l-12 12" />
+                </svg>
             </button>
         </div>
     </header>
-    <main id="main-content" class="under-construction">
-        <div class="container">
-            <h1>Page under construction</h1>
-            <p>We’re crafting this page for you. Please check back soon.</p>
-        </div>
-    </main>
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="index.html" class="mobile-nav__link">Home</a>
+        <a href="index.html#about" class="mobile-nav__link">About</a>
+        <a href="index.html#values" class="mobile-nav__link">Values</a>
+        <a href="#" class="mobile-nav__link">The Address</a>
+        <a href="index.html#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
+    </nav>
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+
+    <div id="address-page" class="address-page">
+        <!-- Intro -->
+        <section class="address-hero">
+            <div class="container address-hero__container">
+                <div class="address-hero__text">
+                    <p class="address-hero__eyebrow">Flagship Project</p>
+                    <h1 class="address-hero__title">The Address</h1>
+                    <p class="address-hero__subtitle">Luxury 4 BHK Villas &amp; Real 3 BHK Apartments in Coimbatore.</p>
+                    <p class="address-hero__lead">
+                        A focused, low‑density community where light, ventilation, and everyday comfort guide every decision.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <section class="address-tabs">
+            <div class="container">
+                <div class="address-tabs__header">
+                    <button class="address-tab address-tab--active" data-tab="villas" type="button">
+                        Luxury 4 BHK Villas
+                    </button>
+                    <button class="address-tab" data-tab="apartments" type="button">
+                        Real 3 BHK Apartments
+                    </button>
+                </div>
+
+                <!-- Villas Tab Panel -->
+                <div class="address-tabs__panel address-tabs__panel--active" id="tab-villas">
+                    <!-- Gallery -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Gallery</h2>
+                            <p class="address-section__subtitle">
+                                Mock images showing facade, living, bedrooms, and outdoor spaces for the villas.
+                            </p>
+                        </header>
+                        <div class="address-gallery address-gallery--with-main" data-gallery="villas">
+                            <div class="address-gallery__main">
+                                <img
+                                    src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80"
+                                    alt="Modern luxury villa exterior with garden"
+                                    class="address-gallery__main-image"
+                                >
+                            </div>
+                            <div class="address-gallery__thumbs">
+                                <button class="address-gallery__thumb is-active" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View villa elevation image">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=400&q=80"
+                                        alt="Modern luxury villa exterior with garden thumbnail"
+                                    >
+                                </button>
+                                <button class="address-gallery__thumb" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View villa living and dining image">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=400&q=80"
+                                        alt="Spacious villa living and dining area thumbnail"
+                                    >
+                                </button>
+                                <button class="address-gallery__thumb" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View villa master bedroom image">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=400&q=80"
+                                        alt="Luxury villa master bedroom with balcony thumbnail"
+                                    >
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Villas – Amenities -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Amenities</h2>
+                            <p class="address-section__subtitle">
+                                Curated lifestyle comforts that make every day at The Address feel resort-like.
+                            </p>
+                        </header>
+                        <div class="address-amenities">
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/waiting-room.png" alt="Entrance waiting lobby icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Entrance Waiting Lobby</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/playground.png" alt="Kids play area icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Kids Play Area</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/gym.png" alt="Indoor gym icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Indoor Gym</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/parking.png" alt="Dedicated parking icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Dedicated Parking Spaces</h3>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Floor Plan -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Floor Plan</h2>
+                            <p class="address-section__subtitle">
+                                Replace this placeholder plan and bullets with your final villa layouts.
+                            </p>
+                        </header>
+                        <div class="address-floorplan" data-floorplan="villas">
+                            <div class="address-floorplan__image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80"
+                                    alt="Architect discussing villa floor plan blueprints"
+                                    class="address-floorplan__main-image"
+                                >
+                            </div>
+                            <div class="address-floorplan__thumbs">
+                                <button class="address-floorplan__thumb is-active" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View overall villa layout">
+                                    <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=400&q=80" alt="Overall villa layout thumbnail">
+                                </button>
+                                <button class="address-floorplan__thumb" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View ground floor plan">
+                                    <img src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=400&q=80" alt="Ground floor plan thumbnail">
+                                </button>
+                                <button class="address-floorplan__thumb" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View first floor plan">
+                                    <img src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=400&q=80" alt="First floor plan thumbnail">
+                                </button>
+                            </div>
+                            <ul class="address-floorplan__details">
+                                <li>Approx. 4 BHK layout with private garden and terrace.</li>
+                                <li>Dedicated foyer, large living–dining, and open kitchen zone.</li>
+                                <li>One bedroom on ground floor for parents / guests.</li>
+                                <li>Family lounge and balconies on the upper level.</li>
+                                <li>Two car parking with clear entry and service separation.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Specifications -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Specifications</h2>
+                            <p class="address-section__subtitle">
+                                All items below are placeholders; swap them with your final specification sheet.
+                            </p>
+                        </header>
+                        <div class="address-specs">
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Structure &amp; Shell</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>RCC framed structure designed for seismic safety (mock).</li>
+                                    <li>High quality brick / block masonry with plastered finish.</li>
+                                    <li>Waterproofing for terraces, toilets, and wet areas.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Finishes</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>Vitrified tiles for living, dining, bedrooms (mock sizes).</li>
+                                    <li>Anti‑skid tiles for balconies and toilets.</li>
+                                    <li>Premium emulsion paint for interiors and exteriors.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Doors, Windows &amp; Fixtures</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>Main door with solid wood frame and veneer finish.</li>
+                                    <li>uPVC / aluminium windows with clear glass.</li>
+                                    <li>Branded CP &amp; sanitary fixtures for all bathrooms.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Services</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>Concealed electrical wiring with modular switches.</li>
+                                    <li>Provision for inverter and AC points in key rooms.</li>
+                                    <li>Mock points for EV charging, water treatment, and CCTV.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Apartments Tab Panel -->
+                <div class="address-tabs__panel" id="tab-apartments">
+                    <!-- Gallery -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Gallery</h2>
+                            <p class="address-section__subtitle">
+                                Mock visuals for the 3 BHK apartments – tower exterior and key interior spaces.
+                            </p>
+                        </header>
+                        <div class="address-gallery address-gallery--with-main" data-gallery="apartments">
+                            <div class="address-gallery__main">
+                                <img
+                                    src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80"
+                                    alt="Modern apartment building facade"
+                                    class="address-gallery__main-image"
+                                >
+                            </div>
+                            <div class="address-gallery__thumbs">
+                                <button class="address-gallery__thumb is-active" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View apartment elevation image">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=400&q=80"
+                                        alt="Modern apartment building facade thumbnail"
+                                    >
+                                </button>
+                                <button class="address-gallery__thumb" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View apartment living and dining image">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=400&q=80"
+                                        alt="Contemporary apartment living and dining space thumbnail"
+                                    >
+                                </button>
+                                <button class="address-gallery__thumb" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View apartment bedroom image">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=400&q=80"
+                                        alt="Apartment bedroom with large windows thumbnail"
+                                    >
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Apartments – Amenities -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Amenities</h2>
+                            <p class="address-section__subtitle">
+                                Everyday conveniences and shared spaces that elevate vertical living.
+                            </p>
+                        </header>
+                        <div class="address-amenities">
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/waiting-room.png" alt="Entrance waiting lobby icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Entrance Waiting Lobby</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/playground.png" alt="Kids play area icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Kids Play Area</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/gym.png" alt="Indoor gym icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Indoor Gym</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/parking.png" alt="Dedicated parking icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Dedicated Parking Space</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/elevator.png" alt="Elevator icon">
+                                </div>
+                                <h3 class="amenity-tile__label">Elevator</h3>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Floor Plan -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Floor Plan</h2>
+                            <p class="address-section__subtitle">
+                                Replace this with the final 3 BHK apartment plans and key dimensions.
+                            </p>
+                        </header>
+                        <div class="address-floorplan" data-floorplan="apartments">
+                            <div class="address-floorplan__image">
+                                <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80" alt="Architectural floor plan drawing for apartment" class="address-floorplan__main-image" />
+                            </div>
+                            <div class="address-floorplan__thumbs">
+                                <button class="address-floorplan__thumb is-active" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View typical 3 BHK plan">
+                                    <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=400&q=80" alt="Typical 3 BHK plan thumbnail">
+                                </button>
+                                <button class="address-floorplan__thumb" type="button"
+                                    data-large-src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80"
+                                    aria-label="View alternate 3 BHK layout">
+                                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=80" alt="Alternate 3 BHK layout thumbnail">
+                                </button>
+                            </div>
+                            <ul class="address-floorplan__details">
+                                <li>Thoughtfully planned 3 BHK layouts with efficient circulation.</li>
+                                <li>Balconies aligned to living spaces and master bedrooms.</li>
+                                <li>Dedicated utility and service areas as per final design.</li>
+                                <li>Stacked core for lifts and services to optimise privacy.</li>
+                                <li>Provision for wardrobe niches in all bedrooms.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Specifications -->
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Specifications</h2>
+                            <p class="address-section__subtitle">
+                                Apartment finishes and services will mirror the quality of the villas, tuned for efficient vertical living.
+                            </p>
+                        </header>
+                        <div class="address-specs">
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Structure &amp; Shell</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>RCC framed structure designed with appropriate safety factors (mock).</li>
+                                    <li>Block masonry with smooth plaster finish for walls.</li>
+                                    <li>Waterproofing for terraces, toilets, and service areas.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Flooring &amp; Finishes</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>Vitrified tiles for living, dining, and bedrooms.</li>
+                                    <li>Ceramic tiles for kitchens and toilets.</li>
+                                    <li>Premium emulsion paint for internal walls.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Doors, Windows &amp; Fixtures</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>Engineered door shutters with quality hardware.</li>
+                                    <li>uPVC windows for acoustic and thermal comfort.</li>
+                                    <li>Branded fittings for kitchens and bathrooms.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="address-specs__group">
+                                <div class="address-specs__group-header">
+                                    <h3>Services &amp; Amenities</h3>
+                                    <span class="address-specs__chevron" aria-hidden="true">›</span>
+                                </div>
+                                <div class="address-specs__body">
+                                    <ul>
+                                    <li>Provision for power backup in common areas and flats.</li>
+                                    <li>Lift lobby with mock design for finishes and lighting.</li>
+                                    <li>Security, intercom, and CCTV points as per final design.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Map -->
+        <section class="address-section address-location">
+            <div class="container">
+                <header class="address-section__header">
+                    <h2 class="address-section__title">Location &amp; Connectivity</h2>
+                    <p class="address-section__subtitle">
+                        Well‑connected yet tucked away, The Address keeps you close to everyday essentials in Coimbatore.
+                    </p>
+                </header>
+                <div class="address-location__content">
+                    <div class="address-location__info">
+                        <h3>Project Address (Placeholder)</h3>
+                        <p>
+                            The Address by Rich Land Builders<br>
+                            Sample Street Name, Coimbatore, Tamil Nadu f 641XXX
+                        </p>
+                        <ul class="address-location__highlights">
+                            <li>⏱ Quick access to key arterial roads and business hubs.</li>
+                            <li>🏥 Close to leading hospitals and healthcare centres.</li>
+                            <li>🎓 Proximity to reputed schools and colleges.</li>
+                            <li>🛍 Daily needs, supermarkets and cafes in the neighbourhood.</li>
+                        </ul>
+                    </div>
+                    <div class="address-location__map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.8822277110955!2d76.955833!3d11.016844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAxJzAwLjYiTiA3NsKwNTcnMjAuOSJF!5e0!3m2!1sen!2sin!4v1700000000000"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            aria-label="Google Map showing project location"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">↑</button>
@@ -67,11 +526,11 @@
                     <div class="footer-column">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#hero">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#values">Values</a></li>
-                            <li><a href="#project">The Address</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#values">Values</a></li>
+                            <li><a href="#">The Address</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
                         </ul>
                     </div>
 
@@ -96,6 +555,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="app.js"></script>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/address-page.js"></script>
 </body>
 </html>

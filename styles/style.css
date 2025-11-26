@@ -1,0 +1,12 @@
+/* Intentionally left mostly empty; styles have been split into
+   common.css, home.css, and address-page.css. Retained only any
+   legacy helpers that are still referenced. */
+
+.under-construction {
+    min-height: calc(100vh - var(--header-height) - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
