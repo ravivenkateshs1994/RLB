@@ -1,7 +1,3 @@
-.address-page {
-    padding-top: var(--header-height);
-}
-
 .address-hero {
     position: relative;
     min-height: 500px;
