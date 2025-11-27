@@ -38,15 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
     const backdrop = document.getElementById('mobile-nav-backdrop');
+    let lastFocusedBeforeMobileNav = null;
 
     function openMobileNav() {
         if (!mobileNav || !backdrop || !mobileBtn) return;
+        lastFocusedBeforeMobileNav = document.activeElement;
         mobileNav.classList.add('open');
         backdrop.classList.add('open');
         mobileBtn.classList.add('is-open');
         mobileBtn.setAttribute('aria-expanded', 'true');
         mobileBtn.setAttribute('aria-label', 'Close menu');
         document.body.style.overflow = 'hidden';
+
+        const focusable = mobileNav.querySelectorAll(
+            'a, button, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length) {
+            focusable[0].focus();
+        }
     }
 
     function closeMobileNav() {
@@ -57,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileBtn.setAttribute('aria-expanded', 'false');
         mobileBtn.setAttribute('aria-label', 'Open menu');
         document.body.style.overflow = '';
+        if (lastFocusedBeforeMobileNav && typeof lastFocusedBeforeMobileNav.focus === 'function') {
+            lastFocusedBeforeMobileNav.focus();
+        }
     }
 
     function toggleMobileNav() {
@@ -96,8 +108,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+            if (mobileNav.classList.contains('open') && e.key === 'Escape') {
                 closeMobileNav();
+                return;
+            }
+
+            if (!mobileNav.classList.contains('open') || e.key !== 'Tab') return;
+
+            const focusable = Array.from(
+                mobileNav.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')
+            );
+            if (!focusable.length) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            const current = document.activeElement;
+
+            if (e.shiftKey) {
+                if (current === first || !focusable.includes(current)) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (current === last || !focusable.includes(current)) {
+                    e.preventDefault();
+                    first.focus();
+                }
             }
         });
     }
