@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rich Land Builders - Where Dreams and Designs meet Reality!</title>
-    <meta name="description" content="Rich Land Builders - Crafting Foundations with Compassion in Construction. Discover The Address, our flagship project that exceeds your expectations of a Dream Home.">
-    <meta name="keywords" content="Rich Land Builders, RLB, construction, home builders, The Address, dream home, quality construction">
+    <title>Rich Land Builders | Thoughtful Residential Construction in Coimbatore</title>
+    <meta name="description" content="Rich Land Builders (RLB) is a Coimbatore-based residential construction team building thoughtful homes with clarity, accountability, and crafted quality. Explore our flagship project, The Address.">
+    <meta name="keywords" content="Rich Land Builders, RLB, Coimbatore home builders, residential construction, The Address, luxury apartments, luxury villas">
+    <meta name="author" content="Rich Land Builders">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rich Land Builders | Thoughtful Residential Construction in Coimbatore">
+    <meta property="og:description" content="Discover Rich Land Builders and The Address, our flagship residential project planned around light, ventilation, and everyday ease.">
+    <meta property="og:url" content="https://www.richlandbuilders.com/">
+    <meta property="og:image" content="https://www.richlandbuilders.com/assets/cards/quality.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,11 +32,11 @@
         <div class="header__container">
             <div class="header__logo-container">
                 <a href="index.html" aria-label="Rich Land Builders – Home">
-                    <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo">
+                    <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo" loading="lazy">
                 </a>
             </div>
 
-            <nav class="nav" id="nav">
+            <nav class="nav" id="nav" aria-label="Primary">
                 <a href="#hero" class="nav__link active">Home</a>
                 <a href="#about" class="nav__link">About</a>
                 <a href="#values" class="nav__link">Values</a>
@@ -53,7 +60,7 @@
         </div>
     </header>
     <!-- Mobile nav + backdrop -->
-    <nav class="mobile-nav" id="mobile-nav">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile primary">
         <a href="#hero" class="mobile-nav__link">Home</a>
         <a href="#about" class="mobile-nav__link">About</a>
         <a href="#values" class="mobile-nav__link">Values</a>
@@ -65,7 +72,7 @@
     <div id="home-page">
     <!-- Hero Section with Carousel -->
     <section class="hero" id="hero">
-        <div class="carousel">
+        <div class="carousel" role="region" aria-label="Rich Land Builders highlights">
             <div class="carousel__track">
                 <!-- Slide 1: Welcome / Brand Introduction -->
                 <div class="carousel__slide active">
@@ -124,9 +131,6 @@
                             <h1 class="carousel__title">The Address</h1>
                             <p class="carousel__subtitle">Redefining Luxury Living</p>
                             <p class="carousel__description">Our premier residential project featuring cutting-edge design, sustainable materials, and amenities that exceed expectations. Your dream home awaits.</p>
-                            <div class="carousel__actions">
-                                <a href="address.html" target="_blank" class="btn btn--primary btn--lg">Explore The Address</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,8 +246,8 @@
                 <!-- Integrity -->
                 <article class="values-card">
                     <div class="values-card__image-wrap">
-                        <img
-                            src="assets/cards/integrity_trust.jpg"
+                            <img
+                                src="assets/cards/integrity_trust.jpg" loading="lazy"
                             alt="Builder and homeowner shaking hands at a house site representing integrity and trust"
                             class="values-card__image"
                         >
@@ -259,8 +263,8 @@
                 <!-- Innovation -->
                 <article class="values-card">
                     <div class="values-card__image-wrap">
-                        <img
-                            src="assets/cards/reviewing_plans.jpg"
+                            <img
+                            src="assets/cards/reviewing_plans.jpg" loading="lazy"
                             alt="Architect reviewing plans on a tablet at a modern construction site symbolising innovation"
                             class="values-card__image"
                         >
@@ -277,7 +281,7 @@
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="assets/cards/quality.jpg"
+                            src="assets/cards/quality.jpg" loading="lazy"
                             alt="Detail view of a finely finished living room illustrating crafted construction quality"
                             class="values-card__image"
                         >
@@ -294,7 +298,7 @@
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="assets/cards/responsibility.png"
+                            src="assets/cards/responsibility.png" loading="lazy"
                             alt="Modern residential building with greenery and solar panels showing long term responsibility"
                             class="values-card__image"
                         >
@@ -316,7 +320,7 @@
         <div class="container address-project__container">
             <div class="address-project__image-wrap fade-in">
                 <img
-                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" loading="lazy"
                     alt="Exterior view representing The Address by Rich Land Builders"
                     class="address-project__image"
                 >
@@ -342,7 +346,7 @@
                     <p class="address-project__note">
                         Want to see floor plans, amenities, and live construction progress?
                     </p>
-                    <a href="address.html" target="_blank" class="btn btn--primary address-project__btn">
+                    <a href="address.html" target="_blank" rel="noopener noreferrer" class="btn btn--primary address-project__btn">
                         Explore The Address
                     </a>
                 </div>
@@ -460,7 +464,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <img
-                        src="assets/logo/updated_logo.png"
+                        src="assets/logo/updated_logo.png" loading="lazy"
                         alt="Rich Land Builders"
                         class="footer-logo-image"
                     >
