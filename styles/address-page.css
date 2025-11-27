@@ -34,11 +34,18 @@
 }
 
 .address-hero__eyebrow {
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
     color: var(--color-gold);
-    font-weight: 600;
-    margin-bottom: 0.4rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 1.1rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: rgba(0, 0, 0, 0.3);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 .address-hero__title {
@@ -841,7 +848,7 @@
 
     .image-lightbox__body {
         padding: 0.9rem 0.9rem 0.6rem;
-        height: 62vh;
+        height: 40vh;
     }
 
     .image-lightbox__thumb {
