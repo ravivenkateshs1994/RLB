@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rich Land Builders | Coimbatore Homes</title>
-    <meta name="description" content="Rich Land Builders (RLB) builds thoughtful homes in Coimbatore, including The Address — luxury 4 BHK villas and true 3 BHK apartments.">
+    <meta name="description" content="Rich Land Builders (RLB) builds thoughtful residential projects in Coimbatore, including The Address with luxury 4 BHK villas and real 3 BHK apartments.">
     <meta name="keywords" content="Rich Land Builders, RLB, Coimbatore home builders, residential construction, The Address, luxury apartments, luxury villas">
     <meta name="author" content="Rich Land Builders">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Rich Land Builders | Coimbatore Homes">
-    <meta property="og:description" content="Rich Land Builders builds thoughtful homes in Coimbatore — see The Address, luxury 4 BHK villas and true 3 BHK apartments planned for light and comfort.">
+    <meta property="og:title" content="Rich Land Builders | Thoughtful Residential Construction in Coimbatore">
+    <meta property="og:description" content="Discover Rich Land Builders and The Address, our flagship residential project planned around light, ventilation, and everyday ease.">
     <meta property="og:url" content="https://www.richlandbuilders.com/">
     <meta property="og:image" content="https://www.richlandbuilders.com/assets/cards/quality.jpg">
     <meta name="twitter:card" content="summary_large_image">
@@ -67,7 +67,7 @@
                 </a>
             </div>
 
-            <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+            <nav class="nav" id="nav" aria-label="Primary">
                 <a href="#hero" class="nav__link active">Home</a>
                 <a href="#about" class="nav__link">About</a>
                 <a href="#values" class="nav__link">Values</a>
@@ -91,7 +91,7 @@
         </div>
     </header>
     <!-- Mobile nav + backdrop -->
-    <nav class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile primary navigation">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile primary">
         <a href="#hero" class="mobile-nav__link">Home</a>
         <a href="#about" class="mobile-nav__link">About</a>
         <a href="#values" class="mobile-nav__link">Values</a>
@@ -101,7 +101,6 @@
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
 
     <main id="home-page">
-        <h1 class="sr-only">Rich Land Builders</h1>
     <!-- Hero Section with Carousel -->
     <section class="hero" id="hero">
         <div class="carousel" role="region" aria-label="Rich Land Builders highlights">
@@ -447,12 +446,14 @@
                                 United States
                             </p>
                         </div>
+                        <!-- Hidden iframe for silent Web3Forms submission -->
+                        <iframe name="web3forms-iframe" id="web3forms-iframe" style="display:none;width:0;height:0;border:0;"></iframe>
 
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form" aria-label="Enquiry form">
+                <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" aria-label="Enquiry form" target="web3forms-iframe">
                     <!-- required by Web3Forms -->
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                    <input type="hidden" name="access_key" value="6b82725a-62c2-4248-b22f-58fec5abfd96">
                     <input type="hidden" name="subject" value="New enquiry from Rich Land Builders website">
                     <!-- optional: where user came from -->
                     <input type="hidden" name="from_page" value="Rich Land Builders – Home">
@@ -469,7 +470,10 @@
 
                     <div class="form-group">
                         <label for="phone" class="form-label">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <select id="country-code" name="country-code" class="form-control" style="max-width: 120px;" required></select>
+                            <input type="tel" id="phone" name="phone" class="form-control" style="flex:1;" required placeholder="Phone number">
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -501,7 +505,7 @@
                 <div class="footer-brand">
                     <img
                         src="assets/logo/updated_logo.png" loading="lazy"
-                        alt="Rich Land Builders company logo"
+                        alt="Rich Land Builders"
                         class="footer-logo-image"
                     >
                     <p class="footer-tagline">Where Dreams and Designs meet Reality!</p>

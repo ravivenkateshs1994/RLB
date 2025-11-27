@@ -1,6 +1,35 @@
 // Shared behaviours across pages
 
 document.addEventListener('DOMContentLoaded', () => {
+        // Dynamically populate country code dropdown using restcountries.com
+        const countryCodeSelect = document.getElementById('country-code');
+        if (countryCodeSelect && countryCodeSelect.tagName === 'SELECT') {
+            fetch('https://restcountries.com/v3.1/all?fields=name,idd')
+                .then(res => res.json())
+                .then(data => {
+                    // Sort countries by name
+                    data.sort((a, b) => (a.name.common > b.name.common ? 1 : -1));
+                    countryCodeSelect.innerHTML = '';
+                    data.forEach(country => {
+                        if (country.idd && country.idd.root && Array.isArray(country.idd.suffixes) && country.idd.suffixes.length > 0) {
+                            country.idd.suffixes.forEach(suffix => {
+                                const code = `${country.idd.root}${suffix}`;
+                                // Remove non-numeric for value, keep + for display
+                                const value = code.replace(/[^\d]/g, '');
+                                const option = document.createElement('option');
+                                option.value = value;
+                                option.textContent = `${code} (${country.name.common})`;
+                                if (value === '91') option.selected = true; // Default to India
+                                countryCodeSelect.appendChild(option);
+                            });
+                        }
+                    });
+                })
+                .catch(() => {
+                    // fallback: just show India if fetch fails
+                    countryCodeSelect.innerHTML = '<option value="91" selected>+91 (India)</option>';
+                });
+        }
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav__link');
 
@@ -223,36 +252,58 @@ document.querySelectorAll('.fade-in').forEach(el => newObserver.observe(el));
 
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent email sending
+        // WhatsApp message (open in new tab)
+            const form = e.target;
+            const formData = new FormData(form);
+            const name = formData.get('name') ? formData.get('name').trim() : '';
+            const email = formData.get('email') ? formData.get('email').trim() : '';
+            const phone = formData.get('phone') ? formData.get('phone').trim() : '';
+            const countryCode = formData.get('country-code') ? formData.get('country-code').replace(/[^\d]/g, '').trim() : '';
+            const message = formData.get('message') || '';
 
-        const submitBtn = contactForm.querySelector('.btn--submit');
-        if (!submitBtn) return;
-        const originalText = submitBtn.textContent;
-
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-
-        setTimeout(() => {
-            let notification = document.getElementById('form-notification');
-            if (!notification) {
-                notification = document.createElement('div');
-                notification.id = 'form-notification';
-                notification.setAttribute('role', 'status');
-                notification.setAttribute('aria-live', 'polite');
-                notification.className = 'notification';
-                contactForm.parentNode.insertBefore(notification, contactForm);
+            // Basic validation
+            let error = '';
+            if (!name || name.length < 2) {
+                error = 'Please enter your full name.';
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                error = 'Please enter a valid email address.';
+            } else if (!countryCode || !/^\d{1,4}$/.test(countryCode)) {
+                error = 'Please enter a valid country code.';
+            } else if (!/^\d{4,15}$/.test(phone.replace(/\s|\-/g, ''))) {
+                error = 'Please enter a valid phone number.';
             }
-            notification.textContent = 'Thank you for your message! We will get back to you within 24 hours.';
-            notification.style.display = 'block';
-            contactForm.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
+            if (error) {
+                let notification = document.getElementById('form-notification');
+                if (!notification) {
+                    notification = document.createElement('div');
+                    notification.id = 'form-notification';
+                    notification.setAttribute('role', 'status');
+                    notification.setAttribute('aria-live', 'polite');
+                    notification.className = 'notification';
+                    contactForm.parentNode.insertBefore(notification, contactForm);
+                }
+                notification.textContent = error;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                    notification.textContent = '';
+                }, 4000);
+                return;
+            }
 
-            setTimeout(() => {
-                notification.style.display = 'none';
-                notification.textContent = '';
-            }, 5000);
-        }, 1500);
+            const waNumber = '919876543210'; // Replace with your WhatsApp number (with country code, no +)
+            const fullPhone = countryCode ? `+${countryCode}${phone}` : phone;
+            const waMsg =
+                `Hi Rich Land Builders,\n` +
+                `I'm ${name} and I came across your website. I'm interested in learning more about your homes.\n` +
+                `Here are my details:\n` +
+                `Email: ${email}\n` +
+                `Phone: ${fullPhone}\n` +
+                (message ? `A little about what I'm looking for: ${message}` : '');
+            const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`;
+            window.open(waUrl, '_blank');
+            form.reset();
     });
 }
