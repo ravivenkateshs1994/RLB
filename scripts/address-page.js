@@ -272,6 +272,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = document.getElementById('image-lightbox-close');
 
     if (lightbox && lightboxImage && lightboxBackdrop && lightboxThumbs && lightboxMeta && lightboxPrev && lightboxNext && lightboxClose) {
+                // Touch swipe support for mobile: swipe left/right to go next/prev
+                let touchStartX = null;
+                let touchEndX = null;
+                const SWIPE_THRESHOLD = 40;
+
+                const onTouchStart = (e) => {
+                    if (e.touches && e.touches.length === 1) {
+                        touchStartX = e.touches[0].clientX;
+                    }
+                };
+                const onTouchMove = (e) => {
+                    if (e.touches && e.touches.length === 1) {
+                        touchEndX = e.touches[0].clientX;
+                    }
+                };
+                const onTouchEnd = () => {
+                    if (touchStartX !== null && touchEndX !== null) {
+                        const dx = touchEndX - touchStartX;
+                        if (Math.abs(dx) > SWIPE_THRESHOLD) {
+                            if (dx < 0) {
+                                // Swipe left: next image
+                                showByIndex(currentIndex + 1);
+                            } else {
+                                // Swipe right: previous image
+                                showByIndex(currentIndex - 1);
+                            }
+                        }
+                    }
+                    touchStartX = null;
+                    touchEndX = null;
+                };
+
+                lightboxImage.addEventListener('touchstart', onTouchStart, { passive: true });
+                lightboxImage.addEventListener('touchmove', onTouchMove, { passive: true });
+                lightboxImage.addEventListener('touchend', onTouchEnd, { passive: true });
         let currentThumbGroup = [];
         let currentIndex = 0;
 
