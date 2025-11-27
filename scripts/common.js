@@ -109,10 +109,14 @@ function scrollToSection(targetId) {
     if (!targetElement) return;
     const header = document.querySelector('header');
     const headerHeight = header ? header.offsetHeight : 80;
-    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+    const prefersReducedMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     window.scrollTo({
         top: offsetTop,
-        behavior: 'smooth'
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
     });
 }
 
@@ -155,9 +159,12 @@ if (scrollToTopBtn) {
     });
 
     scrollToTopBtn.addEventListener('click', () => {
+        const prefersReducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
         });
     });
 }

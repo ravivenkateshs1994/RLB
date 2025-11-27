@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rich Land Builders - Where Dreams and Designs meet Reality!</title>
-    <meta name="description" content="Rich Land Builders - Crafting Foundations with Compassion in Construction. Discover The Address, our flagship project that exceeds your expectations of a Dream Home.">
-    <meta name="keywords" content="Rich Land Builders, RLB, construction, home builders, The Address, dream home, quality construction">
+    <title>The Address by Rich Land Builders | 4 BHK Villas & 3 BHK Apartments in Coimbatore</title>
+    <meta name="description" content="Explore The Address by Rich Land Builders in Coimbatore – low-density community with luxury 4 BHK villas and real 3 BHK apartments planned for light, ventilation, and everyday ease.">
+    <meta name="keywords" content="The Address Coimbatore, Rich Land Builders Address, 4 BHK villas Coimbatore, 3 BHK apartments Coimbatore, luxury residences Coimbatore">
+    <meta name="author" content="Rich Land Builders">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Address by Rich Land Builders | 4 BHK Villas & 3 BHK Apartments in Coimbatore">
+    <meta property="og:description" content="Discover floor plans, amenities, location, and specifications for The Address, the flagship residential project by Rich Land Builders in Coimbatore.">
+    <meta property="og:url" content="https://www.richlandbuilders.com/address.html">
+    <meta property="og:image" content="https://www.richlandbuilders.com/assets/cards/quality.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,19 +80,19 @@
         </section>
 
         <!-- Tabs -->
-        <section class="address-tabs">
+        <section class="address-tabs" aria-label="The Address configurations">
             <div class="container">
-                <div class="address-tabs__header">
-                    <button class="address-tab address-tab--active" data-tab="villas" type="button">
+                <div class="address-tabs__header" role="tablist" aria-label="Choose between villas and apartments">
+                    <button class="address-tab address-tab--active" data-tab="villas" type="button" role="tab" id="tab-villas-toggle" aria-selected="true" aria-controls="tab-villas">
                         Luxury 4 BHK Villas
                     </button>
-                    <button class="address-tab" data-tab="apartments" type="button">
+                    <button class="address-tab" data-tab="apartments" type="button" role="tab" id="tab-apartments-toggle" aria-selected="false" aria-controls="tab-apartments" tabindex="-1">
                         Real 3 BHK Apartments
                     </button>
                 </div>
 
                 <!-- Villas Tab Panel -->
-                <div class="address-tabs__panel address-tabs__panel--active" id="tab-villas">
+                <div class="address-tabs__panel address-tabs__panel--active" id="tab-villas" role="tabpanel" aria-labelledby="tab-villas-toggle">
                     <!-- Gallery -->
                     <section class="address-section">
                         <header class="address-section__header">
@@ -276,7 +283,7 @@
                 </div>
 
                 <!-- Apartments Tab Panel -->
-                <div class="address-tabs__panel" id="tab-apartments">
+                <div class="address-tabs__panel" id="tab-apartments" role="tabpanel" aria-labelledby="tab-apartments-toggle" hidden>
                     <!-- Gallery -->
                     <section class="address-section">
                         <header class="address-section__header">
@@ -497,7 +504,7 @@
                             allowfullscreen=""
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
-                            aria-label="Google Map showing project location"
+                            title="Map showing The Address project location in Coimbatore"
                         ></iframe>
                     </div>
                 </div>
@@ -507,6 +514,27 @@
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+    <!-- Image Lightbox Modal -->
+    <div class="image-lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project image viewer">
+        <div class="image-lightbox__backdrop" id="image-lightbox-backdrop"></div>
+        <div class="image-lightbox__dialog" role="document">
+            <button class="image-lightbox__close" id="image-lightbox-close" type="button" aria-label="Close image viewer">
+                ×
+            </button>
+            <button class="image-lightbox__arrow image-lightbox__arrow--prev" id="image-lightbox-prev" aria-label="Previous image">
+                ‹
+            </button>
+            <div class="image-lightbox__body">
+                <img src="" alt="Expanded view" class="image-lightbox__image" id="image-lightbox-image">
+                <div class="image-lightbox__meta" id="image-lightbox-meta" aria-live="polite"></div>
+            </div>
+            <button class="image-lightbox__arrow image-lightbox__arrow--next" id="image-lightbox-next" aria-label="Next image">
+                ›
+            </button>
+            <div class="image-lightbox__thumbs" id="image-lightbox-thumbs" aria-label="More views"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
