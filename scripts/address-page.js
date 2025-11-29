@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update tab panels
             tabPanels.forEach(p => {
-                const matches = p.id === `tab-${target}`;
+                const matches = p.id === target;
                 p.classList.toggle('address-tabs__panel--active', matches);
                 if (matches) {
                     p.removeAttribute('hidden');
@@ -313,6 +313,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             });
+
+            // Update URL hash silently
+            window.location.hash = `#${target}`;
+
+            // Scroll to tabs section
+            const tabs = document.querySelector('.address-tabs');
+            if (tabs) {
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const offsetTop = tabs.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         };
 
         // Event listeners for tabs
@@ -358,6 +373,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Check URL hash on load
+        const hash = window.location.hash;
+        if (hash.startsWith('#')) {
+            const tabName = hash.slice(1);
+            const btn = document.querySelector(`.address-tab[data-tab="${tabName}"]`);
+            if (btn) {
+                activateTab(btn);
+                // Scroll to tabs section
+                setTimeout(() => {
+                    const tabs = document.querySelector('.address-tabs');
+                    if (tabs) {
+                        const header = document.querySelector('header');
+                        const headerHeight = header ? header.offsetHeight : 80;
+                        const offsetTop = tabs.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 100);
+            }
+        }
+    }
+
+    // Sticky tabs header detection
+    const tabsHeader = document.querySelector('.address-tabs__header');
+    if (tabsHeader) {
+        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '80px');
+        const originalTop = tabsHeader.offsetTop;
+        const updateStuck = () => {
+            const isStuck = window.scrollY > originalTop - headerHeight;
+            tabsHeader.classList.toggle('is-stuck', isStuck);
+            tabsHeader.parentElement.parentElement.classList.toggle('is-stuck', isStuck);
+        };
+        window.addEventListener('scroll', updateStuck);
+        updateStuck(); // initial check
     }
 
     // Floorplan thumbnail switching

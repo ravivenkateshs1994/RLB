@@ -395,7 +395,7 @@
     height: 100%;
     display: block;
     object-fit: cover;
-    transform: scale(1.03);
+    transform: scale(1);
     transition: transform 600ms var(--ease);
 }
 
