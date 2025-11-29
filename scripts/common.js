@@ -8,47 +8,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all common functionality
-    initializeCountryCodeDropdown();
     initializeNavigationHighlighting();
     initializeMobileNavigation();
 });
-
-/* ===========================================
-   COUNTRY CODE DROPDOWN
-   =========================================== */
-
-function initializeCountryCodeDropdown() {
-    const countryCodeSelect = document.getElementById('country-code');
-
-    if (countryCodeSelect && countryCodeSelect.tagName === 'SELECT') {
-        fetch('https://restcountries.com/v3.1/all?fields=name,idd')
-            .then(res => res.json())
-            .then(data => {
-                // Sort countries by name
-                data.sort((a, b) => (a.name.common > b.name.common ? 1 : -1));
-                countryCodeSelect.innerHTML = '';
-
-                data.forEach(country => {
-                    if (country.idd && country.idd.root && Array.isArray(country.idd.suffixes) && country.idd.suffixes.length > 0) {
-                        country.idd.suffixes.forEach(suffix => {
-                            const code = `${country.idd.root}${suffix}`;
-                            // Remove non-numeric for value, keep + for display
-                            const value = code.replace(/[^\d]/g, '');
-                            const option = document.createElement('option');
-                            option.value = value;
-                            option.textContent = `${code} (${country.name.common})`;
-                            if (value === '91') option.selected = true; // Default to India
-                            countryCodeSelect.appendChild(option);
-                        });
-                    }
-                });
-            })
-            .catch(() => {
-                // Fallback: just show India if fetch fails
-                countryCodeSelect.innerHTML = '<option value="91" selected>+91 (India)</option>';
-            });
-    }
-}
 
 /* ===========================================
    NAVIGATION HIGHLIGHTING
@@ -313,7 +275,6 @@ if (contactForm) {
         const name = formData.get('name') ? formData.get('name').trim() : '';
         const email = formData.get('email') ? formData.get('email').trim() : '';
         const phone = formData.get('phone') ? formData.get('phone').trim() : '';
-        const countryCode = formData.get('country-code') ? formData.get('country-code').replace(/[^\d]/g, '').trim() : '';
         const message = formData.get('message') || '';
 
         // Basic validation
@@ -322,10 +283,8 @@ if (contactForm) {
             error = 'Please enter your full name.';
         } else if (!/^\S+@\S+\.\S+$/.test(email)) {
             error = 'Please enter a valid email address.';
-        } else if (!countryCode || !/^\d{1,4}$/.test(countryCode)) {
-            error = 'Please enter a valid country code.';
-        } else if (!/^\d{4,15}$/.test(phone.replace(/\s|\-/g, ''))) {
-            error = 'Please enter a valid phone number.';
+        } else if (!/^\+\d{1,4}\d{4,15}$/.test(phone.replace(/\s|\-/g, ''))) {
+            error = 'Please enter a valid phone number with country code, e.g., +91 9876543210.';
         }
 
         if (error) {
@@ -349,7 +308,7 @@ if (contactForm) {
 
         // Send WhatsApp message
         const waNumber = '919876543210'; // Replace with your WhatsApp number (with country code, no +)
-        const fullPhone = countryCode ? `+${countryCode}${phone}` : phone;
+        const fullPhone = phone.replace(/\s|\-/g, '');
         const waMsg =
             `Hi Rich Land Builders,\n` +
             `I'm ${name} and I came across your website. I'm interested in learning more about your homes.\n` +
