@@ -1,18 +1,187 @@
-// Address page specific: tabs, galleries, floorplans, specs accordions
+/**
+ * Address Page JavaScript
+ * Handles UI interactions for floorplans, galleries, tabs, accordions, and lightbox functionality.
+ */
+
+// ====================
+// CONSTANTS AND UTILITIES
+// ====================
+
+const AMENITY_INTERVAL = 2600;
+const ACTIVE_CLASS = 'is-active';
+const SWIPE_THRESHOLD = 40;
+
+// Utility to close the lightbox
+function closeLightbox() {
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('image-lightbox-image');
+    const lightboxMeta = document.getElementById('image-lightbox-meta');
+
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.classList.remove('is-open');
+    lightbox.classList.remove('is-floorplan');
+    lightboxImg.src = '';
+    lightboxImg.alt = '';
+    lightboxMeta.textContent = '';
+}
+
+// ====================
+// FLOORPLAN ACCORDION (MOBILE) IMAGE LIGHTBOX
+// ====================
+
+document.addEventListener('DOMContentLoaded', function () {
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('image-lightbox-image');
+    const lightboxMeta = document.getElementById('image-lightbox-meta');
+    const lightboxClose = document.getElementById('image-lightbox-close');
+
+    // Make images clickable and open in lightbox
+    document.querySelectorAll('.floorplan-accordion__panel img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxMeta.textContent = img.alt;
+            lightbox.setAttribute('aria-hidden', 'false');
+            lightbox.classList.add('is-open');
+            lightbox.classList.add('is-floorplan');
+        });
+    });
+
+    // Close lightbox on button click or backdrop click
+    lightboxClose.addEventListener('click', closeLightbox);
+    document.getElementById('image-lightbox-backdrop').addEventListener('click', closeLightbox);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (lightbox.classList.contains('is-open') && (e.key === 'Escape' || e.key === 'Esc')) {
+            closeLightbox();
+        }
+    });
+});
+
+// ====================
+// FLOORPLAN ACCORDION (MOBILE) LOGIC
+// ====================
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.floorplan-accordion--mobile').forEach(function (accordion) {
+        const items = accordion.querySelectorAll('.floorplan-accordion__item');
+
+        items.forEach(function (item) {
+            const header = item.querySelector('.floorplan-accordion__header');
+            const panel = item.querySelector('.floorplan-accordion__panel');
+
+            header.addEventListener('click', function () {
+                // Close all other panels
+                items.forEach(function (otherItem) {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('.floorplan-accordion__header').classList.remove('active');
+                        otherItem.querySelector('.floorplan-accordion__panel').style.display = 'none';
+                    }
+                });
+
+                // Toggle this panel
+                const isActive = header.classList.contains('active');
+                if (isActive) {
+                    header.classList.remove('active');
+                    panel.style.display = 'none';
+                } else {
+                    header.classList.add('active');
+                    panel.style.display = 'block';
+                }
+            });
+        });
+
+        // Open the first panel by default
+        if (items.length > 0) {
+            items[0].querySelector('.floorplan-accordion__header').classList.add('active');
+            items[0].querySelector('.floorplan-accordion__panel').style.display = 'block';
+        }
+    });
+});
+
+// ====================
+// FLOORPLAN TAB IMAGES OPEN IN LIGHTBOX
+// ====================
+
+document.addEventListener('DOMContentLoaded', function () {
+    const floorplanImages = document.querySelectorAll('.floorplan-tabs__image');
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('image-lightbox-image');
+    const lightboxMeta = document.getElementById('image-lightbox-meta');
+
+    // Open floorplan images in lightbox
+    floorplanImages.forEach(img => {
+        img.addEventListener('click', function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxMeta.textContent = img.alt;
+            lightbox.setAttribute('aria-hidden', 'false');
+            lightbox.classList.add('is-open');
+            lightbox.classList.add('is-floorplan');
+        });
+    });
+
+    // Gallery images: open in lightbox without floorplan class
+    document.querySelectorAll('.address-gallery__main-image').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function () {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxMeta.textContent = img.alt;
+            lightbox.setAttribute('aria-hidden', 'false');
+            lightbox.classList.add('is-open');
+            lightbox.classList.remove('is-floorplan');
+        });
+    });
+});
+
+// ====================
+// TABBED FLOORPLAN LOGIC
+// ====================
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Handle each floorplan tab section separately
+    document.querySelectorAll('.floorplan-tabs').forEach(tabContainer => {
+        const tabButtons = tabContainer.querySelectorAll('.floorplan-tabs__button');
+        const images = tabContainer.querySelectorAll('.floorplan-tabs__image');
+
+        tabButtons.forEach((btn, idx) => {
+            btn.addEventListener('click', function () {
+                // Remove active class from all buttons and images in this container
+                tabButtons.forEach(b => b.classList.remove('is-active'));
+                images.forEach(img => img.classList.remove('is-active'));
+
+                // Add active class to clicked tab and corresponding image
+                btn.classList.add('is-active');
+                if (images[idx]) {
+                    images[idx].classList.add('is-active');
+                }
+            });
+        });
+    });
+});
+
+// ====================
+// ADDRESS PAGE TABS, GALLERIES, FLOORPLANS, SPECS ACCORDIONS
+// ====================
 
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.address-tab');
     const tabPanels = document.querySelectorAll('.address-tabs__panel');
-
     const galleryControllers = new Map();
 
+    // Initialize galleries with slideshow
     document.querySelectorAll('.address-gallery--with-main').forEach(gallery => {
         const mainImg = gallery.querySelector('.address-gallery__main-image');
         const thumbs = Array.from(gallery.querySelectorAll('.address-gallery__thumb'));
+
         if (!mainImg || !thumbs.length) return;
 
         let currentIndex = thumbs.findIndex(t => t.classList.contains('is-active'));
         if (currentIndex < 0) currentIndex = 0;
+
         let slideTimer = null;
         const SLIDE_INTERVAL = 6000;
 
@@ -24,30 +193,39 @@ document.addEventListener('DOMContentLoaded', () => {
             thumbs.forEach(t => t.classList.remove('is-active'));
             thumb.classList.add('is-active');
 
-            mainImg.classList.remove('is-fading');
-            mainImg.offsetHeight;
+            // Auto-scroll thumbs to show active thumb
+            const thumbsContainer = gallery.querySelector('.address-gallery__thumbs');
+            if (thumbsContainer) {
+                const offsetLeft = thumb.offsetLeft;
+                const targetWidth = thumb.offsetWidth;
+                const containerWidth = thumbsContainer.clientWidth;
+                const desiredScrollLeft = offsetLeft - (containerWidth - targetWidth) / 2;
+                thumbsContainer.scrollTo({ left: desiredScrollLeft, behavior: 'smooth' });
+            }
+
+            // Fade out current image
             mainImg.classList.add('is-fading');
 
-            const handleTransitionEnd = () => {
-                mainImg.removeEventListener('transitionend', wrappedHandler);
-                mainImg.src = largeSrc;
-                requestAnimationFrame(() => {
-                    mainImg.classList.remove('is-fading');
-                });
-            };
-
-            const fallbackTimeout = setTimeout(() => {
-                mainImg.removeEventListener('transitionend', wrappedHandler);
+            // Preload the new image to avoid flicker
+            const newImg = new Image();
+            newImg.onload = () => {
                 mainImg.src = largeSrc;
                 mainImg.classList.remove('is-fading');
-            }, 400);
-
-            const wrappedHandler = (e) => {
-                clearTimeout(fallbackTimeout);
-                handleTransitionEnd(e);
             };
+            newImg.onerror = () => {
+                // Fallback: set src even if load fails
+                mainImg.src = largeSrc;
+                mainImg.classList.remove('is-fading');
+            };
+            newImg.src = largeSrc;
 
-            mainImg.addEventListener('transitionend', wrappedHandler);
+            // Fallback timeout in case onload doesn't fire (e.g., cached images)
+            setTimeout(() => {
+                if (mainImg.classList.contains('is-fading')) {
+                    mainImg.src = largeSrc;
+                    mainImg.classList.remove('is-fading');
+                }
+            }, 2000); // Increased timeout for slower connections
         };
 
         const startSlideshow = () => {
@@ -65,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        // Handle thumbnail clicks
         thumbs.forEach((thumb, index) => {
             thumb.addEventListener('click', () => {
                 currentIndex = index;
@@ -73,12 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Start slideshow if gallery is in active panel
         const parentPanel = gallery.closest('.address-tabs__panel');
         const isInActivePanel = !parentPanel || parentPanel.classList.contains('address-tabs__panel--active');
         if (isInActivePanel) {
             startSlideshow();
         }
 
+        // Store controller for later use
         galleryControllers.set(gallery, {
             start: startSlideshow,
             stop: stopSlideshow,
@@ -96,11 +277,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Tab activation logic
     if (tabButtons.length && tabPanels.length) {
         const activateTab = (btn) => {
             const target = btn.getAttribute('data-tab');
             if (!target) return;
 
+            // Update tab buttons
             tabButtons.forEach(b => {
                 const isActive = b === btn;
                 b.classList.toggle('address-tab--active', isActive);
@@ -108,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 b.setAttribute('tabindex', isActive ? '0' : '-1');
             });
 
+            // Update tab panels
             tabPanels.forEach(p => {
                 const matches = p.id === `tab-${target}`;
                 p.classList.toggle('address-tabs__panel--active', matches);
@@ -117,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     p.setAttribute('hidden', 'hidden');
                 }
 
+                // Control galleries in panels
                 p.querySelectorAll('.address-gallery--with-main').forEach(gal => {
                     const controller = galleryControllers.get(gal);
                     if (!controller) return;
@@ -130,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
+        // Event listeners for tabs
         tabButtons.forEach((btn) => {
             btn.addEventListener('click', () => {
                 activateTab(btn);
@@ -139,24 +325,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 const currentIndex = Array.prototype.indexOf.call(tabButtons, btn);
                 let nextIndex = currentIndex;
 
-                if (event.key === 'ArrowRight') {
-                    event.preventDefault();
-                    nextIndex = (currentIndex + 1) % tabButtons.length;
-                } else if (event.key === 'ArrowLeft') {
-                    event.preventDefault();
-                    nextIndex = (currentIndex - 1 + tabButtons.length) % tabButtons.length;
-                } else if (event.key === 'Home') {
-                    event.preventDefault();
-                    nextIndex = 0;
-                } else if (event.key === 'End') {
-                    event.preventDefault();
-                    nextIndex = tabButtons.length - 1;
-                } else if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    activateTab(btn);
-                    return;
-                } else {
-                    return;
+                switch (event.key) {
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        nextIndex = (currentIndex + 1) % tabButtons.length;
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        nextIndex = (currentIndex - 1 + tabButtons.length) % tabButtons.length;
+                        break;
+                    case 'Home':
+                        event.preventDefault();
+                        nextIndex = 0;
+                        break;
+                    case 'End':
+                        event.preventDefault();
+                        nextIndex = tabButtons.length - 1;
+                        break;
+                    case 'Enter':
+                    case ' ':
+                        event.preventDefault();
+                        activateTab(btn);
+                        return;
+                    default:
+                        return;
                 }
 
                 const nextBtn = tabButtons[nextIndex];
@@ -168,9 +360,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Floorplan thumbnail switching
     document.querySelectorAll('.address-floorplan').forEach(fp => {
         const mainImg = fp.querySelector('.address-floorplan__main-image');
         const thumbs = fp.querySelectorAll('.address-floorplan__thumb');
+
         if (!mainImg || !thumbs.length) return;
 
         thumbs.forEach(thumb => {
@@ -185,12 +379,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Specs accordions
     document.querySelectorAll('.address-specs').forEach(specsBlock => {
         const groups = Array.from(specsBlock.querySelectorAll('.address-specs__group'));
 
         groups.forEach((group, index) => {
             const header = group.querySelector('.address-specs__group-header');
             const body = group.querySelector('.address-specs__body');
+
             if (!header || !body) return;
 
             const panelId = body.id || `address-specs-panel-${index}`;
@@ -204,6 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const toggleGroup = () => {
                 const isOpen = group.classList.contains('is-open');
 
+                // Close all groups
                 groups.forEach(g => {
                     g.classList.remove('is-open');
                     const h = g.querySelector('.address-specs__group-header');
@@ -214,6 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
+                // Open this group if it was closed
                 if (!isOpen) {
                     group.classList.add('is-open');
                     header.setAttribute('aria-expanded', 'true');
@@ -235,10 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Auto-highlight amenities in sequence for both villas and apartments
-    const AMENITY_INTERVAL = 2600;
-    const ACTIVE_CLASS = 'is-active';
-
+    // Auto-highlight amenities
     document.querySelectorAll('.address-amenities').forEach(grid => {
         const tiles = Array.from(grid.querySelectorAll('.amenity-tile'));
         if (!tiles.length) return;
@@ -246,22 +441,23 @@ document.addEventListener('DOMContentLoaded', () => {
         let index = 0;
 
         const step = () => {
-            // If user is hovering any amenity in this grid, respect that
+            // Skip if user is hovering
             if (tiles.some(t => t.matches(':hover'))) return;
 
             tiles.forEach(t => t.classList.remove(ACTIVE_CLASS));
             tiles[index].classList.add(ACTIVE_CLASS);
-
             index = (index + 1) % tiles.length;
         };
 
-        // Start with the first tile active
+        // Start with first tile active
         tiles[0].classList.add(ACTIVE_CLASS);
-
         setInterval(step, AMENITY_INTERVAL);
     });
 
-    // Image lightbox for gallery and floorplan images
+    // ====================
+    // IMAGE LIGHTBOX WITH ZOOM AND PAN
+    // ====================
+
     const lightbox = document.getElementById('image-lightbox');
     const lightboxImage = document.getElementById('image-lightbox-image');
     const lightboxBackdrop = document.getElementById('image-lightbox-backdrop');
@@ -269,47 +465,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxMeta = document.getElementById('image-lightbox-meta');
     const lightboxPrev = document.getElementById('image-lightbox-prev');
     const lightboxNext = document.getElementById('image-lightbox-next');
-    const lightboxClose = document.getElementById('image-lightbox-close');
+    const lightboxCloseBtn = document.getElementById('image-lightbox-close');
 
-    if (lightbox && lightboxImage && lightboxBackdrop && lightboxThumbs && lightboxMeta && lightboxPrev && lightboxNext && lightboxClose) {
-                // Touch swipe support for mobile: swipe left/right to go next/prev
-                let touchStartX = null;
-                let touchEndX = null;
-                const SWIPE_THRESHOLD = 40;
-
-                const onTouchStart = (e) => {
-                    if (e.touches && e.touches.length === 1) {
-                        touchStartX = e.touches[0].clientX;
-                    }
-                };
-                const onTouchMove = (e) => {
-                    if (e.touches && e.touches.length === 1) {
-                        touchEndX = e.touches[0].clientX;
-                    }
-                };
-                const onTouchEnd = () => {
-                    if (touchStartX !== null && touchEndX !== null) {
-                        const dx = touchEndX - touchStartX;
-                        if (Math.abs(dx) > SWIPE_THRESHOLD) {
-                            if (dx < 0) {
-                                // Swipe left: next image
-                                showByIndex(currentIndex + 1);
-                            } else {
-                                // Swipe right: previous image
-                                showByIndex(currentIndex - 1);
-                            }
-                        }
-                    }
-                    touchStartX = null;
-                    touchEndX = null;
-                };
-
-                lightboxImage.addEventListener('touchstart', onTouchStart, { passive: true });
-                lightboxImage.addEventListener('touchmove', onTouchMove, { passive: true });
-                lightboxImage.addEventListener('touchend', onTouchEnd, { passive: true });
-        let currentThumbGroup = [];
+    if (lightbox && lightboxImage && lightboxBackdrop && lightboxThumbs && lightboxMeta && lightboxPrev && lightboxNext && lightboxCloseBtn) {
+        // Variables for zoom, pan, and navigation
+        let zoomLevel = 1;
+        let panX = 0;
+        let panY = 0;
+        let isPanning = false;
+        let startX, startY;
+        let initialDistance = 0;
+        let initialZoom = 1;
         let currentIndex = 0;
+        let currentThumbGroup = [];
+        let lastFocusedElement = null;
 
+        // Touch variables
+        let touchStartX = null;
+        let touchEndX = null;
+
+        // Update metadata display
         const updateMeta = () => {
             if (!currentThumbGroup.length) {
                 lightboxMeta.textContent = '';
@@ -318,11 +493,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const total = currentThumbGroup.length;
             const displayIndex = currentIndex + 1;
             lightboxMeta.textContent = `${displayIndex} / ${total}`;
-
             lightboxPrev.disabled = total <= 1;
             lightboxNext.disabled = total <= 1;
         };
 
+        // Set active thumbnail
         const setActiveThumb = (index) => {
             currentThumbGroup.forEach((thumb, i) => {
                 if (i === index) {
@@ -342,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateMeta();
         };
 
+        // Show image by index
         const showByIndex = (index) => {
             if (!currentThumbGroup.length) return;
             const total = currentThumbGroup.length;
@@ -357,40 +533,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     lightboxImage.alt = thumbAlt;
                 }
             }
+            zoomLevel = 1;
+            panX = 0;
+            panY = 0;
+            applyTransform();
             setActiveThumb(wrappedIndex);
         };
 
-        let lastFocusedElement = null;
-
-        const getLightboxFocusable = () => {
-            return lightbox.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
+        // Apply zoom and pan transform
+        const applyTransform = () => {
+            lightboxImage.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`;
+            lightboxImage.style.transformOrigin = 'center center';
         };
 
-        const handleLightboxKeydown = (event) => {
-            if (event.key === 'Tab') {
-                const focusable = Array.from(getLightboxFocusable());
-                if (!focusable.length) return;
+        // Constrain pan to keep image in view
+        const constrainPan = () => {
+            const imgRect = lightboxImage.getBoundingClientRect();
+            const containerRect = lightbox.getBoundingClientRect();
+            const scaledWidth = imgRect.width * zoomLevel;
+            const scaledHeight = imgRect.height * zoomLevel;
 
-                const first = focusable[0];
-                const last = focusable[focusable.length - 1];
-                const current = document.activeElement;
-
-                if (event.shiftKey) {
-                    if (current === first || !focusable.includes(current)) {
-                        event.preventDefault();
-                        last.focus();
-                    }
-                } else {
-                    if (current === last || !focusable.includes(current)) {
-                        event.preventDefault();
-                        first.focus();
-                    }
-                }
-            }
+            const maxPanX = Math.max(0, (scaledWidth - containerRect.width) / 2);
+            const maxPanY = Math.max(0, (scaledHeight - containerRect.height) / 2);
+            panX = Math.max(-maxPanX, Math.min(maxPanX, panX));
+            panY = Math.max(-maxPanY, Math.min(maxPanY, panY));
         };
 
+        // Open lightbox
         const openLightbox = (src, alt, thumbSources) => {
             lightboxImage.src = src;
             lightboxImage.alt = alt || 'Expanded view';
@@ -428,12 +597,22 @@ document.addEventListener('DOMContentLoaded', () => {
             lastFocusedElement = document.activeElement;
             lightbox.classList.add('is-open');
             lightbox.setAttribute('aria-hidden', 'false');
-            lightboxClose.focus();
+            lightboxCloseBtn.focus();
             document.body.style.overflow = 'hidden';
             document.addEventListener('keydown', handleLightboxKeydown, true);
         };
 
-        const closeLightbox = () => {
+        // Close lightbox
+        const closeLightboxAdvanced = () => {
+            zoomLevel = 1;
+            panX = 0;
+            panY = 0;
+            applyTransform();
+
+            if (document.activeElement && lightbox.contains(document.activeElement)) {
+                document.activeElement.blur();
+            }
+
             lightbox.classList.remove('is-open');
             lightbox.setAttribute('aria-hidden', 'true');
             lightboxImage.src = '';
@@ -443,18 +622,115 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxMeta.textContent = '';
             document.body.style.overflow = '';
             document.removeEventListener('keydown', handleLightboxKeydown, true);
+
             if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
                 lastFocusedElement.focus();
             }
         };
 
-        lightboxBackdrop.addEventListener('click', closeLightbox);
-        lightboxClose.addEventListener('click', closeLightbox);
+        // Handle keyboard navigation in lightbox
+        const handleLightboxKeydown = (event) => {
+            if (event.key === 'Tab') {
+                const focusable = Array.from(getLightboxFocusable());
+                if (!focusable.length) return;
+
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                const current = document.activeElement;
+
+                if (event.shiftKey) {
+                    if (current === first || !focusable.includes(current)) {
+                        event.preventDefault();
+                        last.focus();
+                    }
+                } else {
+                    if (current === last || !focusable.includes(current)) {
+                        event.preventDefault();
+                        first.focus();
+                    }
+                }
+            }
+        };
+
+        // Get focusable elements in lightbox
+        const getLightboxFocusable = () => {
+            return lightbox.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+        };
+
+        // Touch event handlers
+        const onTouchStart = (e) => {
+            if (e.touches.length === 1) {
+                if (zoomLevel > 1) {
+                    startX = e.touches[0].clientX - panX;
+                    startY = e.touches[0].clientY - panY;
+                    isPanning = true;
+                } else {
+                    touchStartX = e.touches[0].clientX;
+                }
+            } else if (e.touches.length === 2) {
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                initialDistance = Math.sqrt(dx * dx + dy * dy);
+                initialZoom = zoomLevel;
+            }
+        };
+
+        const onTouchMove = (e) => {
+            if (e.touches.length === 1) {
+                if (isPanning) {
+                    panX = e.touches[0].clientX - startX;
+                    panY = e.touches[0].clientY - startY;
+                    constrainPan();
+                    applyTransform();
+                } else {
+                    touchEndX = e.touches[0].clientX;
+                }
+            } else if (e.touches.length === 2) {
+                e.preventDefault();
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const newZoom = Math.max(1, Math.min(5, initialZoom * (distance / initialDistance)));
+                if (newZoom !== zoomLevel) {
+                    zoomLevel = newZoom;
+                    constrainPan();
+                    applyTransform();
+                }
+            }
+        };
+
+        const onTouchEnd = () => {
+            if (isPanning) {
+                isPanning = false;
+            }
+            if (touchStartX !== null && touchEndX !== null) {
+                const dx = touchEndX - touchStartX;
+                if (Math.abs(dx) > SWIPE_THRESHOLD) {
+                    if (dx < 0) {
+                        showByIndex(currentIndex + 1);
+                    } else {
+                        showByIndex(currentIndex - 1);
+                    }
+                }
+            }
+            touchStartX = null;
+            touchEndX = null;
+        };
+
+        // Event listeners
+        lightboxImage.addEventListener('touchstart', onTouchStart, { passive: true });
+        lightboxImage.addEventListener('touchmove', onTouchMove, { passive: true });
+        lightboxImage.addEventListener('touchend', onTouchEnd, { passive: true });
+
+        lightboxBackdrop.addEventListener('click', closeLightboxAdvanced);
+        lightboxCloseBtn.addEventListener('click', closeLightboxAdvanced);
 
         document.addEventListener('keydown', (event) => {
             if (!lightbox.classList.contains('is-open')) return;
             if (event.key === 'Escape') {
-                closeLightbox();
+                closeLightboxAdvanced();
             } else if (event.key === 'ArrowLeft') {
                 showByIndex(currentIndex - 1);
             } else if (event.key === 'ArrowRight') {
@@ -470,60 +746,108 @@ document.addEventListener('DOMContentLoaded', () => {
             showByIndex(currentIndex + 1);
         });
 
-        document
-            .querySelectorAll('.address-gallery__main-image')
-            .forEach((img) => {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', () => {
-                    const gallery = img.closest('.address-gallery--with-main');
-                    const thumbs = gallery
-                        ? Array.from(gallery.querySelectorAll('.address-gallery__thumb'))
-                        : [];
+        // Mouse wheel zoom
+        lightboxImage.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
+            const newZoom = Math.max(1, Math.min(5, zoomLevel * zoomFactor));
 
-                    const thumbSources = thumbs.map((thumb) => {
-                        const largeSrc = thumb.getAttribute('data-large-src');
-                        const thumbImg = thumb.querySelector('img');
-                        return {
-                            largeSrc: largeSrc || (thumbImg && thumbImg.src) || img.src,
-                            thumbSrc: thumbImg && thumbImg.src,
-                            thumbAlt: thumbImg && thumbImg.alt,
-                        };
-                    });
+            if (newZoom !== zoomLevel) {
+                const rect = lightboxImage.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const scaleChange = newZoom / zoomLevel;
+                panX = (panX - x) * scaleChange + x;
+                panY = (panY - y) * scaleChange + y;
+                zoomLevel = newZoom;
+                constrainPan();
+                applyTransform();
+            }
+        });
 
-                    const src = img.getAttribute('src');
-                    const alt = img.getAttribute('alt');
-                    if (src) {
-                        openLightbox(src, alt, thumbSources);
-                    }
+        // Mouse pan
+        lightboxImage.addEventListener('mousedown', (e) => {
+            if (zoomLevel > 1) {
+                e.preventDefault();
+                isPanning = true;
+                startX = e.clientX - panX;
+                startY = e.clientY - panY;
+                lightboxImage.classList.add('is-zoomed');
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isPanning && zoomLevel > 1) {
+                panX = e.clientX - startX;
+                panY = e.clientY - startY;
+                constrainPan();
+                applyTransform();
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isPanning) {
+                isPanning = false;
+                lightboxImage.classList.remove('is-zoomed');
+            }
+        });
+
+        // Double-click to reset zoom
+        lightboxImage.addEventListener('dblclick', () => {
+            zoomLevel = 1;
+            panX = 0;
+            panY = 0;
+            applyTransform();
+        });
+
+        // Open lightbox for gallery images
+        document.querySelectorAll('.address-gallery__main-image').forEach((img) => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', () => {
+                const gallery = img.closest('.address-gallery--with-main');
+                const thumbs = gallery ? Array.from(gallery.querySelectorAll('.address-gallery__thumb')) : [];
+
+                const thumbSources = thumbs.map((thumb) => {
+                    const largeSrc = thumb.getAttribute('data-large-src');
+                    const thumbImg = thumb.querySelector('img');
+                    return {
+                        largeSrc: largeSrc || (thumbImg && thumbImg.src) || img.src,
+                        thumbSrc: thumbImg && thumbImg.src,
+                        thumbAlt: thumbImg && thumbImg.alt,
+                    };
                 });
+
+                const src = img.getAttribute('src');
+                const alt = img.getAttribute('alt');
+                if (src) {
+                    openLightbox(src, alt, thumbSources);
+                }
             });
+        });
 
-        document
-            .querySelectorAll('.address-floorplan__main-image')
-            .forEach((img) => {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('click', () => {
-                    const floorplan = img.closest('.address-floorplan');
-                    const thumbs = floorplan
-                        ? Array.from(floorplan.querySelectorAll('.address-floorplan__thumb'))
-                        : [];
+        // Open lightbox for floorplan images
+        document.querySelectorAll('.address-floorplan__main-image').forEach((img) => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', () => {
+                const floorplan = img.closest('.address-floorplan');
+                const thumbs = floorplan ? Array.from(floorplan.querySelectorAll('.address-floorplan__thumb')) : [];
 
-                    const thumbSources = thumbs.map((thumb) => {
-                        const largeSrc = thumb.getAttribute('data-large-src');
-                        const thumbImg = thumb.querySelector('img');
-                        return {
-                            largeSrc: largeSrc || (thumbImg && thumbImg.src) || img.src,
-                            thumbSrc: thumbImg && thumbImg.src,
-                            thumbAlt: thumbImg && thumbImg.alt,
-                        };
-                    });
-
-                    const src = img.getAttribute('src');
-                    const alt = img.getAttribute('alt');
-                    if (src) {
-                        openLightbox(src, alt, thumbSources);
-                    }
+                const thumbSources = thumbs.map((thumb) => {
+                    const largeSrc = thumb.getAttribute('data-large-src');
+                    const thumbImg = thumb.querySelector('img');
+                    return {
+                        largeSrc: largeSrc || (thumbImg && thumbImg.src) || img.src,
+                        thumbSrc: thumbImg && thumbImg.src,
+                        thumbAlt: thumbImg && thumbImg.alt,
+                    };
                 });
+
+                const src = img.getAttribute('src');
+                const alt = img.getAttribute('alt');
+                if (src) {
+                    openLightbox(src, alt, thumbSources);
+                }
             });
+        });
     }
 });

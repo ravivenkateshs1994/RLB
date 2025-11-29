@@ -1,3 +1,11 @@
+/* ===========================================
+   HOME PAGE STYLES
+   =========================================== */
+
+/* ===========================================
+   HERO SECTION - CAROUSEL
+   =========================================== */
+
 .hero {
     position: relative;
     margin-top: var(--header-height);
@@ -25,10 +33,19 @@
     opacity: 0;
     transform: scale(1.04);
     transition:
-        opacity 1100ms var(--ease),
-        transform 1100ms var(--ease);
+        opacity 700ms var(--ease),
+        transform 700ms var(--ease);
     pointer-events: none;
     visibility: hidden;
+    z-index: 1;
+}
+
+.carousel__slide.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    visibility: visible;
+    z-index: 2;
 }
 
 .carousel__slide::before {
@@ -38,13 +55,6 @@
     background:
         linear-gradient(135deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.4));
     z-index: 1;
-}
-
-.carousel__slide.active {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-    visibility: visible;
 }
 
 .carousel__content {
@@ -75,7 +85,7 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 1rem;
-    font-weight: bold; 
+    font-weight: bold;
     color: var(--color-gold);
 }
 
@@ -153,6 +163,10 @@
     width: 28px;
     background: #ffffff;
 }
+
+/* ===========================================
+   ABOUT SECTION
+   =========================================== */
 
 .about {
     padding: clamp(4rem, 8vw, 5.5rem) 0;
@@ -262,6 +276,10 @@
     margin-right: 0.4rem;
 }
 
+/* ===========================================
+   VALUES SECTION
+   =========================================== */
+
 .values {
     padding: clamp(3.5rem, 7vw, 4.5rem) 0;
     background: #ffffff;
@@ -347,6 +365,10 @@
 .values-card:hover .values-card__image {
     transform: scale(1.08);
 }
+
+/* ===========================================
+   ADDRESS PROJECT SECTION
+   =========================================== */
 
 .address-project {
     padding: clamp(3.5rem, 7vw, 4.5rem) 0;
@@ -472,6 +494,10 @@
     background: var(--color-primary-dark);
     transform: translateY(-1px);
 }
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
 
 @media (max-width: 960px) {
     .hero {

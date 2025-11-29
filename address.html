@@ -148,9 +148,9 @@
                     <div class="address-section-row address-section-row--odd">
                     <section class="address-section">
                         <header class="address-section__header">
-                            <h2 class="address-section__title">Gallery</h2>
+                            <h2 class="address-section__title">Project Gallery</h2>
                             <p class="address-section__subtitle">
-                                Mock images showing facade, living, bedrooms, and outdoor spaces for the villas.
+                                Explore a visual journey through our thoughtfully designed living spaces, exteriors, and amenities.
                             </p>
                         </header>
                         <div class="address-gallery address-gallery--with-main" data-gallery="villas">
@@ -197,7 +197,7 @@
                         <header class="address-section__header">
                             <h2 class="address-section__title">Amenities</h2>
                             <p class="address-section__subtitle">
-                                Curated lifestyle comforts that make every day at The Address feel resort-like.
+                                Discover the thoughtful amenities designed to elevate comfort, convenience, and community living every day.
                             </p>
                         </header>
                         <div class="address-amenities">
@@ -235,41 +235,44 @@
                         <header class="address-section__header">
                             <h2 class="address-section__title">Floor Plan</h2>
                             <p class="address-section__subtitle">
-                                Replace this placeholder plan and bullets with your final villa layouts.
+                                View the thoughtfully designed layouts that maximize space, light, and everyday comfort.
                             </p>
                         </header>
                         <div class="address-floorplan" data-floorplan="villas">
-                            <div class="address-floorplan__image">
-                                <img
-                                    src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80"
-                                    alt="Architect discussing villa floor plan blueprints"
-                                    class="address-floorplan__main-image"
-                                >
+                            <!-- Tabs for desktop -->
+                            <div class="floorplan-tabs floorplan-tabs--desktop">
+                                <div class="floorplan-tabs__nav">
+                                    <button class="floorplan-tabs__button is-active" type="button">Overall Layout</button>
+                                    <button class="floorplan-tabs__button" type="button">Ground Floor</button>
+                                    <button class="floorplan-tabs__button" type="button">First Floor</button>
+                                </div>
+                                <div class="floorplan-tabs__content">
+                                    <img class="floorplan-tabs__image is-active" src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80" alt="Overall villa layout">
+                                    <img class="floorplan-tabs__image" src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80" alt="Ground floor plan">
+                                    <img class="floorplan-tabs__image" src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80" alt="First floor plan">
+                                </div>
                             </div>
-                            <div class="address-floorplan__thumbs">
-                                <button class="address-floorplan__thumb is-active" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View overall villa layout">
-                                    <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=400&q=80" alt="Overall villa layout thumbnail">
-                                </button>
-                                <button class="address-floorplan__thumb" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View ground floor plan">
-                                    <img src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=400&q=80" alt="Ground floor plan thumbnail">
-                                </button>
-                                <button class="address-floorplan__thumb" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View first floor plan">
-                                    <img src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=400&q=80" alt="First floor plan thumbnail">
-                                </button>
+                            <!-- Accordion for mobile -->
+                            <div class="floorplan-accordion floorplan-accordion--mobile">
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Overall Layout</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80" alt="Overall villa layout">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Ground Floor</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80" alt="Ground floor plan">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">First Floor</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80" alt="First floor plan">
+                                    </div>
+                                </div>
                             </div>
-                            <ul class="address-floorplan__details">
-                                <li>Approx. 4 BHK layout with private garden and terrace.</li>
-                                <li>Dedicated foyer, large living–dining, and open kitchen zone.</li>
-                                <li>One bedroom on ground floor for parents / guests.</li>
-                                <li>Family lounge and balconies on the upper level.</li>
-                                <li>Two car parking with clear entry and service separation.</li>
-                            </ul>
                         </div>
                     </section>
                     </div>
@@ -279,9 +282,9 @@
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Specifications</h2>
-                            <p class="address-section__subtitle">
-                                All items below are placeholders; swap them with your final specification sheet.
-                            </p>
+                                <p class="address-section__subtitle">
+                                    Discover the quality materials, finishes, and features that define every villa at The Address.
+                                </p>
                         </header>
                         <div class="address-specs">
                             <div class="address-specs__group">
@@ -347,44 +350,110 @@
                     <div class="address-section-row address-section-row--odd">
                     <section class="address-section">
                         <header class="address-section__header">
-                            <h2 class="address-section__title">Gallery</h2>
+                            <h2 class="address-section__title">Project Gallery</h2>
                             <p class="address-section__subtitle">
-                                Mock visuals for the 3 BHK apartments – tower exterior and key interior spaces.
+                                Take a visual tour of our modern 3BHK apartments—see interiors, shared spaces, and the thoughtful details that set them apart.
                             </p>
                         </header>
                         <div class="address-gallery address-gallery--with-main" data-gallery="apartments">
                             <div class="address-gallery__main">
                                 <img
-                                    src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80"
-                                    alt="Modern apartment building facade"
+                                    src="assets/others/apartment_rendering.webp"
+                                    alt="Apartment building rendering"
                                     class="address-gallery__main-image"
                                 >
                             </div>
-                            <div class="address-gallery__thumbs">
-                                <button class="address-gallery__thumb is-active" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View apartment elevation image">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=400&q=80"
-                                        alt="Modern apartment building facade thumbnail"
-                                    >
-                                </button>
-                                <button class="address-gallery__thumb" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View apartment living and dining image">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=400&q=80"
-                                        alt="Contemporary apartment living and dining space thumbnail"
-                                    >
-                                </button>
-                                <button class="address-gallery__thumb" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View apartment bedroom image">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=400&q=80"
-                                        alt="Apartment bedroom with large windows thumbnail"
-                                    >
-                                </button>
+                            <div class="address-gallery__thumbs-outer">
+                                <div class="address-gallery__thumbs">
+                                    <button class="address-gallery__thumb is-active" type="button"
+                                        data-large-src="assets/others/apartment_rendering.webp"
+                                        aria-label="View apartment building rendering">
+                                        <img
+                                            src="assets/others/apartment_rendering.webp"
+                                            alt="Apartment building rendering thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/living_room_1.webp"
+                                        aria-label="View apartment living room 1">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_living_room_1.webp"
+                                            alt="Apartment living room 1 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/living_room_2.webp"
+                                        aria-label="View apartment living room 2">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_living_room_2.webp"
+                                            alt="Apartment living room 2 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/living_room_3.webp"
+                                        aria-label="View apartment living room 3">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_living_room_3.webp"
+                                            alt="Apartment living room 3 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/dining_room_1.webp"
+                                        aria-label="View apartment dining room 1">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_dining_room_1.webp"
+                                            alt="Apartment dining room 1 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/dining_room_2.webp"
+                                        aria-label="View apartment dining room 2">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_dining_room_2.webp"
+                                            alt="Apartment dining room 2 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/kitchen_1.webp"
+                                        aria-label="View apartment kitchen 1">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_kitchen_1.webp"
+                                            alt="Apartment kitchen 1 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/kitchen_2.webp"
+                                        aria-label="View apartment kitchen 2">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_kitchen_2.webp"
+                                            alt="Apartment kitchen 2 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/misc_1.webp"
+                                        aria-label="View apartment misc 1">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_misc_1.webp"
+                                            alt="Apartment misc 1 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/misc_2.webp"
+                                        aria-label="View apartment misc 2">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_misc_2.webp"
+                                            alt="Apartment misc 2 thumbnail"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/interior_1.webp"
+                                        aria-label="View apartment interior 1">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_interior_1.webp"
+                                            alt="Apartment interior 1 thumbnail"
+                                        >
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -396,7 +465,7 @@
                         <header class="address-section__header">
                             <h2 class="address-section__title">Amenities</h2>
                             <p class="address-section__subtitle">
-                                Everyday conveniences and shared spaces that elevate vertical living.
+                                Experience a range of amenities crafted for comfort, connection, and a vibrant apartment lifestyle.
                             </p>
                         </header>
                         <div class="address-amenities">
@@ -440,32 +509,52 @@
                         <header class="address-section__header">
                             <h2 class="address-section__title">Floor Plan</h2>
                             <p class="address-section__subtitle">
-                                Replace this with the final 3 BHK apartment plans and key dimensions.
+                                Explore efficient and modern floor plans tailored for contemporary apartment living.
                             </p>
                         </header>
                         <div class="address-floorplan" data-floorplan="apartments">
-                            <div class="address-floorplan__image">
-                                <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80" alt="Architectural floor plan drawing for apartment" class="address-floorplan__main-image" />
+                            <!-- Tabs for desktop -->
+                            <div class="floorplan-tabs floorplan-tabs--desktop">
+                                <div class="floorplan-tabs__nav">
+                                    <button class="floorplan-tabs__button is-active" type="button">Typical Floor Layout</button>
+                                    <button class="floorplan-tabs__button" type="button">Type A</button>
+                                    <button class="floorplan-tabs__button" type="button">Type B</button>
+                                    <button class="floorplan-tabs__button" type="button">Type C</button>
+                                </div>
+                                <div class="floorplan-tabs__content">
+                                    <img class="floorplan-tabs__image is-active" src="assets/floorplan/apartments/floor_view.webp" alt="Overall floor layout">
+                                    <img class="floorplan-tabs__image" src="assets/floorplan/apartments/type_a.webp" alt="Type A layout">
+                                    <img class="floorplan-tabs__image" src="assets/floorplan/apartments/type_b.webp" alt="Type B layout">
+                                    <img class="floorplan-tabs__image" src="assets/floorplan/apartments/type_c.webp" alt="Type C layout">
+                                </div>
                             </div>
-                            <div class="address-floorplan__thumbs">
-                                <button class="address-floorplan__thumb is-active" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View typical 3 BHK plan">
-                                    <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=400&q=80" alt="Typical 3 BHK plan thumbnail">
-                                </button>
-                                <button class="address-floorplan__thumb" type="button"
-                                    data-large-src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80"
-                                    aria-label="View alternate 3 BHK layout">
-                                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=80" alt="Alternate 3 BHK layout thumbnail">
-                                </button>
+                            <!-- Accordion for mobile -->
+                            <div class="floorplan-accordion floorplan-accordion--mobile">
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Typical Floor Layout</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/floor_view.webp" alt="Overall floor layout">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Type A</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/type_a.webp" alt="Type A layout">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Type B</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/type_b.webp" alt="Type B layout">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Type C</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/type_c.webp" alt="Type C layout">
+                                    </div>
+                                </div>
                             </div>
-                            <ul class="address-floorplan__details">
-                                <li>Thoughtfully planned 3 BHK layouts with efficient circulation.</li>
-                                <li>Balconies aligned to living spaces and master bedrooms.</li>
-                                <li>Dedicated utility and service areas as per final design.</li>
-                                <li>Stacked core for lifts and services to optimise privacy.</li>
-                                <li>Provision for wardrobe niches in all bedrooms.</li>
-                            </ul>
                         </div>
                     </section>
                     </div>
@@ -476,7 +565,7 @@
                         <header class="address-section__header">
                             <h2 class="address-section__title">Specifications</h2>
                             <p class="address-section__subtitle">
-                                Apartment finishes and services will mirror the quality of the villas, tuned for efficient vertical living.
+                                See the specifications that ensure comfort, durability, and style in every apartment home.
                             </p>
                         </header>
                         <div class="address-specs">
@@ -541,42 +630,52 @@
 
         <!-- Location & Map -->
         <section class="address-section address-location">
-            <div class="container">
-                <header class="address-section__header">
-                    <h2 class="address-section__title">Location &amp; Connectivity</h2>
-                    <p class="address-section__subtitle">
-                        Well‑connected yet tucked away, The Address keeps you close to everyday essentials in Coimbatore.
-                    </p>
-                </header>
-                <div class="address-location__content">
-                    <div class="address-location__info">
-                        <h3>Project Address (Placeholder)</h3>
-                        <p>
-                            The Address by Rich Land Builders<br>
-                            Sample Street Name, Coimbatore, Tamil Nadu f 641XXX
-                        </p>
-                        <ul class="address-location__highlights">
-                            <li>⏱ Quick access to key arterial roads and business hubs.</li>
-                            <li>🏥 Close to leading hospitals and healthcare centres.</li>
-                            <li>🎓 Proximity to reputed schools and colleges.</li>
-                            <li>🛍 Daily needs, supermarkets and cafes in the neighbourhood.</li>
-                        </ul>
+            <div class="address-section-row address-section-row--odd">
+                <section class="address-section address-location-info">
+                    <div class="container">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Prime Location &amp; Urban Access</h2>
+                            <p class="address-section__subtitle">
+                                Well‑connected yet tucked away, The Address keeps you close to everyday essentials in Coimbatore.
+                            </p>
+                        </header>
+                        <div class="address-location__info">
+                            <ul class="address-location__highlights">
+                                <li>✈️ <strong>Airport Access:</strong> Reach Coimbatore International Airport in just 15 minutes by car for effortless travel connections.</li>
+                                <li>🏥 <strong>Healthcare Hub:</strong> A 10-minute drive brings you to a cluster of clinics and specialty hospitals for peace of mind.</li>
+                                <li>🎓 <strong>Education Zone:</strong> Top schools and colleges are only 13 minutes away, making daily commutes easy for students.</li>
+                                <li>🛒 <strong>Everyday Essentials:</strong> Supermarkets, pharmacies, and popular restaurants are within a quick 6-minute drive or auto ride.</li>
+                                <li>🚗 <strong>Citywide Connectivity:</strong> Central Coimbatore is just 25 minutes by car, and the main railway station is accessible in about 30 minutes, traffic permitting.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="address-location__map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d301.13494401810607!2d77.04467564853269!3d11.060336283240702!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1764259854710!5m2!1sen!2sin"
-                            width="800"
-                            height="600"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Map showing The Address project location in Coimbatore"
-                        ></iframe>
-                    </div>
-                </div>
+                </section>
             </div>
-        </section>
+            <div class="address-section-row address-section-row--even">
+                <section class="address-section address-location-map">
+                    <div class="container">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Explore the Location</h2>
+                            <p class="address-section__subtitle">See where The Address is situated in Coimbatore and discover its excellent connectivity to key city destinations.</p>
+                        </header>
+                        <div class="address-location__map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3406.9516932335578!2d77.04424542125149!3d11.06044659907603!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1764338439291!5m2!1sen!2sin"
+                                width="100%"
+                                height="600"
+                                style="border:0; display:block; width:100%; min-height:300px; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.12);"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Map showing The Address project location in Coimbatore"
+                            ></iframe>
+                            <div class="map-caption">
+                                <span>Map location: The Address by Rich Land Builders, JV Avenue, Coimbatore</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
     </main>
 
     <!-- Scroll to Top Button -->
@@ -635,8 +734,9 @@
                             <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
                             <li><a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a></li>
                             <li>
-                                123 Construction Avenue<br>
-                                Builder City, BC 12345
+                                4/300-6, EB Colony,<br>
+                                Mettupalayam Road, Karamadai,<br>
+                                641104, India
                             </li>
                         </ul>
                     </div>
