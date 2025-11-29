@@ -1,3 +1,11 @@
+/* ===========================================
+   COMMON STYLES - SHARED COMPONENTS
+   =========================================== */
+
+/* ===========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   =========================================== */
+
 :root {
     --color-white: #ffffff;
     --color-bg: #faf6f0;
@@ -28,6 +36,10 @@
     --header-height: 72px;
 }
 
+/* ===========================================
+   GLOBAL STYLES & RESET
+   =========================================== */
+
 *,
 *::before,
 *::after {
@@ -45,11 +57,7 @@ body {
     color: var(--color-text-main);
     background: var(--color-bg);
     line-height: 1.6;
-}
-
-/* Prevent accidental horizontal scrolling */
-body {
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent accidental horizontal scrolling */
 }
 
 img {
@@ -61,6 +69,10 @@ img {
 main {
     margin-top: var(--header-height);
 }
+
+/* ===========================================
+   LAYOUT & CONTAINERS
+   =========================================== */
 
 .container {
     max-width: 1120px;
@@ -76,6 +88,10 @@ main {
     height: 1px;
     overflow: hidden;
 }
+
+/* ===========================================
+   HEADER & NAVIGATION
+   =========================================== */
 
 .header {
     position: fixed;
@@ -202,6 +218,10 @@ main {
     position: absolute;
 }
 
+/* ===========================================
+   BUTTONS
+   =========================================== */
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -229,6 +249,21 @@ main {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
+
+.btn--submit {
+    width: 100%;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+}
+
+.btn--submit:hover {
+    background: var(--color-primary-dark);
+}
+
+/* ===========================================
+   CONTACT SECTION
+   =========================================== */
 
 .contact {
     padding: clamp(3.5rem, 7vw, 4.5rem) 0;
@@ -412,17 +447,6 @@ textarea.form-control {
     resize: vertical;
 }
 
-.btn--submit {
-    width: 100%;
-    background: var(--color-primary);
-    color: #fff;
-    padding: 0.8rem 1.5rem;
-}
-
-.btn--submit:hover {
-    background: var(--color-primary-dark);
-}
-
 .checkbox-row {
     color: var(--color-text-main);
 }
@@ -439,6 +463,10 @@ textarea.form-control {
     font-size: 0.85rem;
     color: var(--color-text-soft);
 }
+
+/* ===========================================
+   FOOTER
+   =========================================== */
 
 .footer {
     padding: clamp(2.5rem, 5vw, 3rem) 0 1.6rem;
@@ -538,6 +566,10 @@ textarea.form-control {
     color: rgba(255, 245, 230, 0.75);
 }
 
+/* ===========================================
+   MOBILE NAVIGATION
+   =========================================== */
+
 .mobile-nav {
     position: fixed;
     top: var(--header-height);
@@ -617,6 +649,7 @@ textarea.form-control {
 .mobile-nav.open .mobile-nav__link:nth-child(3) { transition-delay: 90ms; }
 .mobile-nav.open .mobile-nav__link:nth-child(4) { transition-delay: 120ms; }
 .mobile-nav.open .mobile-nav__link:nth-child(5) { transition-delay: 150ms; }
+
 .mobile-menu-btn.is-open .mobile-menu-icon--menu {
     opacity: 0;
     transform: scale(0.75) rotate(10deg);
@@ -627,6 +660,10 @@ textarea.form-control {
     opacity: 1;
     transform: scale(1) rotate(0deg);
 }
+
+/* ===========================================
+   ANIMATIONS & ACCESSIBILITY
+   =========================================== */
 
 .fade-in {
     opacity: 0;
@@ -641,6 +678,7 @@ textarea.form-control {
     transform: translateY(0);
 }
 
+/* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -659,6 +697,10 @@ textarea.form-control {
         transform: none !important;
     }
 }
+
+/* ===========================================
+   SCROLL TO TOP BUTTON
+   =========================================== */
 
 .scroll-to-top {
     position: fixed;
@@ -690,6 +732,10 @@ textarea.form-control {
     background-color: #f7f3ea;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.16), var(--shadow-md);
 }
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
 
 @media (max-width: 960px) {
     .nav {
