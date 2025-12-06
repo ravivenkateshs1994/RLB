@@ -114,6 +114,24 @@
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
 
     <main id="address-page" class="address-page">
+        <!-- Floating Sub Navigation -->
+        <nav class="floating-subnav" id="floating-subnav" aria-label="Page sections navigation">
+            <div class="floating-subnav__content">
+                <ul class="floating-subnav__list">
+                    <li><a href="#apartments-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-gallery">Gallery</a></li>
+                    <li><a href="#apartments-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-amenities">Amenities</a></li>
+                    <li><a href="#apartments-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-floorplan">Floor Plan</a></li>
+                    <li><a href="#apartments-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-specs">Specifications</a></li>
+                    <li><a href="#villas-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-gallery">Gallery</a></li>
+                    <li><a href="#villas-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-amenities">Amenities</a></li>
+                    <li><a href="#villas-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-floorplan">Floor Plan</a></li>
+                    <li><a href="#villas-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-specs">Specifications</a></li>
+                    <li><a href="#location-community" class="floating-subnav__link floating-subnav__link--sub" data-section="location-community">Community Highlights</a></li>
+                    <li><a href="#location-map" class="floating-subnav__link floating-subnav__link--sub" data-section="location-map">Location</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <!-- Intro -->
         <section class="address-hero">
             <div class="container address-hero__container">
@@ -142,7 +160,7 @@
                 <!-- Apartments Tab Panel -->
                 <div class="address-tabs__panel address-tabs__panel--active" id="apartments" role="tabpanel" aria-labelledby="tab-apartments-toggle">
                     <!-- Gallery -->
-                    <div class="address-section-row address-section-row--odd">
+                    <div class="address-section-row address-section-row--odd" id="apartments-gallery">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Project Gallery</h2>
@@ -255,7 +273,7 @@
                     </div>
 
                     <!-- Apartments – Amenities -->
-                    <div class="address-section-row address-section-row--even">
+                    <div class="address-section-row address-section-row--even" id="apartments-amenities">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Amenities</h2>
@@ -311,7 +329,7 @@
                     </div>
 
                     <!-- Floor Plan -->
-                    <div class="address-section-row address-section-row--odd">
+                    <div class="address-section-row address-section-row--odd" id="apartments-floorplan">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Floor Plan</h2>
@@ -367,7 +385,7 @@
                     </div>
 
                     <!-- Specifications -->
-                    <div class="address-section-row address-section-row--even">
+                    <div class="address-section-row address-section-row--even" id="apartments-specs">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Specifications</h2>
@@ -521,7 +539,7 @@
                 <!-- Villas Tab Panel -->
                 <div class="address-tabs__panel" id="villas" role="tabpanel" aria-labelledby="tab-villas-toggle" hidden>
                     <!-- Gallery -->
-                    <div class="address-section-row address-section-row--odd">
+                    <div class="address-section-row address-section-row--odd" id="villas-gallery">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Project Gallery</h2>
@@ -568,7 +586,7 @@
                     </div>
 
                     <!-- Villas – Amenities -->
-                    <div class="address-section-row address-section-row--even">
+                    <div class="address-section-row address-section-row--even" id="villas-amenities">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Amenities</h2>
@@ -611,7 +629,7 @@
                     </div>
 
                     <!-- Floor Plan -->
-                    <div class="address-section-row address-section-row--odd">
+                    <div class="address-section-row address-section-row--odd" id="villas-floorplan">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Floor Plan</h2>
@@ -659,7 +677,7 @@
                     </div>
 
                     <!-- Specifications -->
-                    <div class="address-section-row address-section-row--even">
+                    <div class="address-section-row address-section-row--even" id="villas-specs">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Specifications</h2>
@@ -829,8 +847,8 @@
         </section>
 
         <!-- Location & Map -->
-        <section class="address-section address-location">
-            <div class="address-section-row address-section-row--odd">
+        <section class="address-section address-location" id="location">
+            <div class="address-section-row address-section-row--odd" id="location-community">
                 <section class="address-section address-location-info">
                     <div class="container">
                         <header class="address-section__header">
@@ -851,7 +869,7 @@
                     </div>
                 </section>
             </div>
-            <div class="address-section-row address-section-row--even">
+            <div class="address-section-row address-section-row--even" id="location-map">
                 <section class="address-section address-location-map">
                     <div class="container">
                         <header class="address-section__header">
