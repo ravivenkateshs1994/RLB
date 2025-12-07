@@ -97,12 +97,6 @@
     font-weight: 500;
 }
 
-@media (min-width: 1600px) {
-    .floating-subnav {
-        left: calc((100vw - 1120px) / 2 - 280px);
-    }
-}
-
 /* Custom scrollbar for the subnav */
 .floating-subnav::-webkit-scrollbar {
     width: 6px;
@@ -269,24 +263,6 @@
 
 body.quick-nav-open {
     overflow: hidden;
-}
-
-.quick-nav-toggle,
-.quick-nav-toggle.is-visible,
-.quick-nav-toggle:not(.is-hidden) {
-    /* placeholder to keep specificity balanced */
-}
-
-@media (max-width: 1599px) {
-    .quick-nav-toggle:not(.is-hidden) {
-        display: inline-flex;
-    }
-}
-
-@media (pointer: coarse) {
-    .quick-nav-toggle:not(.is-hidden) {
-        display: inline-flex;
-    }
 }
 
 /* ===========================================
@@ -1329,13 +1305,6 @@ body.quick-nav-open {
     margin: 0;
 }
 
-.amenity-tile:hover {
-    transform: translateY(-2px);
-    background-color: #fffdf8;
-    border-color: rgba(212, 175, 55, 0.5);
-    box-shadow: 0 18px 40px -22px rgba(19, 52, 59, 0.5);
-}
-
 /* ===========================================
    LOCATION SECTION
    =========================================== */
@@ -1429,6 +1398,18 @@ body.quick-nav-open {
 /* ===========================================
    RESPONSIVE DESIGN
    =========================================== */
+
+@media (min-width: 1600px) {
+    .floating-subnav {
+        left: calc((100vw - 1120px) / 2 - 280px);
+    }
+}
+
+@media (max-width: 1599px), (pointer: coarse) {
+    .quick-nav-toggle:not(.is-hidden) {
+        display: inline-flex;
+    }
+}
 
 @media (max-width: 960px) {
     .address-tabs {
