@@ -132,6 +132,32 @@
             </div>
         </nav>
 
+        <button class="quick-nav-toggle" id="quick-nav-toggle" type="button" aria-label="Open quick navigation" aria-expanded="false" aria-controls="quick-nav-drawer">
+            <span>Sections</span>
+        </button>
+
+        <div class="quick-nav-drawer" id="quick-nav-drawer" aria-hidden="true">
+            <div class="quick-nav-drawer__backdrop" id="quick-nav-backdrop" role="presentation"></div>
+            <div class="quick-nav-drawer__panel" role="dialog" aria-label="Quick navigation">
+                <header class="quick-nav-drawer__header">
+                    <p class="quick-nav-drawer__title">Jump to Section</p>
+                    <button class="quick-nav-drawer__close" id="quick-nav-close" type="button" aria-label="Close quick navigation">×</button>
+                </header>
+                <ul class="quick-nav__list">
+                    <li><button class="quick-nav__link" data-section="apartments-gallery" type="button">Gallery</button></li>
+                    <li><button class="quick-nav__link" data-section="apartments-amenities" type="button">Amenities</button></li>
+                    <li><button class="quick-nav__link" data-section="apartments-floorplan" type="button">Floor Plan</button></li>
+                    <li><button class="quick-nav__link" data-section="apartments-specs" type="button">Specifications</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-gallery" type="button">Gallery</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-amenities" type="button">Amenities</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-floorplan" type="button">Floor Plan</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-specs" type="button">Specifications</button></li>
+                    <li><button class="quick-nav__link" data-section="location-community" type="button">Community Highlights</button></li>
+                    <li><button class="quick-nav__link" data-section="location-map" type="button">Location</button></li>
+                </ul>
+            </div>
+        </div>
+
         <!-- Intro -->
         <section class="address-hero">
             <div class="container address-hero__container">

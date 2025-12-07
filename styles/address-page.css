@@ -122,6 +122,174 @@
 }
 
 /* ===========================================
+   QUICK NAV DRAWER
+   =========================================== */
+
+.quick-nav-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: calc(24px + 64px);
+    z-index: 950;
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg,
+            rgba(121, 16, 14, 0.8),
+            rgba(173, 29, 24, 0.8));
+    box-shadow: 0 15px 30px -15px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.quick-nav-toggle.is-hidden {
+    display: none !important;
+}
+
+.quick-nav-toggle:active {
+    transform: translateY(1px);
+}
+
+.quick-nav-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 1400;
+    display: none;
+    pointer-events: none;
+}
+
+.quick-nav-drawer.is-open {
+    display: block;
+    pointer-events: all;
+}
+
+.quick-nav-drawer__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.quick-nav-drawer.is-open .quick-nav-drawer__backdrop {
+    opacity: 1;
+}
+
+.quick-nav-drawer__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    border-radius: 18px 18px 0 0;
+    padding: 1.25rem 1.5rem 2rem;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.25);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.quick-nav-drawer.is-open .quick-nav-drawer__panel {
+    transform: translateY(0);
+}
+
+.quick-nav-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.quick-nav-drawer__title {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #555;
+    margin: 0;
+}
+
+.quick-nav-drawer__close {
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.quick-nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.quick-nav__link {
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.4rem;
+    background: transparent;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-transform: none;
+    letter-spacing: 0.01em;
+}
+
+.quick-nav__link.is-hidden {
+    display: none;
+}
+
+.quick-nav__link:focus,
+.quick-nav__link:hover {
+    background: rgba(121, 17, 14, 0.08);
+    color: var(--color-primary);
+}
+
+.quick-nav__link.is-active {
+    background: rgba(121, 17, 14, 0.15);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+body.quick-nav-open {
+    overflow: hidden;
+}
+
+.quick-nav-toggle,
+.quick-nav-toggle.is-visible,
+.quick-nav-toggle:not(.is-hidden) {
+    /* placeholder to keep specificity balanced */
+}
+
+@media (max-width: 1599px) {
+    .quick-nav-toggle:not(.is-hidden) {
+        display: inline-flex;
+    }
+}
+
+@media (pointer: coarse) {
+    .quick-nav-toggle:not(.is-hidden) {
+        display: inline-flex;
+    }
+}
+
+/* ===========================================
    LIGHTBOX COMPONENTS
    =========================================== */
 
@@ -438,10 +606,11 @@
     background: #faf6f0;
     z-index: 10;
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 1rem 1.25rem 0.4rem;
     position: fixed;
     top: var(--header-height);
     width: 100vw;
-    left: 0;    
+    left: 0;
     margin-bottom: 1rem;
 }
 
@@ -929,7 +1098,7 @@
 }
 
 .floorplan-accordion__item.open .floorplan-accordion__panel,
-.floorplan-accordion__header.active + .floorplan-accordion__panel {
+.floorplan-accordion__header.active+.floorplan-accordion__panel {
     max-height: 520px;
     opacity: 1;
     transform: translateY(0);
@@ -1063,7 +1232,7 @@
 }
 
 .address-specs__group.is-open .address-specs__body {
-    max-height: 520px;
+    max-height: fit-content;
     opacity: 1;
     transform: translateY(0);
     padding: 1.1rem 1.2rem 1.2rem 1.2rem;

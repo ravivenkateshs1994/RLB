@@ -915,6 +915,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const apartmentsTab = document.getElementById('tab-apartments-toggle');
     const villasTab = document.getElementById('tab-villas-toggle');
     const tabsSection = document.querySelector('.address-tabs');
+    const heroSection = document.querySelector('.address-hero');
+    const locationSection = document.getElementById('location');
+    const footerSection = document.querySelector('footer');
+    const quickNavToggle = document.getElementById('quick-nav-toggle');
+    const quickNavDrawer = document.getElementById('quick-nav-drawer');
+    const quickNavBackdrop = document.getElementById('quick-nav-backdrop');
+    const quickNavClose = document.getElementById('quick-nav-close');
+    const quickNavLinks = document.querySelectorAll('.quick-nav__link');
 
     if (!floatingSubnav || !subnavLinks.length || !floatingSubnavContent) {
         return;
@@ -929,6 +937,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const EVEN_BG = 'rgb(255, 255, 255)';
     const LOCATION_BG = 'rgb(251, 247, 238)';
     let lastAppliedBg = '';
+    let quickNavActiveLink = null;
     const sectionOrder = [
         'apartments-gallery',
         'apartments-amenities',
@@ -979,6 +988,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function isTabsInView() {
+        if (!tabsSection) {
+            return false;
+        }
+
+        const rect = tabsSection.getBoundingClientRect();
+        const buffer = 80;
+        return rect.top < (window.innerHeight - buffer) && rect.bottom > buffer;
+    }
+
+    function isHeroFullyHidden() {
+        if (!heroSection) {
+            return true;
+        }
+
+        const rect = heroSection.getBoundingClientRect();
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        return rect.bottom <= headerHeight;
+    }
+
+    function isWithinContentArea() {
+        const beforeFooter = (() => {
+            if (!footerSection) {
+                return true;
+            }
+            const footerRect = footerSection.getBoundingClientRect();
+            return footerRect.top >= window.innerHeight;
+        })();
+
+        if (!locationSection) {
+            return beforeFooter;
+        }
+
+        const locationRect = locationSection.getBoundingClientRect();
+        const beforeLocationEnd = locationRect.bottom > 0;
+        return beforeLocationEnd && beforeFooter;
+    }
+
     // Update active section based on scroll position
     function updateActiveSection() {
         const { apartmentsActive, villasActive } = getTabState();
@@ -1023,18 +1071,35 @@ document.addEventListener('DOMContentLoaded', function () {
         updateSubnavTheme(currentSection);
     }
 
+    function shouldShowSection(section, apartmentsActive, villasActive) {
+        if (!section) {
+            return true;
+        }
+
+        if (section === 'apartments' || section.startsWith('apartments-')) {
+            return apartmentsActive;
+        }
+        if (section === 'villas' || section.startsWith('villas-')) {
+            return villasActive;
+        }
+        return true;
+    }
+
     function updateLinkVisibility(apartmentsActive, villasActive) {
         subnavLinks.forEach(link => {
             const section = link.getAttribute('data-section') || '';
-            let shouldShow = true;
-
-            if (section === 'apartments' || section.startsWith('apartments-')) {
-                shouldShow = apartmentsActive;
-            } else if (section === 'villas' || section.startsWith('villas-')) {
-                shouldShow = villasActive;
-            }
-
+            const shouldShow = shouldShowSection(section, apartmentsActive, villasActive);
             link.classList.toggle('is-hidden', !shouldShow);
+        });
+
+        quickNavLinks.forEach(link => {
+            const section = link.getAttribute('data-section') || '';
+            const shouldShow = shouldShowSection(section, apartmentsActive, villasActive);
+            link.classList.toggle('is-hidden', !shouldShow);
+            const parentItem = link.closest('li');
+            if (parentItem) {
+                parentItem.hidden = !shouldShow;
+            }
         });
     }
 
@@ -1060,6 +1125,22 @@ document.addEventListener('DOMContentLoaded', function () {
             activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
             lastActiveLink = activeLink;
         }
+
+        highlightQuickNavLink(sectionId);
+    }
+
+    function highlightQuickNavLink(sectionId) {
+        if (!quickNavLinks.length) {
+            return;
+        }
+
+        quickNavLinks.forEach(link => {
+            const matches = link.getAttribute('data-section') === sectionId;
+            link.classList.toggle('is-active', matches);
+            if (matches) {
+                quickNavActiveLink = link;
+            }
+        });
     }
     
     function updateSubnavTheme(sectionId) {
@@ -1140,6 +1221,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         subnavDisabled = shouldDisable;
         floatingSubnav.classList.toggle('floating-subnav--hidden', subnavDisabled);
+        updateQuickNavToggle();
 
         if (subnavDisabled) {
             floatingSubnav.classList.remove('is-visible');
@@ -1147,6 +1229,23 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             updateSubnavVisibility();
             updateActiveSection();
+            closeQuickNav();
+        }
+    }
+
+    function updateQuickNavToggle() {
+        if (!quickNavToggle) {
+            return;
+        }
+
+        const heroHidden = isHeroFullyHidden();
+        const withinContentArea = isWithinContentArea();
+        const shouldShow = subnavDisabled && heroHidden && withinContentArea;
+
+        quickNavToggle.classList.toggle('is-hidden', !shouldShow);
+        quickNavToggle.toggleAttribute('hidden', !shouldShow);
+        if (!shouldShow) {
+            closeQuickNav();
         }
     }
 
@@ -1158,30 +1257,105 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             e.preventDefault();
             const targetSection = link.getAttribute('data-section');
-            setActiveLink(targetSection);
-            updateSubnavTheme(targetSection);
-            
-            // Switch tabs if needed
-            if (targetSection === 'apartments' || targetSection.startsWith('apartments-')) {
-                if (apartmentsTab && !apartmentsTab.classList.contains('address-tab--active')) {
-                    apartmentsTab.click();
-                    setTimeout(() => scrollToSection(targetSection), 100);
-                } else {
-                    scrollToSection(targetSection);
-                }
-            } else if (targetSection === 'villas' || targetSection.startsWith('villas-')) {
-                if (villasTab && !villasTab.classList.contains('address-tab--active')) {
-                    villasTab.click();
-                    setTimeout(() => scrollToSection(targetSection), 100);
-                } else {
-                    scrollToSection(targetSection);
-                }
-            } else {
-                scrollToSection(targetSection);
-            }
+            handleSectionNavigation(targetSection);
         });
     });
     
+    function handleSectionNavigation(targetSection) {
+        if (!targetSection) {
+            return;
+        }
+
+        setActiveLink(targetSection);
+        updateSubnavTheme(targetSection);
+
+        const activateTabIfNeeded = (tabButton) => {
+            if (!tabButton || tabButton.classList.contains('address-tab--active')) {
+                return false;
+            }
+            tabButton.click();
+            return true;
+        };
+
+        const isApartmentSection = targetSection === 'apartments' || targetSection.startsWith('apartments-');
+        const isVillaSection = targetSection === 'villas' || targetSection.startsWith('villas-');
+
+        if (isApartmentSection) {
+            const toggled = activateTabIfNeeded(apartmentsTab);
+            if (toggled) {
+                setTimeout(() => scrollToSection(targetSection), 120);
+            } else {
+                scrollToSection(targetSection);
+            }
+            return;
+        }
+
+        if (isVillaSection) {
+            const toggled = activateTabIfNeeded(villasTab);
+            if (toggled) {
+                setTimeout(() => scrollToSection(targetSection), 120);
+            } else {
+                scrollToSection(targetSection);
+            }
+            return;
+        }
+
+        scrollToSection(targetSection);
+    }
+
+    function openQuickNav() {
+        if (!quickNavDrawer || !quickNavToggle) {
+            return;
+        }
+
+        quickNavDrawer.classList.add('is-open');
+        quickNavDrawer.setAttribute('aria-hidden', 'false');
+        quickNavToggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('quick-nav-open');
+    }
+
+    function closeQuickNav() {
+        if (!quickNavDrawer || !quickNavToggle) {
+            return;
+        }
+
+        quickNavDrawer.classList.remove('is-open');
+        quickNavDrawer.setAttribute('aria-hidden', 'true');
+        quickNavToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('quick-nav-open');
+    }
+
+    if (quickNavToggle && quickNavDrawer) {
+        quickNavToggle.addEventListener('click', () => {
+            openQuickNav();
+        });
+
+        if (quickNavBackdrop) {
+            quickNavBackdrop.addEventListener('click', closeQuickNav);
+        }
+
+        if (quickNavClose) {
+            quickNavClose.addEventListener('click', closeQuickNav);
+        }
+
+        quickNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const targetSection = link.getAttribute('data-section');
+                closeQuickNav();
+                handleSectionNavigation(targetSection);
+            });
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && quickNavDrawer.classList.contains('is-open')) {
+                closeQuickNav();
+                if (quickNavToggle) {
+                    quickNavToggle.focus();
+                }
+            }
+        });
+    }
+
     function scrollToSection(sectionId) {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -1205,6 +1379,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isTicking) {
             window.requestAnimationFrame(() => {
                 handleScroll();
+                updateQuickNavToggle();
                 isTicking = false;
             });
             isTicking = true;
@@ -1219,12 +1394,16 @@ document.addEventListener('DOMContentLoaded', function () {
         villasTab.addEventListener('click', () => setTimeout(updateActiveSection, 60));
     }
     
-    window.addEventListener('resize', () => updateSubnavAvailability(true));
+    window.addEventListener('resize', () => {
+        updateSubnavAvailability(true);
+        updateQuickNavToggle();
+    });
 
     // Initial setup
     updateSubnavAvailability(true);
     if (!subnavDisabled) {
         updateSubnavVisibility();
-        updateActiveSection();
     }
+    updateActiveSection();
+    updateQuickNavToggle();
 });
