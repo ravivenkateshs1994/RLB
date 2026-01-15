@@ -215,16 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Fade in after fade out completes
                 setTimeout(() => {
                     mainImg.src = largeSrc;
-                    if (thumb.hasAttribute('data-srcset')) {
-                        mainImg.setAttribute('srcset', thumb.getAttribute('data-srcset'));
-                    } else {
-                        mainImg.removeAttribute('srcset');
-                    }
-                    if (thumb.hasAttribute('data-sizes')) {
-                        mainImg.setAttribute('sizes', thumb.getAttribute('data-sizes'));
-                    } else {
-                        mainImg.removeAttribute('sizes');
-                    }
+                    // Removed srcset/sizes logic for compatibility
                     mainImg.classList.remove('is-fading');
                 }, 260); // match CSS transition duration
             };
@@ -240,16 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (mainImg.classList.contains('is-fading')) {
                     mainImg.src = largeSrc;
-                    if (thumb.hasAttribute('data-srcset')) {
-                        mainImg.setAttribute('srcset', thumb.getAttribute('data-srcset'));
-                    } else {
-                        mainImg.removeAttribute('srcset');
-                    }
-                    if (thumb.hasAttribute('data-sizes')) {
-                        mainImg.setAttribute('sizes', thumb.getAttribute('data-sizes'));
-                    } else {
-                        mainImg.removeAttribute('sizes');
-                    }
+                    // Removed srcset/sizes logic for compatibility
                     mainImg.classList.remove('is-fading');
                 }
             }, 2000);
