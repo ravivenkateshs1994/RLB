@@ -164,6 +164,19 @@
     background: #ffffff;
 }
 
+.carousel__image--fullwidth {
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+    left: 50%;
+    right: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+
 /* ===========================================
    ABOUT SECTION
    =========================================== */
