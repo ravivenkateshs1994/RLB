@@ -551,13 +551,17 @@
 
     .carousel__slide {
         inset: 0;
-        min-height: 100%;
+        min-height: 220px;
+        /* Prevent collapse on mobile */
     }
 
     .carousel__image {
-        height: 100%;
+        display: block;
         width: 100%;
+        min-height: 120px;
+        height: auto;
         object-fit: cover;
+        background: #fff;
     }
 
     .carousel__content {
