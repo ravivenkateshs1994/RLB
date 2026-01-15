@@ -64,11 +64,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
-    <link rel="stylesheet" href="styles/address-page.css">
+    <link rel="preload" href="styles/address-page.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles/address-page.css"></noscript>
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -79,7 +80,13 @@
         <div class="header__container">
             <div class="header__logo-container">
                 <a href="index.html" aria-label="Rich Land Builders – Home">
-                    <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo" loading="lazy">
+                    <img src="assets/logo/updated_logo.png"
+                        alt="Rich Land Builders Logo"
+                        class="header-logo"
+                        width="140" height="48"
+                        loading="eager"
+                        srcset="assets/logo/updated_logo.png 140w, assets/logo/updated_logo@2x.png 280w"
+                        sizes="(max-width: 600px) 100px, 140px">
                 </a>
             </div>
             <nav class="nav" id="nav">
@@ -176,10 +183,10 @@
         <section class="address-tabs" aria-label="The Address configurations">
             <div class="container">
                 <div class="address-tabs__header" role="tablist" aria-label="Choose between villas and apartments">
-                    <button class="address-tab address-tab--active" data-tab="apartments" type="button" role="tab" id="tab-apartments-toggle" aria-selected="false" aria-controls="tab-apartments">
+                    <button class="address-tab address-tab--active" data-tab="apartments" type="button" role="tab" id="tab-apartments-toggle" aria-selected="true" aria-controls="tab-apartments" tabindex="0">
                         True 3 BHK Apartments
                     </button>
-                    <button class="address-tab" data-tab="villas" type="button" role="tab" id="tab-villas-toggle" aria-selected="true" aria-controls="tab-villas"  tabindex="-1">
+                    <button class="address-tab" data-tab="villas" type="button" role="tab" id="tab-villas-toggle" aria-selected="false" aria-controls="tab-villas" tabindex="-1">
                         Luxury 4 BHK Villas
                     </button>
                 </div>
@@ -200,96 +207,154 @@
                                     src="assets/others/apartment_rendering.webp"
                                     alt="Apartment building rendering"
                                     class="address-gallery__main-image"
+                                    width="1009" height="640"
+                                    srcset="assets/others/apartment_rendering.webp 1009w, assets/others/apartment_rendering@2x.webp 2018w"
+                                    sizes="(max-width: 600px) 90vw, 1009px"
                                 >
                             </div>
                             <div class="address-gallery__thumbs-outer">
                                 <div class="address-gallery__thumbs">
                                     <button class="address-gallery__thumb is-active" type="button"
                                         data-large-src="assets/others/apartment_rendering.webp"
+                                        data-srcset="assets/others/apartment_rendering.webp 1009w, assets/others/apartment_rendering@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
                                         aria-label="View apartment building rendering">
                                         <img
                                             src="assets/others/apartment_rendering.webp"
                                             alt="Apartment building rendering thumbnail"
+                                            width="400" height="300" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/living_room_1.webp"
-                                        aria-label="View apartment living room 1">
+                                        data-large-src="assets/gallery/apartments/pic1.webp"
+                                        data-srcset="assets/gallery/apartments/pic1.webp 1009w, assets/gallery/apartments/pic1@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment living room design 1">
                                         <img
-                                            src="assets/gallery/apartments/thumb_living_room_1.webp"
-                                            alt="Apartment living room 1 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic1.webp"
+                                            alt="Apartment living room design 1 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/living_room_2.webp"
-                                        aria-label="View apartment living room 2">
+                                        data-large-src="assets/gallery/apartments/pic2.webp"
+                                        data-srcset="assets/gallery/apartments/pic2.webp 1009w, assets/gallery/apartments/pic2@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment living room design 2">
                                         <img
-                                            src="assets/gallery/apartments/thumb_living_room_2.webp"
-                                            alt="Apartment living room 2 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic2.webp"
+                                            alt="Apartment living room design 2 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/living_room_3.webp"
-                                        aria-label="View apartment living room 3">
+                                        data-large-src="assets/gallery/apartments/pic3.webp"
+                                        data-srcset="assets/gallery/apartments/pic3.webp 1009w, assets/gallery/apartments/pic3@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment living room design 3">
                                         <img
-                                            src="assets/gallery/apartments/thumb_living_room_3.webp"
-                                            alt="Apartment living room 3 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic3.webp"
+                                            alt="Apartment living room design 3 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/dining_room_1.webp"
-                                        aria-label="View apartment dining room 1">
+                                        data-large-src="assets/gallery/apartments/pic4.webp"
+                                        data-srcset="assets/gallery/apartments/pic4.webp 1009w, assets/gallery/apartments/pic4@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment dining room design 1">
                                         <img
-                                            src="assets/gallery/apartments/thumb_dining_room_1.webp"
-                                            alt="Apartment dining room 1 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic4.webp"
+                                            alt="Apartment dining room design 1 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/dining_room_2.webp"
-                                        aria-label="View apartment dining room 2">
+                                        data-large-src="assets/gallery/apartments/pic5.webp"
+                                        data-srcset="assets/gallery/apartments/pic5.webp 1009w, assets/gallery/apartments/pic5@2x.webp 2018w"
+                                        aria-label="View apartment dining room design 2"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px">
                                         <img
-                                            src="assets/gallery/apartments/thumb_dining_room_2.webp"
-                                            alt="Apartment dining room 2 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic5.webp"
+                                            alt="Apartment dining room design 2 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/kitchen_1.webp"
-                                        aria-label="View apartment kitchen 1">
+                                        data-large-src="assets/gallery/apartments/pic6.webp"
+                                        data-srcset="assets/gallery/apartments/pic6.webp 1009w, assets/gallery/apartments/pic6@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment dining room design 3">
                                         <img
-                                            src="assets/gallery/apartments/thumb_kitchen_1.webp"
-                                            alt="Apartment kitchen 1 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic6.webp"
+                                            alt="Apartment dining room design 3 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/kitchen_2.webp"
-                                        aria-label="View apartment kitchen 2">
+                                        data-large-src="assets/gallery/apartments/pic7.webp"
+                                        data-srcset="assets/gallery/apartments/pic7.webp 1009w, assets/gallery/apartments/pic7@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment kitchen design">
                                         <img
-                                            src="assets/gallery/apartments/thumb_kitchen_2.webp"
-                                            alt="Apartment kitchen 2 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic7.webp"
+                                            alt="Apartment kitchen thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/misc_1.webp"
-                                        aria-label="View apartment misc 1">
+                                        data-large-src="assets/gallery/apartments/pic8.webp"
+                                        data-srcset="assets/gallery/apartments/pic8.webp 1009w, assets/gallery/apartments/pic8@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment bedroom design 1">
                                         <img
-                                            src="assets/gallery/apartments/thumb_misc_1.webp"
-                                            alt="Apartment misc 1 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic8.webp"
+                                            alt="Apartment bedroom design 1 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/misc_2.webp"
-                                        aria-label="View apartment misc 2">
+                                        data-large-src="assets/gallery/apartments/pic9.webp"
+                                        data-srcset="assets/gallery/apartments/pic9.webp 1009w, assets/gallery/apartments/pic9@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment bedroom design 2">
                                         <img
-                                            src="assets/gallery/apartments/thumb_misc_2.webp"
-                                            alt="Apartment misc 2 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic9.webp"
+                                            alt="Apartment bedroom design 2 thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                     <button class="address-gallery__thumb" type="button"
-                                        data-large-src="assets/gallery/apartments/interior_1.webp"
-                                        aria-label="View apartment interior 1">
+                                        data-large-src="assets/gallery/apartments/pic10.webp"
+                                        data-srcset="assets/gallery/apartments/pic10.webp 1009w, assets/gallery/apartments/pic10@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment bedroom design 3">
                                         <img
-                                            src="assets/gallery/apartments/thumb_interior_1.webp"
-                                            alt="Apartment interior 1 thumbnail"
+                                            src="assets/gallery/apartments/thumb_pic10.webp"
+                                            alt="Apartment bedroom design 3 thumbnail"
+                                            width="120" height="90" loading="lazy"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/pic11.webp"
+                                        data-srcset="assets/gallery/apartments/pic11.webp 1009w, assets/gallery/apartments/pic11@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment bedroom design 4">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_pic11.webp"
+                                            alt="Apartment bedroom design 4 thumbnail"
+                                            width="120" height="90" loading="lazy"
+                                        >
+                                    </button>
+                                    <button class="address-gallery__thumb" type="button"
+                                        data-large-src="assets/gallery/apartments/pic12.webp"
+                                        data-srcset="assets/gallery/apartments/pic12.webp 1009w, assets/gallery/apartments/pic12@2x.webp 2018w"
+                                        data-sizes="(max-width: 600px) 90vw, 1009px"
+                                        aria-label="View apartment washroom design">
+                                        <img
+                                            src="assets/gallery/apartments/thumb_pic12.webp"
+                                            alt="Apartment washroom design thumbnail"
+                                            width="120" height="90" loading="lazy"
                                         >
                                     </button>
                                 </div>
@@ -373,10 +438,30 @@
                                     <button class="floorplan-tabs__button" type="button">Type C</button>
                                 </div>
                                 <div class="floorplan-tabs__content">
-                                    <img class="floorplan-tabs__image is-active" src="assets/floorplan/apartments/floor_view.webp" alt="Overall floor layout">
-                                    <img class="floorplan-tabs__image" src="assets/floorplan/apartments/type_a.webp" alt="Type A layout">
-                                    <img class="floorplan-tabs__image" src="assets/floorplan/apartments/type_b.webp" alt="Type B layout">
-                                    <img class="floorplan-tabs__image" src="assets/floorplan/apartments/type_c.webp" alt="Type C layout">
+                                     <img class="floorplan-tabs__image is-active"
+                                         src="assets/floorplan/apartments/floor_view.webp"
+                                         alt="Overall floor layout"
+                                         width="1009" height="640"
+                                         srcset="assets/floorplan/apartments/floor_view.webp 1009w, assets/floorplan/apartments/floor_view@2x.webp 2018w"
+                                         sizes="(max-width: 600px) 90vw, 1009px">
+                                     <img class="floorplan-tabs__image"
+                                         src="assets/floorplan/apartments/type_a.webp"
+                                         alt="Type A layout"
+                                         width="1009" height="640"
+                                         srcset="assets/floorplan/apartments/type_a.webp 1009w, assets/floorplan/apartments/type_a@2x.webp 2018w"
+                                         sizes="(max-width: 600px) 90vw, 1009px">
+                                     <img class="floorplan-tabs__image"
+                                         src="assets/floorplan/apartments/type_b.webp"
+                                         alt="Type B layout"
+                                         width="1009" height="640"
+                                         srcset="assets/floorplan/apartments/type_b.webp 1009w, assets/floorplan/apartments/type_b@2x.webp 2018w"
+                                         sizes="(max-width: 600px) 90vw, 1009px">
+                                     <img class="floorplan-tabs__image"
+                                         src="assets/floorplan/apartments/type_c.webp"
+                                         alt="Type C layout"
+                                         width="1009" height="640"
+                                         srcset="assets/floorplan/apartments/type_c.webp 1009w, assets/floorplan/apartments/type_c@2x.webp 2018w"
+                                         sizes="(max-width: 600px) 90vw, 1009px">
                                 </div>
                             </div>
                             <!-- Accordion for mobile -->
@@ -384,25 +469,41 @@
                                 <div class="floorplan-accordion__item">
                                     <button class="floorplan-accordion__header" type="button">Typical Floor Layout</button>
                                     <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/floor_view.webp" alt="Overall floor layout">
+                                        <img src="assets/floorplan/apartments/floor_view.webp"
+                                            alt="Overall floor layout"
+                                            width="1009" height="640"
+                                            srcset="assets/floorplan/apartments/floor_view.webp 1009w, assets/floorplan/apartments/floor_view@2x.webp 2018w"
+                                            sizes="(max-width: 600px) 90vw, 1009px">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
                                     <button class="floorplan-accordion__header" type="button">Type A</button>
                                     <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/type_a.webp" alt="Type A layout">
+                                        <img src="assets/floorplan/apartments/type_a.webp"
+                                            alt="Type A layout"
+                                            width="1009" height="640"
+                                            srcset="assets/floorplan/apartments/type_a.webp 1009w, assets/floorplan/apartments/type_a@2x.webp 2018w"
+                                            sizes="(max-width: 600px) 90vw, 1009px">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
                                     <button class="floorplan-accordion__header" type="button">Type B</button>
                                     <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/type_b.webp" alt="Type B layout">
+                                        <img src="assets/floorplan/apartments/type_b.webp"
+                                            alt="Type B layout"
+                                            width="1009" height="640"
+                                            srcset="assets/floorplan/apartments/type_b.webp 1009w, assets/floorplan/apartments/type_b@2x.webp 2018w"
+                                            sizes="(max-width: 600px) 90vw, 1009px">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
                                     <button class="floorplan-accordion__header" type="button">Type C</button>
                                     <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/type_c.webp" alt="Type C layout">
+                                        <img src="assets/floorplan/apartments/type_c.webp"
+                                            alt="Type C layout"
+                                            width="1009" height="640"
+                                            srcset="assets/floorplan/apartments/type_c.webp 1009w, assets/floorplan/apartments/type_c@2x.webp 2018w"
+                                            sizes="(max-width: 600px) 90vw, 1009px">
                                     </div>
                                 </div>
                             </div>
@@ -579,87 +680,110 @@
                                     src="assets/gallery/villas/pic1.webp"
                                     alt="Villa image 1"
                                     class="address-gallery__main-image"
+                                    width="1072" height="715"
+                                    srcset="assets/gallery/villas/pic1.webp 1072w, assets/gallery/villas/pic1@2x.webp 2144w"
+                                    sizes="(max-width: 600px) 90vw, 1072px"
                                 >
                             </div>
                             <div class="address-gallery__thumbs">
                                 <button class="address-gallery__thumb is-active" type="button"
                                     data-large-src="assets/gallery/villas/pic1.webp"
-                                    aria-label="View villa image 1">
+                                    data-srcset="assets/gallery/villas/pic1.webp 1072w, assets/gallery/villas/pic1@2x.webp 2144w"
+                                    data-sizes="(max-width: 600px) 90vw, 1072px"
+                                    aria-label="View villa living room image 1">
                                     <img
-                                        src="assets/gallery/villas/pic1.webp"
-                                        alt="Villa image 1 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic1.webp"
+                                        alt="Villa living room image 1 thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic2.webp"
-                                    aria-label="View villa image 2">
+                                    data-srcset="assets/gallery/villas/pic2.webp 1072w, assets/gallery/villas/pic2@2x.webp 2144w"
+                                    data-sizes="(max-width: 600px) 90vw, 1072px"
+                                    aria-label="View villa living room image 2">
                                     <img
-                                        src="assets/gallery/villas/pic2.webp"
-                                        alt="Villa image 2 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic2.webp"
+                                        alt="Villa living room image 2 thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic3.webp"
-                                    aria-label="View villa image 3">
+                                    data-srcset="assets/gallery/villas/pic3.webp 1072w, assets/gallery/villas/pic3@2x.webp 2144w"
+                                    data-sizes="(max-width: 600px) 90vw, 1072px"
+                                    aria-label="View villa living room image 3">
                                     <img
-                                        src="assets/gallery/villas/pic3.webp"
-                                        alt="Villa image 3 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic3.webp"
+                                        alt="Villa living room image 3 thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic4.webp"
-                                    aria-label="View villa image 4">
+                                    data-srcset="assets/gallery/villas/pic4.webp 1072w, assets/gallery/villas/pic4@2x.webp 2144w"
+                                    data-sizes="(max-width: 600px) 90vw, 1072px"
+                                    aria-label="View villa dining area image">
                                     <img
-                                        src="assets/gallery/villas/pic4.webp"
-                                        alt="Villa image 4 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic4.webp"
+                                        alt="Villa dining area image thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic5.webp"
-                                    aria-label="View villa image 5">
+                                    data-srcset="assets/gallery/villas/pic5.webp 1072w, assets/gallery/villas/pic5@2x.webp 2144w"
+                                    data-sizes="(max-width: 600px) 90vw, 1072px"
+                                    aria-label="View villa kitchen image">
                                     <img
-                                        src="assets/gallery/villas/pic5.webp"
-                                        alt="Villa image 5 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic5.webp"
+                                        alt="Villa kitchen image thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic6.webp"
-                                    aria-label="View villa image 6">
+                                    aria-label="View villa bedroom image 1">
                                     <img
-                                        src="assets/gallery/villas/pic6.webp"
-                                        alt="Villa image 6 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic6.webp"
+                                        alt="Villa bedroom image 1 thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic7.webp"
-                                    aria-label="View villa image 7">
+                                    aria-label="View villa bedroom image 2">
                                     <img
-                                        src="assets/gallery/villas/pic7.webp"
-                                        alt="Villa image 7 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic7.webp"
+                                        alt="Villa bedroom image 2 thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic8.webp"
-                                    aria-label="View villa image 8">
+                                    aria-label="View villa bedroom image 3">
                                     <img
-                                        src="assets/gallery/villas/pic8.webp"
-                                        alt="Villa image 8 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic8.webp"
+                                        alt="Villa bedroom image 3 thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic9.webp"
-                                    aria-label="View villa image 9">
+                                    aria-label="View villa washroom image">
                                     <img
-                                        src="assets/gallery/villas/pic9.webp"
-                                        alt="Villa image 9 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic9.webp"
+                                        alt="Villa washroom image thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                                 <button class="address-gallery__thumb" type="button"
                                     data-large-src="assets/gallery/villas/pic10.webp"
-                                    aria-label="View villa image 10">
+                                    aria-label="View villa entrance image">
                                     <img
-                                        src="assets/gallery/villas/pic10.webp"
-                                        alt="Villa image 10 thumbnail"
+                                        src="assets/gallery/villas/thumb_pic10.webp"
+                                        alt="Villa entrance image thumbnail"
+                                        width="120" height="90" loading="lazy"
                                     >
                                 </button>
                             </div>
@@ -679,31 +803,31 @@
                         <div class="address-amenities">
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/home-theatre.png" alt="Home Theatre icon" aria-hidden="true">
+                                    <img src="assets/icons/home-theatre.png" alt="Home Theatre icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                 </div>
                                 <h3 class="amenity-tile__label">Home Theatre Room</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/playground.png" alt="Playground icon" aria-hidden="true">
+                                    <img src="assets/icons/playground.png" alt="Playground icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                 </div>
                                 <h3 class="amenity-tile__label">Kids Play Area</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true">
+                                    <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                 </div>
                                 <h3 class="amenity-tile__label">Dedicated Parking Spaces</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/maid-utility-area.png" alt="Maid Utility Area icon" aria-hidden="true">
+                                    <img src="assets/icons/maid-utility-area.png" alt="Maid Utility Area icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                 </div>
                                 <h3 class="amenity-tile__label">Dedicated Maid Utility Area</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true">
+                                    <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                 </div>
                                 <h3 class="amenity-tile__label">Solar back up</h3>
                         </div>
@@ -728,9 +852,25 @@
                                     <button class="floorplan-tabs__button" type="button">First Floor</button>
                                 </div>
                                 <div class="floorplan-tabs__content">
-                                    <img class="floorplan-tabs__image is-active" src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80" alt="Overall villa layout">
-                                    <img class="floorplan-tabs__image" src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80" alt="Ground floor plan">
-                                    <img class="floorplan-tabs__image" src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80" alt="First floor plan">
+                                     <!-- TODO: Replace Unsplash images with local, optimized, and resized assets for best performance. -->
+                                     <img class="floorplan-tabs__image is-active"
+                                         src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=960&q=60"
+                                         alt="Overall villa layout"
+                                         width="960" height="640"
+                                         srcset="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=480&q=40 480w, https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=960&q=60 960w, https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80 1600w"
+                                         sizes="(max-width: 600px) 90vw, 960px">
+                                     <img class="floorplan-tabs__image"
+                                         src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=960&q=60"
+                                         alt="Ground floor plan"
+                                         width="960" height="640"
+                                         srcset="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=480&q=40 480w, https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=960&q=60 960w, https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80 1600w"
+                                         sizes="(max-width: 600px) 90vw, 960px">
+                                     <img class="floorplan-tabs__image"
+                                         src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=960&q=60"
+                                         alt="First floor plan"
+                                         width="960" height="640"
+                                         srcset="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=480&q=40 480w, https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=960&q=60 960w, https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80 1600w"
+                                         sizes="(max-width: 600px) 90vw, 960px">
                                 </div>
                             </div>
                             <!-- Accordion for mobile -->
@@ -738,19 +878,32 @@
                                 <div class="floorplan-accordion__item">
                                     <button class="floorplan-accordion__header" type="button">Overall Layout</button>
                                     <div class="floorplan-accordion__panel">
-                                        <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80" alt="Overall villa layout">
+                                        <!-- TODO: Replace Unsplash images with local, optimized, and resized assets for best performance. -->
+                                        <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=960&q=60"
+                                            alt="Overall villa layout"
+                                            width="960" height="640"
+                                            srcset="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=480&q=40 480w, https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=960&q=60 960w, https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1600&q=80 1600w"
+                                            sizes="(max-width: 600px) 90vw, 960px">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
                                     <button class="floorplan-accordion__header" type="button">Ground Floor</button>
                                     <div class="floorplan-accordion__panel">
-                                        <img src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80" alt="Ground floor plan">
+                                        <img src="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=960&q=60"
+                                            alt="Ground floor plan"
+                                            width="960" height="640"
+                                            srcset="https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=480&q=40 480w, https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=960&q=60 960w, https://images.unsplash.com/photo-1432297984334-707d1c352fa5?auto=format&fit=crop&w=1600&q=80 1600w"
+                                            sizes="(max-width: 600px) 90vw, 960px">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
                                     <button class="floorplan-accordion__header" type="button">First Floor</button>
                                     <div class="floorplan-accordion__panel">
-                                        <img src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80" alt="First floor plan">
+                                        <img src="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=960&q=60"
+                                            alt="First floor plan"
+                                            width="960" height="640"
+                                            srcset="https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=480&q=40 480w, https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=960&q=60 960w, https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?auto=format&fit=crop&w=1600&q=80 1600w"
+                                            sizes="(max-width: 600px) 90vw, 960px">
                                     </div>
                                 </div>
                             </div>
@@ -1009,8 +1162,9 @@
                 <div class="footer-brand">
                     <img
                         src="assets/logo/updated_logo.png"
-                            alt="Rich Land Builders company logo"
+                        alt="Rich Land Builders company logo"
                         class="footer-logo-image"
+                        width="180" height="60" loading="lazy"
                     >
                     <p class="footer-tagline">Where Dreams and Designs meet Reality!</p>
                     <p class="vision-text">Crafting foundations with compassion in construction.</p>
@@ -1018,7 +1172,7 @@
 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Quick Links</h4>
+                        <h3>Quick Links</h3>
                         <ul>
                             <li><a href="index.html">Home</a></li>
                             <li><a href="index.html#about">About</a></li>
@@ -1029,7 +1183,7 @@
                     </div>
 
                     <div class="footer-column">
-                        <h4>Contact</h4>
+                        <h3>Contact</h3>
                         <ul>
                             <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
                             <li><a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a></li>
@@ -1050,7 +1204,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="scripts/common.js"></script>
-    <script src="scripts/address-page.js"></script>
+    <script src="scripts/common.js" defer></script>
+    <script src="scripts/address-page.js" defer></script>
 </body>
 </html>

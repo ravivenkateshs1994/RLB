@@ -188,7 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const showSlide = (index) => {
             const thumb = thumbs[index];
             const largeSrc = thumb.getAttribute('data-large-src');
-            if (!largeSrc || mainImg.src === largeSrc) return;
+            if (!largeSrc) return;
+
+            // If already showing this image, skip
+            if (mainImg.src === largeSrc || mainImg.currentSrc === largeSrc) return;
 
             thumbs.forEach(t => t.classList.remove('is-active'));
             thumb.classList.add('is-active');
@@ -207,15 +210,29 @@ document.addEventListener('DOMContentLoaded', () => {
             mainImg.classList.add('is-fading');
 
             // Preload the new image to avoid flicker
-            const newImg = new Image();
+            const newImg = new window.Image();
             newImg.onload = () => {
-                mainImg.src = largeSrc;
-                mainImg.classList.remove('is-fading');
+                // Fade in after fade out completes
+                setTimeout(() => {
+                    mainImg.src = largeSrc;
+                    if (thumb.hasAttribute('data-srcset')) {
+                        mainImg.setAttribute('srcset', thumb.getAttribute('data-srcset'));
+                    } else {
+                        mainImg.removeAttribute('srcset');
+                    }
+                    if (thumb.hasAttribute('data-sizes')) {
+                        mainImg.setAttribute('sizes', thumb.getAttribute('data-sizes'));
+                    } else {
+                        mainImg.removeAttribute('sizes');
+                    }
+                    mainImg.classList.remove('is-fading');
+                }, 260); // match CSS transition duration
             };
             newImg.onerror = () => {
-                // Fallback: set src even if load fails
-                mainImg.src = largeSrc;
-                mainImg.classList.remove('is-fading');
+                setTimeout(() => {
+                    mainImg.src = largeSrc;
+                    mainImg.classList.remove('is-fading');
+                }, 260);
             };
             newImg.src = largeSrc;
 
@@ -223,9 +240,19 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (mainImg.classList.contains('is-fading')) {
                     mainImg.src = largeSrc;
+                    if (thumb.hasAttribute('data-srcset')) {
+                        mainImg.setAttribute('srcset', thumb.getAttribute('data-srcset'));
+                    } else {
+                        mainImg.removeAttribute('srcset');
+                    }
+                    if (thumb.hasAttribute('data-sizes')) {
+                        mainImg.setAttribute('sizes', thumb.getAttribute('data-sizes'));
+                    } else {
+                        mainImg.removeAttribute('sizes');
+                    }
                     mainImg.classList.remove('is-fading');
                 }
-            }, 2000); // Increased timeout for slower connections
+            }, 2000);
         };
 
         const startSlideshow = () => {
@@ -264,15 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
             start: startSlideshow,
             stop: stopSlideshow,
             resetToFirst: () => {
-                currentIndex = 0;
-                mainImg.classList.remove('is-fading');
-                const firstThumb = thumbs[currentIndex];
-                const firstSrc = firstThumb && firstThumb.getAttribute('data-large-src');
-                if (!firstSrc) return;
-
-                thumbs.forEach(t => t.classList.remove('is-active'));
-                firstThumb.classList.add('is-active');
-                mainImg.src = firstSrc;
+                // Always use showSlide to sync main image and thumb
+                let activeIdx = thumbs.findIndex(t => t.classList.contains('is-active'));
+                if (activeIdx < 0) activeIdx = 0;
+                currentIndex = activeIdx;
+                showSlide(currentIndex);
             }
         });
     });
@@ -322,10 +345,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tabs) {
                 const header = document.querySelector('header');
                 const headerHeight = header ? header.offsetHeight : 80;
-                const offsetTop = tabs.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
+                const rect = tabs.getBoundingClientRect();
+                const offsetTop = rect.top + window.pageYOffset - headerHeight;
+                window.requestAnimationFrame(() => {
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
                 });
             }
         };
@@ -387,10 +413,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (tabs) {
                         const header = document.querySelector('header');
                         const headerHeight = header ? header.offsetHeight : 80;
-                        const offsetTop = tabs.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
+                        const rect = tabs.getBoundingClientRect();
+                        const offsetTop = rect.top + window.pageYOffset - headerHeight;
+                        window.requestAnimationFrame(() => {
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
                         });
                     }
                 }, 100);
@@ -401,14 +430,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sticky tabs header detection
     const tabsHeader = document.querySelector('.address-tabs__header');
     if (tabsHeader) {
+        // Cache headerHeight and originalTop outside scroll handler
         const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '80px');
         const originalTop = tabsHeader.offsetTop;
+        let lastIsStuck = null;
         const updateStuck = () => {
-            const isStuck = window.scrollY > originalTop - headerHeight;
-            tabsHeader.classList.toggle('is-stuck', isStuck);
-            tabsHeader.parentElement.parentElement.classList.toggle('is-stuck', isStuck);
+            window.requestAnimationFrame(() => {
+                const isStuck = window.scrollY > originalTop - headerHeight;
+                if (isStuck !== lastIsStuck) {
+                    tabsHeader.classList.toggle('is-stuck', isStuck);
+                    tabsHeader.parentElement.parentElement.classList.toggle('is-stuck', isStuck);
+                    lastIsStuck = isStuck;
+                }
+            });
         };
-        window.addEventListener('scroll', updateStuck);
+        window.addEventListener('scroll', updateStuck, { passive: true });
         updateStuck(); // initial check
     }
 
