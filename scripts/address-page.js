@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentIndex < 0) currentIndex = 0;
 
         let slideTimer = null;
-        const SLIDE_INTERVAL = 6000;
+        const SLIDE_INTERVAL = 3000;
 
         const showSlide = (index) => {
             const thumb = thumbs[index];

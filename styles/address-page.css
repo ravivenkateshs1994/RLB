@@ -775,6 +775,10 @@ body.quick-nav-open {
     padding: 0.35rem 0 0.55rem;
     scrollbar-width: thin;
     scrollbar-color: rgba(212, 175, 55, 0.6) rgba(250, 246, 240, 0.3);
+    /* Fade effect on left/right edges */
+    mask-image: linear-gradient(to right, transparent 0px, #000 32px, #000 calc(100% - 32px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0px, #000 32px, #000 calc(100% - 32px), transparent 100%);
+    transition: mask-image 0.3s, -webkit-mask-image 0.3s;
 }
 
 .address-gallery__thumbs::-webkit-scrollbar {
