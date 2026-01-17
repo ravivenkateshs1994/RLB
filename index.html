@@ -41,11 +41,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="icon" type="image/png" href="assets/logo/favicon.png" sizes="32x32">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
-    <link rel="stylesheet" href="styles/home.css">
+    <link rel="preload" href="styles/home.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles/home.css"></noscript>
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -56,7 +58,7 @@
         <div class="header__container">
             <div class="header__logo-container">
                 <a href="index.html" aria-label="Rich Land Builders – Home">
-                    <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo" loading="lazy">
+                    <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo" loading="lazy" width="140" height="48">
                 </a>
             </div>
 
@@ -100,7 +102,7 @@
             <div class="carousel__track">
                 <!-- Slide 1: Welcome / Brand Introduction -->
                 <div class="carousel__slide active">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80" alt="Luxury Modern Home Exterior" class="carousel__image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80" alt="Luxury Modern Home Exterior" class="carousel__image" loading="lazy" width="1920" height="1080">
                     <div class="carousel__content">
                         <div class="carousel__text">
                             <div class="carousel__badge fade-in">Welcome to Excellence</div>
@@ -116,7 +118,7 @@
 
                 <!-- Slide 2: Innovation & Technology -->
                 <div class="carousel__slide">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" alt="Modern Smart Kitchen" class="carousel__image">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" alt="Modern Smart Kitchen" class="carousel__image" loading="lazy" width="1920" height="1080">
                     <div class="carousel__content">
                         <div class="carousel__text">
                             <div class="carousel__badge fade-in">Innovation First</div>
@@ -132,7 +134,7 @@
     
                 <!-- Slide 3: The Address Project -->
                 <div class="carousel__slide">
-                    <img src="assets/others/apartment_rendering.webp" alt="The Address Project" class="carousel__image carousel__image--fullwidth">
+                    <img src="assets/others/apartment_rendering.webp" alt="The Address Project" class="carousel__image carousel__image--fullwidth" loading="lazy" width="1009" height="640">
                     <div class="carousel__content">
                         <div class="carousel__text">
                             <div class="carousel__badge fade-in">Flagship Project</div>
@@ -150,7 +152,7 @@
     
                 <!-- Slide 4: Customer Promise -->
                 <div class="carousel__slide">
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80" alt="Happy Family in New Home" class="carousel__image">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80" alt="Happy Family in New Home" class="carousel__image" loading="lazy" width="1920" height="1080">
                     <div class="carousel__content">
                         <div class="carousel__text">
                             <div class="carousel__badge fade-in">Our Promise</div>
@@ -256,7 +258,7 @@
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                             <img
-                                src="assets/cards/integrity_trust.jpg" loading="lazy"
+                                src="assets/cards/integrity_trust.jpg" loading="lazy" width="400" height="300"
                             alt="Builder and homeowner shaking hands at a house site representing integrity and trust"
                             class="values-card__image"
                         >
@@ -273,7 +275,7 @@
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                             <img
-                            src="assets/cards/reviewing_plans.jpg" loading="lazy"
+                            src="assets/cards/reviewing_plans.jpg" loading="lazy" width="400" height="300"
                             alt="Architect reviewing plans on a tablet at a modern construction site symbolising innovation"
                             class="values-card__image"
                         >
@@ -290,7 +292,7 @@
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="assets/cards/quality.jpg" loading="lazy"
+                            src="assets/cards/quality.jpg" loading="lazy" width="400" height="300"
                             alt="Detail view of a finely finished living room illustrating crafted construction quality"
                             class="values-card__image"
                         >
@@ -307,7 +309,7 @@
                 <article class="values-card">
                     <div class="values-card__image-wrap">
                         <img
-                            src="assets/cards/responsibility.png" loading="lazy"
+                            src="assets/cards/responsibility.png" loading="lazy" width="400" height="300"
                             alt="Modern residential building with greenery and solar panels showing long term responsibility"
                             class="values-card__image"
                         >
@@ -329,7 +331,7 @@
         <div class="container address-project__container">
             <div class="address-project__image-wrap fade-in">
                 <img
-                    src="assets/others/apartment_rendering.webp" loading="lazy"
+                    src="assets/others/apartment_rendering.webp" loading="lazy" width="1009" height="640"
                     alt="Exterior view representing The Address by Rich Land Builders"
                     class="address-project__image"
                 >
@@ -481,7 +483,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <img
-                        src="assets/logo/updated_logo.png" loading="lazy"
+                        src="assets/logo/updated_logo.png" loading="lazy" width="140" height="48"
                         alt="Rich Land Builders"
                         class="footer-logo-image"
                     >
@@ -525,7 +527,7 @@
     </main>
 
     <!-- JavaScript -->
-    <script src="scripts/common.js"></script>
-    <script src="scripts/home.js"></script>
+    <script src="scripts/common.js" defer></script>
+    <script src="scripts/home.js" defer></script>
 </body>
 </html>
