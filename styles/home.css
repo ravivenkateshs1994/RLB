@@ -164,6 +164,15 @@
     background: #ffffff;
 }
 
+.carousel__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .carousel__image--fullwidth {
     width: 100vw;
     max-width: 100vw;
@@ -558,10 +567,15 @@
     .carousel__image {
         display: block;
         width: 100%;
-        min-height: 120px;
-        height: auto;
+        height: 100%;
         object-fit: cover;
         background: #fff;
+        position: absolute;
+        inset: 0;
+    }
+
+    .carousel__image--fullwidth {
+        transform: translateX(0);
     }
 
     .carousel__content {
