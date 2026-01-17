@@ -215,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Fade in after fade out completes
                 setTimeout(() => {
                     mainImg.src = largeSrc;
-                    // Removed srcset/sizes logic for compatibility
                     mainImg.classList.remove('is-fading');
                 }, 260); // match CSS transition duration
             };
@@ -231,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (mainImg.classList.contains('is-fading')) {
                     mainImg.src = largeSrc;
-                    // Removed srcset/sizes logic for compatibility
                     mainImg.classList.remove('is-fading');
                 }
             }, 2000);
