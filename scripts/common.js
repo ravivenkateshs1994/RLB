@@ -8,9 +8,41 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all common functionality
+    initializeHeaderState();
     initializeNavigationHighlighting();
     initializeMobileNavigation();
 });
+
+/* ===========================================
+   HEADER SCROLL STATE
+   =========================================== */
+
+function initializeHeaderState() {
+    const header = document.getElementById('header');
+    if (!header) return;
+
+    const updateHeader = () => {
+        const shouldShrink = window.scrollY > 18;
+        header.classList.toggle('is-scrolled', shouldShrink);
+    };
+
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+}
+
+function syncMobileNavActiveFromDesktop() {
+    const desktopLinks = Array.from(document.querySelectorAll('.nav__link'));
+    const mobileLinks = Array.from(document.querySelectorAll('.mobile-nav__link'));
+    if (!desktopLinks.length || !mobileLinks.length) return;
+
+    const activeDesktop = desktopLinks.find(link => link.classList.contains('active'));
+    const activeHref = activeDesktop ? activeDesktop.getAttribute('href') : null;
+
+    mobileLinks.forEach(link => {
+        const sameTarget = activeHref && link.getAttribute('href') === activeHref;
+        link.classList.toggle('active', Boolean(sameTarget));
+    });
+}
 
 /* ===========================================
    NAVIGATION HIGHLIGHTING
@@ -39,6 +71,7 @@ function initializeNavigationHighlighting() {
                     if (entry.isIntersecting) {
                         navLinks.forEach(l => l.classList.remove('active'));
                         link.classList.add('active');
+                        syncMobileNavActiveFromDesktop();
                     }
                 });
             },
@@ -158,6 +191,20 @@ function initializeMobileNavigation() {
                 }
             }
         });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 960 && mobileNav.classList.contains('open')) {
+                closeMobileNav();
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && mobileNav.classList.contains('open')) {
+                closeMobileNav();
+            }
+        });
+
+        syncMobileNavActiveFromDesktop();
     }
 }
 
@@ -199,6 +246,7 @@ document.querySelectorAll('.nav__link, .contact-btn, .btn--primary').forEach(lin
             });
             if (link.classList.contains('nav__link')) {
                 link.classList.add('active');
+                syncMobileNavActiveFromDesktop();
             }
         }
     });
