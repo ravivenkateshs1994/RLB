@@ -409,22 +409,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sticky tabs header detection
     const tabsHeader = document.querySelector('.address-tabs__header');
+    const tabsSectionEl = document.querySelector('.address-tabs');
     if (tabsHeader) {
-        // Cache headerHeight and originalTop outside scroll handler
-        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '80px');
-        const originalTop = tabsHeader.offsetTop;
+        // Recalculate sticky start point when layout changes (images/fonts/tabs can shift offsets).
+        let stickyStart = 0;
+        const measureStickyStart = () => {
+            const rect = tabsHeader.getBoundingClientRect();
+            stickyStart = rect.top + window.scrollY;
+        };
+
         let lastIsStuck = null;
         const updateStuck = () => {
             window.requestAnimationFrame(() => {
-                const isStuck = window.scrollY > originalTop - headerHeight;
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const isStuck = window.scrollY >= stickyStart - headerHeight;
                 if (isStuck !== lastIsStuck) {
                     tabsHeader.classList.toggle('is-stuck', isStuck);
-                    tabsHeader.parentElement.parentElement.classList.toggle('is-stuck', isStuck);
+                    if (tabsSectionEl) {
+                        tabsSectionEl.classList.toggle('is-stuck', isStuck);
+                    }
                     lastIsStuck = isStuck;
                 }
             });
         };
+
+        measureStickyStart();
         window.addEventListener('scroll', updateStuck, { passive: true });
+        window.addEventListener('resize', () => {
+            measureStickyStart();
+            updateStuck();
+        });
+
+        // Tabs switching can move content and therefore sticky threshold.
+        document.querySelectorAll('.address-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                setTimeout(() => {
+                    measureStickyStart();
+                    updateStuck();
+                }, 500);
+            });
+        });
+
         updateStuck(); // initial check
     }
 
@@ -947,7 +973,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let isScrolling = false;
     let lastActiveLink = null;
     let isSubnavVisible = false;
-    const MIN_DESKTOP_WIDTH = 1600;
+    const MIN_DESKTOP_WIDTH = 1280;
     let subnavDisabled = false;
     const ODD_BG = 'rgb(250, 246, 240)';
     const EVEN_BG = 'rgb(255, 255, 255)';
@@ -995,8 +1021,10 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 80;
         const triggerPoint = tabsSection.offsetTop;
-        const shouldShow = (window.scrollY + 100) >= triggerPoint;
+        const shouldShow = (window.scrollY + headerHeight + 36) >= triggerPoint;
 
         if (shouldShow !== isSubnavVisible) {
             floatingSubnav.classList.toggle('is-visible', shouldShow);
@@ -1376,16 +1404,40 @@ document.addEventListener('DOMContentLoaded', function () {
         const element = document.getElementById(sectionId);
         if (element) {
             isScrolling = true;
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+
+            const getScrollOffset = () => {
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const tabsHeader = document.querySelector('.address-tabs__header');
+                const tabsHeight = tabsHeader ? tabsHeader.offsetHeight : 0;
+                const isInsideTabs = !!element.closest('.address-tabs');
+
+                // Keep the section title clear of fixed header and sticky tabs when navigating inside tabs.
+                return headerHeight + (isInsideTabs ? tabsHeight : 0) + 12;
+            };
+
+            const scrollOnce = (behavior) => {
+                const targetTop = element.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
+                window.scrollTo({
+                    top: Math.max(0, targetTop),
+                    behavior
+                });
+            };
+
+            scrollOnce('smooth');
+
+            // Correct final alignment after tab/content reflow settles.
+            [240, 520].forEach(delay => {
+                setTimeout(() => {
+                    scrollOnce('auto');
+                }, delay);
             });
-            
-            // Reset scrolling flag after animation
+
+            // Reset scrolling flag after animation + correction passes.
             setTimeout(() => {
                 isScrolling = false;
                 updateActiveSection();
-            }, 1000);
+            }, 900);
         }
     }
 

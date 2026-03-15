@@ -110,9 +110,18 @@ class Carousel {
         this.dots[this.currentSlide].classList.remove('active');
 
         this.currentSlide = index;
+        const newSlide = this.slides[this.currentSlide];
 
-        this.slides[this.currentSlide].classList.add('active');
+        newSlide.classList.add('active');
         this.dots[this.currentSlide].classList.add('active');
+
+        // Force CSS animation restart (fixes mobile/tablet WebKit not re-triggering @keyframes)
+        const animated = Array.from(newSlide.querySelectorAll(
+            '.carousel__img-wrap, .carousel__badge, .carousel__title, .carousel__subtitle, .carousel__description, .carousel__actions'
+        ));
+        animated.forEach(el => { el.style.animation = 'none'; });
+        void newSlide.offsetWidth; // single reflow flushes all at once
+        animated.forEach(el => { el.style.animation = ''; });
     }
 
     nextSlide() {

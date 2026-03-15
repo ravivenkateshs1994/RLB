@@ -34,6 +34,7 @@
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
     --header-height: 72px;
+    --header-height-scrolled: 64px;
 }
 
 /* ===========================================
@@ -49,6 +50,7 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 8px);
 }
 
 body {
@@ -58,6 +60,7 @@ body {
     background: var(--color-bg);
     line-height: 1.6;
     overflow-x: hidden; /* Prevent accidental horizontal scrolling */
+    -webkit-tap-highlight-color: rgba(121, 17, 14, 0.15);
 }
 
 img {
@@ -89,6 +92,27 @@ main {
     overflow: hidden;
 }
 
+.sr-only:focus,
+.sr-only:focus-visible {
+    left: 1rem;
+    top: 0.65rem;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    z-index: 2000;
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+section[id] {
+    scroll-margin-top: calc(var(--header-height) + 10px);
+}
+
 /* ===========================================
    HEADER & NAVIGATION
    =========================================== */
@@ -102,6 +126,18 @@ main {
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     z-index: 1300;
+    transition:
+        background-color var(--duration) var(--ease),
+        box-shadow var(--duration) var(--ease),
+        border-color var(--duration) var(--ease),
+        height var(--duration) var(--ease);
+}
+
+.header.is-scrolled {
+    height: var(--header-height-scrolled);
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 28px -22px rgba(19, 52, 59, 0.6);
 }
 
 .header__container {
@@ -124,6 +160,11 @@ main {
 .header-logo {
     height: 48px;
     width: auto;
+    transition: height var(--duration) var(--ease);
+}
+
+.header.is-scrolled .header-logo {
+    height: 42px;
 }
 
 .nav {
@@ -197,6 +238,14 @@ main {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid rgba(121, 17, 14, 0.45);
+    outline-offset: 2px;
 }
 
 .mobile-menu-icon {
@@ -577,7 +626,7 @@ textarea.form-control {
     top: var(--header-height);
     left: 0;
     right: 0;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: none;
     display: none;
     flex-direction: column;
@@ -587,6 +636,9 @@ textarea.form-control {
     opacity: 0;
     transform: translateY(-4px);
     pointer-events: none;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 16px 36px -26px rgba(19, 52, 59, 0.65);
     transition:
         opacity var(--duration-fast) var(--ease),
         transform var(--duration-fast) var(--ease);
@@ -639,6 +691,11 @@ textarea.form-control {
     margin-top: 0.3rem;
     font-weight: 600;
     color: var(--color-primary);
+}
+
+.mobile-nav__link.active {
+    color: var(--color-primary);
+    font-weight: 600;
 }
 
 .mobile-nav.open .mobile-nav__link {
