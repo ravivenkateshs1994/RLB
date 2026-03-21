@@ -1007,6 +1007,11 @@ body.quick-nav-open {
     cursor: pointer;
 }
 
+@keyframes floorplan-fadein {
+    from { opacity: 0; transform: scale(0.995); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
 /* Expand-to-fullscreen hint badge */
 .floorplan-tabs__image-wrap {
     position: relative;
@@ -1016,6 +1021,7 @@ body.quick-nav-open {
 
 .floorplan-tabs__image-wrap.is-active {
     display: inline-block;
+    animation: floorplan-fadein 180ms ease;
 }
 
 .floorplan-tabs__image-wrap::after {
@@ -1238,14 +1244,14 @@ body.quick-nav-open {
     flex-shrink: 0;
     width: 42px;
     height: 42px;
-    border-radius: 10px;
-    background: rgba(121, 17, 14, 0.08);
-    border: 1px solid rgba(121, 17, 14, 0.2);
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.10);
+    border: 1px solid rgba(212, 175, 55, 0.30);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-primary);
-    transition: background-color var(--duration-fast) var(--ease);
+    transition: background-color var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease);
 }
 
 .specs-card__icon svg {
@@ -1254,7 +1260,8 @@ body.quick-nav-open {
 }
 
 .specs-card:hover .specs-card__icon {
-    background: rgba(121, 17, 14, 0.14);
+    background: rgba(212, 175, 55, 0.18);
+    border-color: rgba(212, 175, 55, 0.5);
 }
 
 /* ---- Label ---- */
