@@ -14,7 +14,7 @@ const ACTIVE_CLASS = 'is-active';
 // VIEWER.JS IMAGE VIEWER HELPER
 // ====================
 
-function openLightbox(items, startIndex, onClose, onSlideChange) {
+function openLightbox(items, startIndex, onClose) {
     if (typeof Viewer === 'undefined') return;
 
     let currentIndex = startIndex;
@@ -32,15 +32,6 @@ function openLightbox(items, startIndex, onClose, onSlideChange) {
     });
     document.body.appendChild(container);
 
-    // Modern thin-stroke SVG icons injected after Viewer.js builds its DOM
-    const VIEWER_ICONS = {
-        'viewer-zoom-in':  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>',
-        'viewer-zoom-out': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>',
-        'viewer-close':    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
-    };
-    const SVG_PREV = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
-    const SVG_NEXT = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
-
     const viewer = new Viewer(container, {
         initialViewIndex: startIndex,
         title: false,
@@ -50,45 +41,16 @@ function openLightbox(items, startIndex, onClose, onSlideChange) {
             zoomOut: true,
             oneToOne: false,
             reset: false,
-            prev: false,
+            prev: items.length > 1,
             play: false,
-            next: false,
+            next: items.length > 1,
             rotateLeft: false,
             rotateRight: false,
             flipHorizontal: false,
             flipVertical: false,
         },
-        shown() {
-            const vc = document.querySelector('.viewer-container');
-            if (!vc) return;
-
-            // Inject toolbar SVG icons
-            Object.entries(VIEWER_ICONS).forEach(([cls, svg]) => {
-                vc.querySelectorAll('.' + cls).forEach(el => { el.innerHTML = svg; });
-            });
-
-            // Only add side arrows for multi-image galleries
-            if (items.length < 2) return;
-
-            // Remove any previous arrows (e.g. if shown() called twice)
-            vc.querySelectorAll('.viewer-side-arrow').forEach(el => el.remove());
-
-            const makeArrow = (side) => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'viewer-side-arrow viewer-side-arrow--' + side;
-                btn.setAttribute('aria-label', side === 'prev' ? 'Previous image' : 'Next image');
-                btn.innerHTML = side === 'prev' ? SVG_PREV : SVG_NEXT;
-                btn.addEventListener('click', () => side === 'prev' ? viewer.prev() : viewer.next());
-                vc.appendChild(btn);
-            };
-
-            makeArrow('prev');
-            makeArrow('next');
-        },
         viewed(e) {
             currentIndex = e.detail.index;
-            if (typeof onSlideChange === 'function') onSlideChange(currentIndex);
         },
         hidden() {
             viewer.destroy();
@@ -350,10 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentIndex = finalIndex;
                 showSlide(currentIndex);
                 startSlideshow();
-            }, (liveIndex) => {
-                // Real-time: sync gallery main image + thumb strip to lightbox position
-                currentIndex = liveIndex;
-                showSlide(liveIndex);
             });
         });
     });

@@ -70,7 +70,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/address-page.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.css" integrity="sha256-24N4zLkVlT45eCIrr8+PH5X8NQ7YxDpnQuarQGQWbOM=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.css">
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -114,7 +114,7 @@
         <a href="index.html" class="mobile-nav__link">Home</a>
         <a href="index.html#about" class="mobile-nav__link">About</a>
         <a href="index.html#values" class="mobile-nav__link">Values</a>
-            <a href="#" class="mobile-nav__link active" aria-current="page">The Address</a>
+            <a href="#" class="mobile-nav__link" aria-current="page">The Address</a>
         <a href="index.html#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
     </nav>
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
@@ -216,7 +216,6 @@
                                     alt="Apartment building rendering"
                                     class="address-gallery__main-image"
                                     width="1009" height="640"
-                                    loading="lazy"
                                 >
                             </div>
                             <div class="address-gallery__thumbs-outer">
@@ -356,43 +355,43 @@
                         <div class="address-amenities">
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/clubhouse.png" alt="Clubhouse icon" aria-hidden="true" loading="lazy">
+                                    <img src="assets/icons/clubhouse.png" alt="Clubhouse icon" aria-hidden="true">
                                 </div>
                                 <h3 class="amenity-tile__label">Community Hall</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/playground.png" alt="Playground icon" aria-hidden="true" loading="lazy">
+                                    <img src="assets/icons/playground.png" alt="Playground icon" aria-hidden="true">
                                 </div>
                                 <h3 class="amenity-tile__label">Kids Play Area</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/rooftop_garden.png" alt="Garden icon" aria-hidden="true" loading="lazy">
+                                    <img src="assets/icons/rooftop_garden.png" alt="Garden icon" aria-hidden="true">
                                 </div>
                                 <h3 class="amenity-tile__label">Rooftop Garden with walk space</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/gym.png" alt="Gym icon" aria-hidden="true" loading="lazy">
+                                    <img src="assets/icons/gym.png" alt="Gym icon" aria-hidden="true">
                                 </div>
                                 <h3 class="amenity-tile__label">Indoor Gym</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true" loading="lazy">
+                                    <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true">
                                 </div>
                                 <h3 class="amenity-tile__label">Dedicated Parking Space</h3>
                             </article>
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/elevator.png" alt="Elevator icon" aria-hidden="true" loading="lazy">
+                                    <img src="assets/icons/elevator.png" alt="Elevator icon" aria-hidden="true">
                                 </div>
                                 <h3 class="amenity-tile__label">Elevator</h3>
                             </article> 
                             <article class="amenity-tile">
                                 <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true" loading="lazy">
+                                    <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true">
                                 </div>
                                 <h3 class="amenity-tile__label">Solar back up for common areas</h3>
                             </article>
@@ -422,19 +421,19 @@
                                      <img class="floorplan-tabs__image is-active"
                                          src="assets/floorplan/apartments/floor_view.webp"
                                          alt="Overall floor layout"
-                                         width="1009" height="640" loading="lazy">
+                                         width="1009" height="640">
                                      <img class="floorplan-tabs__image"
                                          src="assets/floorplan/apartments/type_a.webp"
                                          alt="Type A layout"
-                                         width="1009" height="640" loading="lazy">
+                                         width="1009" height="640">
                                      <img class="floorplan-tabs__image"
                                          src="assets/floorplan/apartments/type_b.webp"
                                          alt="Type B layout"
-                                         width="1009" height="640" loading="lazy">
+                                         width="1009" height="640">
                                      <img class="floorplan-tabs__image"
                                          src="assets/floorplan/apartments/type_c.webp"
                                          alt="Type C layout"
-                                         width="1009" height="640" loading="lazy">
+                                         width="1009" height="640">
                                 </div>
                             </div>
                             <!-- Accordion for mobile -->
@@ -444,7 +443,7 @@
                                     <div class="floorplan-accordion__panel">
                                         <img src="assets/floorplan/apartments/floor_view.webp"
                                             alt="Overall floor layout"
-                                            width="1009" height="640" loading="lazy">
+                                            width="1009" height="640">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
@@ -452,7 +451,7 @@
                                     <div class="floorplan-accordion__panel">
                                         <img src="assets/floorplan/apartments/type_a.webp"
                                             alt="Type A layout"
-                                            width="1009" height="640" loading="lazy">
+                                            width="1009" height="640">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
@@ -460,7 +459,7 @@
                                     <div class="floorplan-accordion__panel">
                                         <img src="assets/floorplan/apartments/type_b.webp"
                                             alt="Type B layout"
-                                            width="1009" height="640" loading="lazy">
+                                            width="1009" height="640">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
@@ -468,7 +467,7 @@
                                     <div class="floorplan-accordion__panel">
                                         <img src="assets/floorplan/apartments/type_c.webp"
                                             alt="Type C layout"
-                                            width="1009" height="640" loading="lazy">
+                                            width="1009" height="640">
                                     </div>
                                 </div>
                             </div>
@@ -646,7 +645,6 @@
                                     alt="Villa Elevation image 1"
                                     class="address-gallery__main-image"
                                     width="1072" height="715"
-                                    loading="lazy"
                                 >
                             </div>
                             <div class="address-gallery__thumbs">
@@ -944,11 +942,11 @@
                                      <img class="floorplan-tabs__image is-active"
                                          src="assets/floorplan/villa/ground-floor.webp"
                                          alt="Ground floor plan"
-                                         width="960" height="640" loading="lazy">
+                                         width="960" height="640">
                                      <img class="floorplan-tabs__image"
                                          src="assets/floorplan/villa/first-floor.webp"
                                          alt="First floor plan"
-                                         width="960" height="640" loading="lazy">
+                                         width="960" height="640">
                                 </div>
                             </div>
                             <!-- Accordion for mobile -->
@@ -958,7 +956,7 @@
                                     <div class="floorplan-accordion__panel">
                                         <img src="assets/floorplan/villa/ground-floor.webp"
                                             alt="Ground floor plan"
-                                            width="960" height="640" loading="lazy">
+                                            width="960" height="640">
                                     </div>
                                 </div>
                                 <div class="floorplan-accordion__item">
@@ -966,7 +964,7 @@
                                     <div class="floorplan-accordion__panel">
                                         <img src="assets/floorplan/villa/first-floor.webp"
                                             alt="First floor plan"
-                                            width="960" height="640" loading="lazy">
+                                            width="960" height="640">
                                     </div>
                                 </div>
                             </div>
@@ -1247,7 +1245,7 @@
 
     <!-- JavaScript -->
     <script src="scripts/common.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.js" integrity="sha256-sXH7DPxFP99AqM/DdCBltJ6pAFxvvnwp6JAr+HnLjdw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
     <script src="scripts/address-page.js" defer></script>
 </body>
 </html>

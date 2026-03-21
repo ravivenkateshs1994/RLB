@@ -34,6 +34,7 @@
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
     --header-height: 72px;
+    --header-height-scrolled: 64px;
 }
 
 /* ===========================================
@@ -70,12 +71,6 @@ img {
 
 main {
     margin-top: var(--header-height);
-    animation: pageEnter 400ms var(--ease) both;
-}
-
-@keyframes pageEnter {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ===========================================
@@ -139,7 +134,10 @@ section[id] {
 }
 
 .header.is-scrolled {
+    height: var(--header-height-scrolled);
+    background: rgba(255, 255, 255, 0.95);
     border-bottom-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 28px -22px rgba(19, 52, 59, 0.6);
 }
 
 .header__container {
@@ -163,6 +161,10 @@ section[id] {
     height: 48px;
     width: auto;
     transition: height var(--duration) var(--ease);
+}
+
+.header.is-scrolled .header-logo {
+    height: 42px;
 }
 
 .nav {
