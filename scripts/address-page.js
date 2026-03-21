@@ -10,6 +10,9 @@
 const AMENITY_INTERVAL = 2600;
 const ACTIVE_CLASS = 'is-active';
 
+// Signal that JS is running — used to gate scroll-in animation CSS
+document.documentElement.classList.add('js-loaded');
+
 // ====================
 // VIEWER.JS IMAGE VIEWER HELPER
 // ====================
@@ -41,13 +44,66 @@ function openLightbox(items, startIndex, onClose) {
             zoomOut: true,
             oneToOne: false,
             reset: false,
-            prev: items.length > 1,
+            prev: false,
             play: false,
-            next: items.length > 1,
+            next: false,
             rotateLeft: false,
             rotateRight: false,
             flipHorizontal: false,
             flipVertical: false,
+        },
+        shown() {
+            const viewerEl = viewer.viewer || document.querySelector('.viewer-container');
+            if (!viewerEl) return;
+
+            // ---- Liquid glass inline override for close button ----
+            // (CDN viewer.css loads after our stylesheet so CSS alone loses)
+            const closeBtn = viewerEl.querySelector('.viewer-button');
+            if (closeBtn) {
+                const bg = 'rgba(28, 28, 30, 0.78)';
+                const bgHover = 'rgba(50, 50, 52, 0.9)';
+                const shadow = '0 4px 20px rgba(0,0,0,0.55), inset 0 0.5px 0 rgba(255,255,255,0.18), inset 0 -0.5px 0 rgba(0,0,0,0.3)';
+                const shadowHover = '0 6px 24px rgba(0,0,0,0.65), inset 0 0.5px 0 rgba(255,255,255,0.22), inset 0 -0.5px 0 rgba(0,0,0,0.3)';
+                Object.assign(closeBtn.style, {
+                    top: '1.1rem',
+                    right: '1.1rem',
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    background: bg,
+                    backdropFilter: 'blur(16px) saturate(130%)',
+                    WebkitBackdropFilter: 'blur(16px) saturate(130%)',
+                    border: '1px solid rgba(255,255,255,0.13)',
+                    boxShadow: shadow,
+                    transition: 'background 160ms ease, box-shadow 160ms ease',
+                });
+                closeBtn.addEventListener('mouseenter', () => {
+                    closeBtn.style.background = bgHover;
+                    closeBtn.style.boxShadow = shadowHover;
+                });
+                closeBtn.addEventListener('mouseleave', () => {
+                    closeBtn.style.background = bg;
+                    closeBtn.style.boxShadow = shadow;
+                });
+            }
+
+            // ---- Side nav arrows ----
+            if (items.length <= 1 || viewerEl.querySelector('.viewer-nav-btn')) return;
+
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'viewer-nav-btn viewer-nav-btn--prev';
+            prevBtn.setAttribute('aria-label', 'Previous image');
+            prevBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+            prevBtn.addEventListener('click', () => viewer.prev());
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'viewer-nav-btn viewer-nav-btn--next';
+            nextBtn.setAttribute('aria-label', 'Next image');
+            nextBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+            nextBtn.addEventListener('click', () => viewer.next());
+
+            viewerEl.appendChild(prevBtn);
+            viewerEl.appendChild(nextBtn);
         },
         viewed(e) {
             currentIndex = e.detail.index;
@@ -68,7 +124,7 @@ function openLightbox(items, startIndex, onClose) {
 
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.floorplan-accordion__panel img').forEach(img => {
-        img.style.cursor = 'zoom-in';
+        img.style.cursor = 'pointer';
         img.title = 'Click to view full size';
         img.addEventListener('click', function () {
             openLightbox([{ src: img.src, alt: img.alt }], 0);
@@ -132,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.floorplan-tabs--desktop').forEach(tabContainer => {
         const images = Array.from(tabContainer.querySelectorAll('.floorplan-tabs__image'));
         images.forEach((img, idx) => {
-            img.style.cursor = 'zoom-in';
+            img.style.cursor = 'pointer';
             img.title = 'Click to view full size';
             img.addEventListener('click', function () {
                 const items = images.map(i => ({
@@ -153,18 +209,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle each floorplan tab section separately
     document.querySelectorAll('.floorplan-tabs').forEach(tabContainer => {
         const tabButtons = tabContainer.querySelectorAll('.floorplan-tabs__button');
-        const images = tabContainer.querySelectorAll('.floorplan-tabs__image');
+        const wrappers = tabContainer.querySelectorAll('.floorplan-tabs__image-wrap');
 
         tabButtons.forEach((btn, idx) => {
             btn.addEventListener('click', function () {
-                // Remove active class from all buttons and images in this container
+                // Remove active class from all buttons and wrappers in this container
                 tabButtons.forEach(b => b.classList.remove('is-active'));
-                images.forEach(img => img.classList.remove('is-active'));
+                wrappers.forEach(w => w.classList.remove('is-active'));
 
-                // Add active class to clicked tab and corresponding image
+                // Add active class to clicked tab and corresponding wrapper
                 btn.classList.add('is-active');
-                if (images[idx]) {
-                    images[idx].classList.add('is-active');
+                if (wrappers[idx]) {
+                    wrappers[idx].classList.add('is-active');
                 }
             });
         });
@@ -509,59 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Specs accordions
-    document.querySelectorAll('.address-specs').forEach(specsBlock => {
-        const groups = Array.from(specsBlock.querySelectorAll('.address-specs__group'));
 
-        groups.forEach((group, index) => {
-            const header = group.querySelector('.address-specs__group-header');
-            const body = group.querySelector('.address-specs__body');
-
-            if (!header || !body) return;
-
-            const panelId = body.id || `address-specs-panel-${index}`;
-            body.id = panelId;
-
-            header.setAttribute('role', 'button');
-            header.setAttribute('tabindex', '0');
-            header.setAttribute('aria-controls', panelId);
-            header.setAttribute('aria-expanded', group.classList.contains('is-open') ? 'true' : 'false');
-
-            const toggleGroup = () => {
-                const isOpen = group.classList.contains('is-open');
-
-                // Close all groups
-                groups.forEach(g => {
-                    g.classList.remove('is-open');
-                    const h = g.querySelector('.address-specs__group-header');
-                    const b = g.querySelector('.address-specs__body');
-                    if (h && b) {
-                        h.setAttribute('aria-expanded', 'false');
-                        b.setAttribute('hidden', 'hidden');
-                    }
-                });
-
-                // Open this group if it was closed
-                if (!isOpen) {
-                    group.classList.add('is-open');
-                    header.setAttribute('aria-expanded', 'true');
-                    body.removeAttribute('hidden');
-                }
-            };
-
-            header.addEventListener('click', (event) => {
-                if (event.target.closest('a, button')) return;
-                toggleGroup();
-            });
-
-            header.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    toggleGroup();
-                }
-            });
-        });
-    });
 
     // Auto-highlight amenities
     document.querySelectorAll('.address-amenities').forEach(grid => {
@@ -612,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let isScrolling = false;
     let lastActiveLink = null;
     let isSubnavVisible = false;
-    const MIN_DESKTOP_WIDTH = 1280;
+    const MIN_DESKTOP_WIDTH = 1900;
     let subnavDisabled = false;
     const ODD_BG = 'rgb(250, 246, 240)';
     const EVEN_BG = 'rgb(255, 255, 255)';
@@ -1113,4 +1117,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     updateActiveSection();
     updateQuickNavToggle();
+});
+
+// ====================
+// SCROLL-IN ANIMATION — SPECS CARDS
+// ====================
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (!window.IntersectionObserver) return;
+
+    const cards = document.querySelectorAll('.specs-card');
+    if (!cards.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const card = entry.target;
+            const delay = parseInt(card.dataset.animDelay || '0', 10);
+            setTimeout(() => card.classList.add('is-visible'), delay);
+            observer.unobserve(card);
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    // Group cards by their parent specs section for per-section stagger
+    const grouped = new Map();
+    cards.forEach((card) => {
+        const parent = card.parentElement;
+        if (!grouped.has(parent)) grouped.set(parent, []);
+        grouped.get(parent).push(card);
+    });
+
+    grouped.forEach((group) => {
+        group.forEach((card, i) => {
+            card.dataset.animDelay = String(Math.min(i * 70, 350));
+            observer.observe(card);
+        });
+    });
 });
