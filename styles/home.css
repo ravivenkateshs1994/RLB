@@ -701,7 +701,7 @@
    =========================================== */
 
 /* XL screens — taller hero so it fills more of the viewport on large monitors */
-@media (min-width: 1440px) {
+@media (min-width: 1921px) {
     .hero {
         height: min(100vh, 860px);
     }

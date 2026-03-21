@@ -270,30 +270,177 @@ body.quick-nav-open {
    =========================================== */
 
 .viewer-backdrop {
-    background-color: rgba(5, 5, 5, 0.92);
+    background-color: rgba(4, 4, 8, 0.96);
 }
 
 .viewer-container {
     z-index: 1400 !important;
 }
 
-/* Hide title bar (we pass title:false but belt-and-suspenders) */
 .viewer-title {
     display: none !important;
 }
 
-/* Slightly larger toolbar buttons */
-.viewer-toolbar > ul > li {
-    width: 38px;
-    height: 38px;
+/* ---- Toolbar — liquid glass pill ---- */
+.viewer-toolbar {
+    padding: 0.75rem 0 1.5rem;
+    background: transparent !important;
 }
 
-.viewer-toolbar > ul > li > .viewer-zoom-in::before,
-.viewer-toolbar > ul > li > .viewer-zoom-out::before,
-.viewer-toolbar > ul > li > .viewer-prev::before,
-.viewer-toolbar > ul > li > .viewer-next::before {
+.viewer-toolbar > ul {
+    display: inline-flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    background: rgba(28, 28, 30, 0.78);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.55),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.viewer-toolbar > ul > li {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 160ms ease;
+    margin: 0;
+}
+
+.viewer-toolbar > ul > li:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+/* Custom zoom SVG icons */
+.viewer-toolbar > ul > li > .viewer-zoom-in::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='6.5'/%3E%3Cline x1='20.5' y1='20.5' x2='16.1' y2='16.1'/%3E%3Cline x1='11' y1='8' x2='11' y2='14'/%3E%3Cline x1='8' y1='11' x2='14' y2='11'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.viewer-toolbar > ul > li > .viewer-zoom-out::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='6.5'/%3E%3Cline x1='20.5' y1='20.5' x2='16.1' y2='16.1'/%3E%3Cline x1='8' y1='11' x2='14' y2='11'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* ---- Close button — dark glass circle ---- */
+.viewer-button {
+    position: absolute !important;
+    top: 1.1rem !important;
+    right: 1.1rem !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    background: rgba(28, 28, 30, 0.78) !important;
+    backdrop-filter: blur(16px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.13) !important;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.55),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.3) !important;
+    transition: background 160ms ease, box-shadow 160ms ease !important;
+}
+
+.viewer-button:hover {
+    background: rgba(50, 50, 52, 0.9) !important;
+    box-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.65),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.viewer-button::before {
+    bottom: 10px !important;
+    left: 12px !important;
+}
+
+.viewer-toolbar>ul {
+    display: inline-flex !important;
+}
+
+/* ---- Navbar thumbnail strip ---- */
+.viewer-navbar {
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.22)
+    ) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    padding: 0.45rem 0;
+}
+
+/* ---- Side navigation arrows — dark glass circles ---- */
+.viewer-nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1420;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(28, 28, 30, 0.78);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.55),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.viewer-nav-btn::before {
+    display: none;
+}
+
+.viewer-nav-btn:hover {
+    background: rgba(50, 50, 52, 0.9);
+    box-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.65),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -0.5px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%) scale(1.09);
+}
+
+.viewer-nav-btn--prev { left: 1.25rem; }
+.viewer-nav-btn--next { right: 1.25rem; }
+
+.viewer-nav-btn svg {
     width: 22px;
     height: 22px;
+    flex-shrink: 0;
+    position: relative; /* keep above ::before */
+    z-index: 1;
+}
+
+@media (max-width: 480px) {
+    .viewer-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .viewer-nav-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    .viewer-nav-btn--prev { left: 0.5rem; }
+    .viewer-nav-btn--next { right: 0.5rem; }
 }
 
 /* ===========================================
@@ -526,12 +673,15 @@ body.quick-nav-open {
 
 .address-section-row--odd {
     background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
         linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 24%),
         #faf6f0;
 }
 
 .address-section-row--even {
-    background-color: #ffffff;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"),
+        #ffffff;
 }
 
 .address-section-row .address-section {
@@ -545,8 +695,15 @@ body.quick-nav-open {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    border-left: 2px solid rgba(212, 175, 55, 0.55);
-    padding-left: 1.1rem;
+}
+
+.address-section__header::before {
+    content: "";
+    display: block;
+    width: 2.8rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-primary) 100%);
 }
 
 .address-section__title {
@@ -611,14 +768,9 @@ body.quick-nav-open {
         rgba(0, 0, 0, 0.52)
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cpolyline points='9 21 3 21 3 15'/%3E%3Cline x1='21' y1='3' x2='14' y2='10'/%3E%3Cline x1='3' y1='21' x2='10' y2='14'/%3E%3C/svg%3E")
         center / 16px no-repeat;
-    opacity: 0;
     transition: opacity 0.22s ease;
     pointer-events: none;
     z-index: 3;
-}
-
-.address-gallery__main:hover::after {
-    opacity: 1;
 }
 
 .address-gallery__main-image {
@@ -852,33 +1004,39 @@ body.quick-nav-open {
     padding: 1.3rem 0 0.55rem;
     text-align: center;
     min-height: 320px;
+    cursor: pointer;
 }
 
 /* Expand-to-fullscreen hint badge */
-.floorplan-tabs__content::after {
+.floorplan-tabs__image-wrap {
+    position: relative;
+    display: none;
+    line-height: 0; /* collapse inline gap */
+}
+
+.floorplan-tabs__image-wrap.is-active {
+    display: inline-block;
+}
+
+.floorplan-tabs__image-wrap::after {
     content: "";
     position: absolute;
-    top: calc(1.3rem + 0.65rem);
+    top: 0.65rem;
     right: 0.65rem;
     width: 32px;
     height: 32px;
     border-radius: 8px;
     background:
-        rgba(0, 0, 0, 0.42)
+        rgba(0, 0, 0, 0.52)
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cpolyline points='9 21 3 21 3 15'/%3E%3Cline x1='21' y1='3' x2='14' y2='10'/%3E%3Cline x1='3' y1='21' x2='10' y2='14'/%3E%3C/svg%3E")
         center / 16px no-repeat;
-    opacity: 0;
     transition: opacity 0.22s ease;
     pointer-events: none;
     z-index: 3;
 }
 
-.floorplan-tabs__content:hover::after {
-    opacity: 1;
-}
-
 .floorplan-tabs__image {
-    display: none;
+    display: block;
     max-width: 100%;
     max-height: 640px;
     border-radius: 16px;
@@ -964,6 +1122,7 @@ body.quick-nav-open {
 }
 
 .floorplan-accordion__panel {
+    position: relative;
     background: #fff;
     text-align: center;
     max-height: 0;
@@ -986,10 +1145,33 @@ body.quick-nav-open {
     padding: 0 1.2rem 1.2rem 1.2rem;
 }
 
+.floorplan-accordion__panel::after {
+    content: "";
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background:
+        rgba(0, 0, 0, 0.52)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cpolyline points='9 21 3 21 3 15'/%3E%3Cline x1='21' y1='3' x2='14' y2='10'/%3E%3Cline x1='3' y1='21' x2='10' y2='14'/%3E%3C/svg%3E")
+        center / 16px no-repeat;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.floorplan-accordion__panel:hover::after {
+    opacity: 1;
+}
+
 .floorplan-accordion__panel img {
     max-width: 100%;
     border-radius: 12px;
     box-shadow: 0 10px 28px -20px rgba(19, 52, 59, 0.18);
+    cursor: pointer;
 }
 
 /* ===========================================
@@ -1125,7 +1307,7 @@ body.quick-nav-open {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.78em;
+    top: 1.1em;
     width: 6px;
     height: 2px;
     border-radius: 999px;
@@ -1634,3 +1816,23 @@ body.quick-nav-open {
         transform: none;
     }
 }
+
+/* ===========================================
+   SCROLL-IN ANIMATION — SPECS CARDS
+   =========================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+    .js-loaded .specs-card:not(.is-visible) {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .specs-card {
+        transition:
+            opacity 420ms var(--ease),
+            transform 420ms var(--ease),
+            border-color var(--duration-fast) var(--ease),
+            box-shadow var(--duration-fast) var(--ease);
+    }
+}
+
