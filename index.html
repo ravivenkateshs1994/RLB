@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -66,7 +66,7 @@
                 <a href="#about" class="nav__link">About</a>
                 <a href="#values" class="nav__link">Values</a>
                 <a href="address.html" class="nav__link">The Address</a>
-                <a href="#contact" class="contact-btn">Contact Us</a>
+                <a href="contact.html" class="contact-btn">Contact Us</a>
             </nav>
 
                 <button
@@ -90,7 +90,7 @@
         <a href="#about" class="mobile-nav__link">About</a>
         <a href="#values" class="mobile-nav__link">Values</a>
         <a href="address.html" class="mobile-nav__link">The Address</a>
-        <a href="#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
+        <a href="contact.html" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
     </nav>
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
 
@@ -165,7 +165,7 @@
                             <p class="carousel__subtitle">Transparency. Trust. Excellence.</p>
                             <p class="carousel__description">As a new player in the industry, we're committed to building lasting relationships through transparent communication, ethical practices, and exceptional results.</p>
                             <div class="carousel__actions">
-                                <a href="#contact" class="btn btn--primary btn--lg">Start Your Journey</a>
+                                <a href="contact.html" class="btn btn--primary btn--lg">Start Your Journey</a>
                             </div>
                         </div>
                     </div>
@@ -374,109 +374,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact" aria-label="Contact Rich Land Builders">
-        <div class="container">
-            <div class="contact__header">
-                <div>
-                    <p class="contact__eyebrow">Start a Conversation</p>
-                    <h2 class="contact__title">Let’s talk about your next home.</h2>
-                </div>
-                <p class="contact__subtitle">
-                    Share a few details and we’ll get back with clear next steps—no pressure, no spam.
-                </p>
-            </div>
-
-            <div class="contact-content">
-                <div class="contact-info" role="group" aria-label="Contact options">
-                    <div class="contact-item fade-in">
-                        <div class="contact-item__icon" aria-hidden="true">
-                            <!-- Phone icon -->
-                            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M6.6 10.8a14.9 14.9 0 006.6 6.6l2.2-2.2a1.1 1.1 0 011.1-.26 12.3 12.3 0 003.9.62 1.1 1.1 0 011.1 1.1v3.6A1.1 1.1 0 0120.4 22 18.4 18.4 0 012 3.6 1.1 1.1 0 013.1 2.5H6.7A1.1 1.1 0 017.8 3.6a12.3 12.3 0 00.62 3.9 1.1 1.1 0 01-.28 1.11L6.6 10.8z"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item__content">
-                            <h3 class="contact-item__title">Give us a call</h3>
-                            <p class="contact-item__text"><a href="tel:+1-555-123-4567">+1 (555) 123-4567</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item fade-in">
-                        <div class="contact-item__icon" aria-hidden="true">
-                            <!-- Mail icon -->
-                            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M4 5h16a1.5 1.5 0 011.5 1.5v11A1.5 1.5 0 0120 19H4a1.5 1.5 0 01-1.5-1.5v-11A1.5 1.5 0 014 5zm0 1.5l8 5 8-5"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item__content">
-                            <h3 class="contact-item__title">Connect by email</h3>
-                            <p class="contact-item__text"><a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item fade-in">
-                        <div class="contact-item__icon" aria-hidden="true">
-                            <!-- Location pin icon -->
-                            <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M12 3.5A6 6 0 006 9.5c0 3.9 4.5 8.3 5.6 9.4a0.7 0.7 0 001 0C13.7 17.8 18 13.4 18 9.5a6 6 0 00-6-6z"/>
-                                <circle cx="12" cy="9.5" r="2.3"/>
-                            </svg>
-                        </div>
-                        <div class="contact-item__content">
-                            <h3 class="contact-item__title">Drop by our office</h3>
-                            <p class="contact-item__text">
-                                4/300-6, EB Colony,<br>
-                                Mettupalayam Road, Karamadai,<br>
-                                641104, India
-                            </p>
-                        </div>
-                        <!-- Hidden iframe for silent Web3Forms submission -->
-                        <iframe name="web3forms-iframe" id="web3forms-iframe" style="display:none;width:0;height:0;border:0;"></iframe>
-
-                    </div>
-                </div>
-                <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" aria-label="Enquiry form" target="web3forms-iframe">
-                    <!-- required by Web3Forms -->
-                    <input type="hidden" name="access_key" value="6b82725a-62c2-4248-b22f-58fec5abfd96">
-                    <input type="hidden" name="subject" value="New enquiry from Rich Land Builders website">
-                    <!-- optional: where user came from -->
-                    <input type="hidden" name="from_page" value="Rich Land Builders – Home">
-
-                    <div class="form-group">
-                        <label for="name" class="form-label">Full Name *</label>
-                        <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your full name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email Address *</label>
-                        <input type="email" id="email" name="email" class="form-control" required placeholder="Enter your email address">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" required placeholder="Enter phone number with country code, e.g., +91 9876543210">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message" class="form-label">Message *</label>
-                        <textarea id="message" name="message" class="form-control" required placeholder="Describe your requirements or questions"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <p class="checkbox-disclaimer">
-                            I authorise Rich Land Builders and its representatives to contact me with updates and
-                            notifications via Email / SMS / WhatsApp / Call. This may override DND / NDNC settings.
-                        </p>
-                    </div>
-
-                    <button type="submit" class="btn btn--submit" id="contact-submit-btn">Submit</button>
-                    <p class="form-status" id="form-status" aria-live="polite"></p>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">↑</button>
 
@@ -503,8 +400,8 @@
                             <li><a href="#hero">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#values">Values</a></li>
-                            <li><a href="#project">The Address</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="address.html">The Address</a></li>
+                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
 

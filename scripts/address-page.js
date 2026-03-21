@@ -1154,3 +1154,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// ====================
+// SPECS CARD ACCORDION
+// ====================
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-specs-card]').forEach(function (card) {
+        const trigger = card.querySelector('.specs-card__trigger');
+        const panel = card.querySelector('.specs-card__panel');
+        if (!trigger || !panel) return;
+
+        // Start all panels expanded
+        panel.removeAttribute('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+
+        trigger.addEventListener('click', function () {
+            const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+            trigger.setAttribute('aria-expanded', String(!isExpanded));
+            if (isExpanded) {
+                panel.setAttribute('hidden', '');
+            } else {
+                panel.removeAttribute('hidden');
+            }
+        });
+    });
+});
+
+// ====================
+// FLOATING ENQUIRE FAB
+// ====================
+
+document.addEventListener('DOMContentLoaded', function () {
+    const fab = document.getElementById('enquire-fab');
+    if (!fab) return;
+    const hero = document.querySelector('.address-hero');
+
+    const updateFab = () => {
+        const heroBottom = hero ? hero.getBoundingClientRect().bottom : -1;
+        fab.classList.toggle('is-visible', heroBottom < 0);
+    };
+
+    window.addEventListener('scroll', updateFab, { passive: true });
+    updateFab();
+});

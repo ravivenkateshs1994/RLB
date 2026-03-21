@@ -1,0 +1,437 @@
+﻿/* ===========================================
+   CONTACT PAGE — contact-page.css
+   =========================================== */
+
+/* ===========================================
+   SCROLL FADE-UP ANIMATION
+   =========================================== */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.contact-animate {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.55s var(--ease, ease), transform 0.55s var(--ease, ease);
+}
+
+.contact-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================================
+   CONTACT HERO BANNER
+   =========================================== */
+
+.contact-hero {
+    position: relative;
+    padding: clamp(5.5rem, 10vw, 7.5rem) 0 clamp(3.5rem, 6vw, 5rem);
+    background: linear-gradient(150deg, #fff9f2 0%, #ffffff 50%, #fdf8f0 100%);
+    border-bottom: 1px solid var(--color-border-soft);
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Decorative background blobs */
+.contact-hero__bg-accent {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 520px 320px at 10% 110%, rgba(212,175,55,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 300px at 90% -10%, rgba(121,17,14,0.05) 0%, transparent 65%);
+}
+
+.contact-hero__container {
+    position: relative;
+    max-width: 660px;
+    margin-inline: auto;
+}
+
+.contact-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--color-primary);
+    margin: 0 0 1rem;
+    font-weight: 700;
+}
+
+.contact-hero__eyebrow::before,
+.contact-hero__eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1.5px;
+    background: var(--color-primary);
+    opacity: 0.45;
+}
+
+.contact-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4.5vw, 2.9rem);
+    color: var(--color-text-main);
+    margin: 0 0 0.9rem;
+    line-height: 1.18;
+}
+
+.contact-hero__lead {
+    font-size: clamp(1rem, 1.8vw, 1.1rem);
+    color: var(--color-text-soft);
+    margin: 0 0 2rem;
+    line-height: 1.65;
+}
+
+/* Trust badge pills */
+.contact-hero__badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.contact-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(0,0,0,0.09);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    backdrop-filter: blur(4px);
+}
+
+.contact-hero__badge svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+/* ===========================================
+   CONTACT PAGE MAIN SECTION
+   =========================================== */
+
+.contact-page-section {
+    padding: clamp(3.5rem, 6vw, 5rem) 0;
+    background: #fafaf8;
+}
+
+.contact-page-section .contact-content {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.4fr);
+    gap: 2.5rem;
+    align-items: flex-start;
+}
+
+/* ===========================================
+   INFO COLUMN HEADING
+   =========================================== */
+
+.contact-info__heading {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 700;
+    color: var(--color-text-soft);
+    margin: 0 0 0.6rem;
+    padding-left: 0.1rem;
+}
+
+/* ===========================================
+   CONTACT ITEMS — accent border style
+   =========================================== */
+
+.contact-page-section .contact-item {
+    border-left: 3px solid transparent;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.contact-page-section .contact-item:hover {
+    border-left-color: var(--color-gold, #d4af37);
+    transform: translateY(-2px) translateX(2px);
+}
+
+/* ===========================================
+   WHATSAPP QUICK-ACTION CARD
+   =========================================== */
+
+.contact-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.2rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #e8f8ee 0%, #f0faf3 100%);
+    border: 1px solid rgba(37,211,102,0.3);
+    box-shadow: 0 4px 16px rgba(37,211,102,0.1);
+    text-decoration: none;
+    color: inherit;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.contact-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.18);
+    border-color: rgba(37,211,102,0.55);
+}
+
+.contact-whatsapp__icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: #25d366;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37,211,102,0.35);
+}
+
+.contact-whatsapp__icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.contact-whatsapp__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.contact-whatsapp__label {
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: #1a6e3a;
+}
+
+.contact-whatsapp__sub {
+    font-size: 0.78rem;
+    color: #3d8a58;
+}
+
+.contact-whatsapp__arrow {
+    flex-shrink: 0;
+    color: #25d366;
+    transition: transform 0.2s ease;
+}
+
+.contact-whatsapp:hover .contact-whatsapp__arrow {
+    transform: translateX(4px);
+}
+
+/* ===========================================
+   PROJECT QUICK-LINK CARD
+   =========================================== */
+
+.contact-project-card {
+    padding: 1.1rem 1.3rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #fdfaf4 0%, #fffbf2 100%);
+    border: 1px solid rgba(212,175,55,0.38);
+    box-shadow: 0 4px 16px rgba(212,175,55,0.1);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.contact-project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(212,175,55,0.18);
+}
+
+.contact-project-card__label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: var(--color-text-soft);
+    margin: 0 0 0.5rem;
+}
+
+.contact-project-card__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-project-card__link svg {
+    align-self: flex-end;
+    color: var(--color-gold, #d4af37);
+    margin-top: 0.4rem;
+    transition: transform 0.2s ease;
+}
+
+.contact-project-card__link:hover svg {
+    transform: translateX(4px);
+}
+
+.contact-project-card__name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+
+.contact-project-card__meta {
+    font-size: 0.82rem;
+    color: var(--color-text-soft);
+}
+
+/* ===========================================
+   CONTACT FORM WRAP
+   =========================================== */
+
+.contact-form-wrap {
+    min-width: 0;
+}
+
+/* Give the form a slightly elevated card look */
+.contact-page-section .contact-form {
+    border-top: 3.5px solid var(--color-primary);
+    border-radius: 4px 4px 20px 20px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.09);
+}
+
+/* ===========================================
+   FORM HEADER
+   =========================================== */
+
+.contact-form__header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--color-border-soft);
+}
+
+.contact-form__heading {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-text-main);
+    margin: 0 0 0.3rem;
+}
+
+.contact-form__sub {
+    font-size: 0.85rem;
+    color: var(--color-text-soft);
+    margin: 0;
+}
+
+/* ===========================================
+   FORM ROW (two-column email + phone)
+   =========================================== */
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+/* ===========================================
+   SELECT CONTROL
+   =========================================== */
+
+select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    padding-right: 2.2rem;
+    cursor: pointer;
+}
+
+/* ===========================================
+   SUBMIT BUTTON
+   =========================================== */
+
+.btn--submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* ===========================================
+   FORM TRUST BAR
+   =========================================== */
+
+.contact-form__trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 1.2rem;
+    margin-top: 0.9rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border-soft);
+}
+
+.contact-form__trust span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.76rem;
+    color: var(--color-text-soft);
+}
+
+.contact-form__trust svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+@media (max-width: 768px) {
+    .contact-page-section .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-hero__badges {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-hero {
+        text-align: left;
+    }
+
+    .contact-hero__eyebrow {
+        justify-content: flex-start;
+    }
+
+    .contact-hero__eyebrow::before {
+        display: none;
+    }
+
+    .contact-hero__title {
+        font-size: clamp(1.75rem, 6vw, 2.1rem);
+    }
+
+    .contact-form__trust {
+        justify-content: flex-start;
+    }
+}
