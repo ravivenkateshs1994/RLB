@@ -1147,8 +1147,15 @@ body.quick-nav-open {
 .floorplan-accordion__header.active+.floorplan-accordion__panel {
     max-height: 520px;
     opacity: 1;
+    overflow: visible;
     transform: translateY(0);
     padding: 0 1.2rem 1.2rem 1.2rem;
+}
+
+/* Always show the expand icon on open panels (fixes first-tab visibility on touch) */
+.floorplan-accordion__item.open .floorplan-accordion__panel::after,
+.floorplan-accordion__header.active + .floorplan-accordion__panel::after {
+    opacity: 0.72;
 }
 
 .floorplan-accordion__panel::after {
@@ -1164,13 +1171,17 @@ body.quick-nav-open {
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cpolyline points='9 21 3 21 3 15'/%3E%3Cline x1='21' y1='3' x2='14' y2='10'/%3E%3Cline x1='3' y1='21' x2='10' y2='14'/%3E%3C/svg%3E")
         center / 16px no-repeat;
     opacity: 0;
-    transition: opacity 0.22s ease;
+    /* Delay matches the panel's max-height transition (260ms),
+       so the icon only fades in once the panel is fully open
+       and overflow:visible ensures it is never clipped */
+    transition: opacity 0.22s ease 0.26s;
     pointer-events: none;
     z-index: 3;
 }
 
 .floorplan-accordion__panel:hover::after {
     opacity: 1;
+    transition-delay: 0s; /* no delay on hover — panel is already open */
 }
 
 .floorplan-accordion__panel img {
@@ -1926,6 +1937,17 @@ body.quick-nav-open {
    FLOATING ENQUIRE CTA (FAB)
    =========================================== */
 
+@keyframes fab-pulse {
+    0%   { box-shadow: 0 8px 28px -8px rgba(0,0,0,0.5), 0 0 0 0 rgba(212,175,55,0.55); }
+    60%  { box-shadow: 0 8px 28px -8px rgba(0,0,0,0.5), 0 0 0 14px rgba(212,175,55,0); }
+    100% { box-shadow: 0 8px 28px -8px rgba(0,0,0,0.5), 0 0 0 0 rgba(212,175,55,0); }
+}
+
+@keyframes fab-shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
 .enquire-fab {
     position: fixed;
     bottom: 5.5rem;
@@ -1951,18 +1973,52 @@ body.quick-nav-open {
         transform 240ms var(--ease),
         background 160ms var(--ease),
         box-shadow 160ms var(--ease);
+    overflow: hidden;
+}
+
+/* Shimmer sweep overlay */
+.enquire-fab::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(255,255,255,0.45) 50%,
+        transparent 65%
+    );
+    background-size: 200% 100%;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .enquire-fab.is-visible {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    animation: fab-pulse 2.4s ease-out 0.6s infinite;
 }
 
-.enquire-fab.is-visible:hover {
+/* Run shimmer sweep every 4 s */
+.enquire-fab.is-visible::after {
+    opacity: 1;
+    animation: fab-shimmer 1s ease-in-out 1.2s infinite;
+    animation-delay: 1.2s;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+}
+
+.enquire-fab.is-visible:hover,
+.enquire-fab.is-visible:focus-visible {
     background: #e0c040;
     box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.6);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.03);
+    animation: none; /* pause pulse on hover so it doesn't jitter */
+}
+
+.enquire-fab.is-visible:hover::after {
+    animation: none;
 }
 
 .enquire-fab:focus-visible {
@@ -1970,9 +2026,16 @@ body.quick-nav-open {
     outline-offset: 3px;
 }
 
+/* On screens where quick-nav-toggle is visible (≤ 1919px), lift the FAB above it */
+@media (max-width: 1919px) {
+    .enquire-fab {
+        bottom: calc(24px + 64px + 52px + 12px); /* clears scroll-to-top + toggle height + gap */
+    }
+}
+
 @media (max-width: 640px) {
     .enquire-fab {
-        bottom: 5rem;
+        bottom: calc(24px + 64px + 48px + 10px);
         right: 1rem;
         padding: 0.65rem 1.1rem;
         font-size: 0.82rem;

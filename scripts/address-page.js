@@ -140,43 +140,39 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.floorplan-accordion--mobile').forEach(function (accordion) {
         const items = accordion.querySelectorAll('.floorplan-accordion__item');
 
-        items.forEach(function (item) {
+        function openItem(item) {
             const header = item.querySelector('.floorplan-accordion__header');
             const panel = item.querySelector('.floorplan-accordion__panel');
+            item.classList.add('open');
+            header.classList.add('active');
+            header.setAttribute('aria-expanded', 'true');
+            panel.style.removeProperty('display');
+        }
+
+        function closeItem(item) {
+            const header = item.querySelector('.floorplan-accordion__header');
+            const panel = item.querySelector('.floorplan-accordion__panel');
+            item.classList.remove('open');
+            header.classList.remove('active');
+            header.setAttribute('aria-expanded', 'false');
+            panel.style.display = 'none';
+        }
+
+        items.forEach(function (item) {
+            const header = item.querySelector('.floorplan-accordion__header');
             header.setAttribute('aria-expanded', 'false');
 
             header.addEventListener('click', function () {
-                // Close all other panels
-                items.forEach(function (otherItem) {
-                    if (otherItem !== item) {
-                        const otherHeader = otherItem.querySelector('.floorplan-accordion__header');
-                        otherHeader.classList.remove('active');
-                        otherHeader.setAttribute('aria-expanded', 'false');
-                        otherItem.querySelector('.floorplan-accordion__panel').style.display = 'none';
-                    }
-                });
-
-                // Toggle this panel
-                const isActive = header.classList.contains('active');
-                if (isActive) {
-                    header.classList.remove('active');
-                    header.setAttribute('aria-expanded', 'false');
-                    panel.style.display = 'none';
-                } else {
-                    header.classList.add('active');
-                    header.setAttribute('aria-expanded', 'true');
-                    panel.style.display = 'block';
-                }
+                const isOpen = item.classList.contains('open');
+                // Close all
+                items.forEach(function (other) { closeItem(other); });
+                // Toggle this one
+                if (!isOpen) { openItem(item); }
             });
         });
 
-        // Open the first panel by default
-        if (items.length > 0) {
-            const firstHeader = items[0].querySelector('.floorplan-accordion__header');
-            firstHeader.classList.add('active');
-            firstHeader.setAttribute('aria-expanded', 'true');
-            items[0].querySelector('.floorplan-accordion__panel').style.display = 'block';
-        }
+        // Open first panel by default
+        if (items.length > 0) { openItem(items[0]); }
     });
 });
 
@@ -1189,12 +1185,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const fab = document.getElementById('enquire-fab');
     if (!fab) return;
     const hero = document.querySelector('.address-hero');
+    const sectionsBtn = document.getElementById('quick-nav-toggle');
 
     const updateFab = () => {
-        const heroBottom = hero ? hero.getBoundingClientRect().bottom : -1;
-        fab.classList.toggle('is-visible', heroBottom < 0);
+        const heroGone = hero ? hero.getBoundingClientRect().bottom < 0 : true;
+        const sectionsBtnVisible = sectionsBtn
+            ? !sectionsBtn.classList.contains('is-hidden') && !sectionsBtn.hasAttribute('hidden')
+            : false;
+        fab.classList.toggle('is-visible', heroGone || sectionsBtnVisible);
     };
 
     window.addEventListener('scroll', updateFab, { passive: true });
+
+    // Also re-check whenever the Sections button changes visibility
+    if (sectionsBtn) {
+        const mo = new MutationObserver(updateFab);
+        mo.observe(sectionsBtn, { attributes: true, attributeFilter: ['class', 'hidden'] });
+    }
+
     updateFab();
 });
