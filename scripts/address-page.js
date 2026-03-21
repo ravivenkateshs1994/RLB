@@ -509,59 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Specs accordions
-    document.querySelectorAll('.address-specs').forEach(specsBlock => {
-        const groups = Array.from(specsBlock.querySelectorAll('.address-specs__group'));
 
-        groups.forEach((group, index) => {
-            const header = group.querySelector('.address-specs__group-header');
-            const body = group.querySelector('.address-specs__body');
-
-            if (!header || !body) return;
-
-            const panelId = body.id || `address-specs-panel-${index}`;
-            body.id = panelId;
-
-            header.setAttribute('role', 'button');
-            header.setAttribute('tabindex', '0');
-            header.setAttribute('aria-controls', panelId);
-            header.setAttribute('aria-expanded', group.classList.contains('is-open') ? 'true' : 'false');
-
-            const toggleGroup = () => {
-                const isOpen = group.classList.contains('is-open');
-
-                // Close all groups
-                groups.forEach(g => {
-                    g.classList.remove('is-open');
-                    const h = g.querySelector('.address-specs__group-header');
-                    const b = g.querySelector('.address-specs__body');
-                    if (h && b) {
-                        h.setAttribute('aria-expanded', 'false');
-                        b.setAttribute('hidden', 'hidden');
-                    }
-                });
-
-                // Open this group if it was closed
-                if (!isOpen) {
-                    group.classList.add('is-open');
-                    header.setAttribute('aria-expanded', 'true');
-                    body.removeAttribute('hidden');
-                }
-            };
-
-            header.addEventListener('click', (event) => {
-                if (event.target.closest('a, button')) return;
-                toggleGroup();
-            });
-
-            header.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    toggleGroup();
-                }
-            });
-        });
-    });
 
     // Auto-highlight amenities
     document.querySelectorAll('.address-amenities').forEach(grid => {
