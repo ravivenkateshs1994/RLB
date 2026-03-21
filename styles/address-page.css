@@ -266,224 +266,34 @@ body.quick-nav-open {
 }
 
 /* ===========================================
-   LIGHTBOX COMPONENTS
+   VIEWER.JS OVERRIDES
    =========================================== */
 
-.image-lightbox {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1400;
+.viewer-backdrop {
+    background-color: rgba(5, 5, 5, 0.92);
 }
 
-.image-lightbox.is-open {
-    display: flex;
+.viewer-container {
+    z-index: 1400 !important;
 }
 
-.image-lightbox__backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-}
-
-.image-lightbox__dialog {
-    position: relative;
-    width: min(1040px, 94vw);
-    max-height: 84vh;
-    border-radius: 14px;
-    overflow: hidden;
-    background: #050505;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
-    z-index: 1;
-}
-
-.image-lightbox__body {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 1.3rem 1.3rem 0.9rem;
-    background: #050505;
-    width: 100%;
-    height: 70vh;
-}
-
-.image-lightbox__zoom-controls {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.image-lightbox__zoom-btn {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1.5em;
-    width: 2.2em;
-    height: 2.2em;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: background 0.2s;
-    margin: 0;
-}
-
-.image-lightbox__zoom-btn:active {
-    background: #eee;
-}
-
-.image-lightbox__image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #050505;
-    transition: transform 0.1s ease-out;
-    transform-origin: center center;
-    cursor: grab;
-    touch-action: none;
-}
-
-.image-lightbox__image.is-zoomed {
-    cursor: grabbing;
-}
-
-.image-lightbox__meta {
-    position: absolute;
-    left: 1rem;
-    bottom: 0.9rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.image-lightbox__arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 999px;
-    border: none;
-    background: rgba(0, 0, 0, 0.55);
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    line-height: 1;
-    transition: background 0.18s ease, transform 0.18s ease;
-    z-index: 2;
-}
-
-.image-lightbox__arrow--prev {
-    left: 0.75rem;
-}
-
-.image-lightbox__arrow--next {
-    right: 0.75rem;
-}
-
-.image-lightbox__arrow:hover {
-    background: rgba(0, 0, 0, 0.75);
-    transform: translateY(-50%) scale(1.03);
-}
-
-.image-lightbox__arrow:disabled {
-    opacity: 0.35;
-    cursor: default;
-}
-
-.image-lightbox__thumbs {
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.45rem 0.9rem 0.75rem;
-    overflow-x: auto;
-    background: #050505;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.image-lightbox__thumbs::-webkit-scrollbar {
-    height: 6px;
-}
-
-.image-lightbox__thumbs::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.image-lightbox__thumbs::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 999px;
-}
-
-.image-lightbox__thumb {
-    flex: 0 0 auto;
-    width: 72px;
-    height: 56px;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-    opacity: 0.7;
-    transition: border-color 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
-}
-
-.image-lightbox__thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.image-lightbox__thumb:hover {
-    opacity: 0.95;
-    transform: translateY(-1px);
-}
-
-.image-lightbox__thumb--active {
-    border-color: rgba(212, 175, 55, 0.85);
-    opacity: 1;
-}
-
-.image-lightbox__close {
-    position: absolute;
-    top: 0.4rem;
-    right: 0.6rem;
-    width: 32px;
-    height: 32px;
-    border-radius: 999px;
-    border: none;
-    background: rgba(0, 0, 0, 0.7);
-    color: #ffffff;
-    font-size: 1.1rem;
-    line-height: 1;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    transition: background 0.18s ease, transform 0.18s ease;
-}
-
-.image-lightbox__close:hover {
-    background: rgba(0, 0, 0, 0.9);
-    transform: translateY(-1px);
-}
-
-/* Hide lightbox arrows for floorplan images */
-.image-lightbox.is-floorplan .image-lightbox__arrow {
+/* Hide title bar (we pass title:false but belt-and-suspenders) */
+.viewer-title {
     display: none !important;
+}
+
+/* Slightly larger toolbar buttons */
+.viewer-toolbar > ul > li {
+    width: 38px;
+    height: 38px;
+}
+
+.viewer-toolbar > ul > li > .viewer-zoom-in::before,
+.viewer-toolbar > ul > li > .viewer-zoom-out::before,
+.viewer-toolbar > ul > li > .viewer-prev::before,
+.viewer-toolbar > ul > li > .viewer-next::before {
+    width: 22px;
+    height: 22px;
 }
 
 /* ===========================================
@@ -495,11 +305,7 @@ body.quick-nav-open {
     min-height: 560px;
     display: flex;
     align-items: center;
-    background-image: url("../assets/others/apartment_rendering.webp");
-    background-size: cover;
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-attachment: initial;
+    background: #020308;
     color: #ffffff;
     box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.65);
     line-height: 1.2;
@@ -515,45 +321,50 @@ body.quick-nav-open {
     height: clamp(22px, 4vw, 42px);
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.52));
     pointer-events: none;
-    z-index: 1;
+    z-index: 3;
 }
 
 .address-hero__bg-image {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: bottom;
+    object-position: center 100%;
     z-index: 0;
 }
 
+/* Subtle directional vignette over the image */
 .address-hero::before {
     content: "";
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 22% 34%, rgba(0, 0, 0, 0.24), transparent 44%),
-        linear-gradient(135deg, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.28));
-    mix-blend-mode: multiply;
+        radial-gradient(circle at 22% 34%, rgba(0, 0, 0, 0.18), transparent 44%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.08));
+    z-index: 1;
 }
 
 .address-hero__container {
     padding: 0 1.5rem;
-    margin: 0 auto;
     width: 100%;
-    max-width: 1200px;
+    max-width: unset;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
     position: relative;
     z-index: 2;
+    background: linear-gradient(180deg, rgba(6, 8, 12, 0.64), rgba(6, 8, 12, 0.44));
+    backdrop-filter: blur(2px);
 }
 
 .address-hero__text {
-    max-width: 680px;
+    width: 100%;
+    max-width: var(--container-max-width, 1120px);
+    margin: 0 auto;
     padding: 0;
-    position: relative;
-    z-index: 1;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.34), 0 8px 24px rgba(0, 0, 0, 0.3);
+    -webkit-font-smoothing: antialiased;
 }
 
 .address-hero__eyebrow {
@@ -591,7 +402,6 @@ body.quick-nav-open {
 .address-hero__lead {
     font-size: 1rem;
     line-height: 1.72;
-    max-width: 46ch;
     color: rgba(255, 255, 255, 0.9);
 }
 
@@ -786,6 +596,29 @@ body.quick-nav-open {
         linear-gradient(to bottom, rgba(0, 0, 0, 0.22), transparent 42%);
     mix-blend-mode: multiply;
     pointer-events: none;
+}
+
+/* Expand-to-fullscreen hint badge */
+.address-gallery__main::after {
+    content: "";
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background:
+        rgba(0, 0, 0, 0.52)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cpolyline points='9 21 3 21 3 15'/%3E%3Cline x1='21' y1='3' x2='14' y2='10'/%3E%3Cline x1='3' y1='21' x2='10' y2='14'/%3E%3C/svg%3E")
+        center / 16px no-repeat;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.address-gallery__main:hover::after {
+    opacity: 1;
 }
 
 .address-gallery__main-image {
@@ -1013,11 +846,35 @@ body.quick-nav-open {
 }
 
 .floorplan-tabs__content {
+    position: relative;
     border-radius: 0 0 14px 14px;
     box-shadow: 0 10px 28px -20px rgba(19, 52, 59, 0.10);
     padding: 1.3rem 0 0.55rem;
     text-align: center;
     min-height: 320px;
+}
+
+/* Expand-to-fullscreen hint badge */
+.floorplan-tabs__content::after {
+    content: "";
+    position: absolute;
+    top: calc(1.3rem + 0.65rem);
+    right: 0.65rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background:
+        rgba(0, 0, 0, 0.42)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cpolyline points='9 21 3 21 3 15'/%3E%3Cline x1='21' y1='3' x2='14' y2='10'/%3E%3Cline x1='3' y1='21' x2='10' y2='14'/%3E%3C/svg%3E")
+        center / 16px no-repeat;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.floorplan-tabs__content:hover::after {
+    opacity: 1;
 }
 
 .floorplan-tabs__image {
@@ -1529,22 +1386,11 @@ body.quick-nav-open {
     }
 
     .address-hero__container {
-        padding: 0 1.1rem;
+        padding: 1.15rem 1.1rem;
     }
 
     .address-hero__text {
         max-width: 100%;
-        padding: 1.15rem 1rem 1.2rem;
-        border-radius: 18px;
-        background: linear-gradient(180deg, rgba(6, 8, 12, 0.64), rgba(6, 8, 12, 0.4));
-        backdrop-filter: blur(2px);
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.42), 0 8px 24px rgba(0, 0, 0, 0.38);
-    }
-
-    .address-hero::before {
-        background:
-            radial-gradient(circle at 36% 18%, rgba(0, 0, 0, 0.2), transparent 44%),
-            linear-gradient(140deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.34));
     }
 
     .address-hero__title {
@@ -1758,6 +1604,12 @@ body.quick-nav-open {
 @media (hover: none), (pointer: coarse) {
     .address-hero__text {
         backdrop-filter: none;
+    }
+
+    /* Always show expand badge on touch — no hover state available */
+    .address-gallery__main::after,
+    .floorplan-tabs__content::after {
+        opacity: 0.85;
     }
 
     .address-gallery__main-image {

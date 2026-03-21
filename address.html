@@ -70,6 +70,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/address-page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.css">
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -91,7 +92,7 @@
                 <a href="index.html" class="nav__link">Home</a>
                 <a href="index.html#about" class="nav__link">About</a>
                 <a href="index.html#values" class="nav__link">Values</a>
-                    <a href="#" class="nav__link active" role="link" aria-label="Current page: The Address">The Address</a>
+                    <a href="#" class="nav__link active" aria-current="page">The Address</a>
                 <a href="index.html#contact" class="contact-btn">Contact Us</a>
             </nav>
             <button
@@ -109,11 +110,11 @@
             </button>
         </div>
     </header>
-    <nav class="mobile-nav" id="mobile-nav">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile primary">
         <a href="index.html" class="mobile-nav__link">Home</a>
         <a href="index.html#about" class="mobile-nav__link">About</a>
         <a href="index.html#values" class="mobile-nav__link">Values</a>
-            <a href="#" class="mobile-nav__link" role="link" aria-label="Current page: The Address">The Address</a>
+            <a href="#" class="mobile-nav__link" aria-current="page">The Address</a>
         <a href="index.html#contact" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
     </nav>
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
@@ -123,14 +124,14 @@
         <nav class="floating-subnav" id="floating-subnav" aria-label="Page sections navigation">
             <div class="floating-subnav__content">
                 <ul class="floating-subnav__list">
-                    <li><a href="#apartments-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-gallery">Gallery</a></li>
-                    <li><a href="#apartments-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-amenities">Amenities</a></li>
-                    <li><a href="#apartments-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-floorplan">Floor Plan</a></li>
-                    <li><a href="#apartments-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-specs">Specifications</a></li>
-                    <li><a href="#villas-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-gallery">Gallery</a></li>
-                    <li><a href="#villas-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-amenities">Amenities</a></li>
-                    <li><a href="#villas-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-floorplan">Floor Plan</a></li>
-                    <li><a href="#villas-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-specs">Specifications</a></li>
+                    <li><a href="#apartments-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-gallery" aria-label="Apartments: Gallery">Gallery</a></li>
+                    <li><a href="#apartments-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-amenities" aria-label="Apartments: Amenities">Amenities</a></li>
+                    <li><a href="#apartments-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-floorplan" aria-label="Apartments: Floor Plan">Floor Plan</a></li>
+                    <li><a href="#apartments-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-specs" aria-label="Apartments: Specifications">Specifications</a></li>
+                    <li><a href="#villas-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-gallery" aria-label="Villas: Gallery">Gallery</a></li>
+                    <li><a href="#villas-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-amenities" aria-label="Villas: Amenities">Amenities</a></li>
+                    <li><a href="#villas-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-floorplan" aria-label="Villas: Floor Plan">Floor Plan</a></li>
+                    <li><a href="#villas-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-specs" aria-label="Villas: Specifications">Specifications</a></li>
                     <li><a href="#location-community" class="floating-subnav__link floating-subnav__link--sub" data-section="location-community">Community Highlights</a></li>
                     <li><a href="#location-map" class="floating-subnav__link floating-subnav__link--sub" data-section="location-map">Location</a></li>
                 </ul>
@@ -149,14 +150,14 @@
                     <button class="quick-nav-drawer__close" id="quick-nav-close" type="button" aria-label="Close quick navigation">×</button>
                 </header>
                 <ul class="quick-nav__list">
-                    <li><button class="quick-nav__link" data-section="apartments-gallery" type="button">Gallery</button></li>
-                    <li><button class="quick-nav__link" data-section="apartments-amenities" type="button">Amenities</button></li>
-                    <li><button class="quick-nav__link" data-section="apartments-floorplan" type="button">Floor Plan</button></li>
-                    <li><button class="quick-nav__link" data-section="apartments-specs" type="button">Specifications</button></li>
-                    <li><button class="quick-nav__link" data-section="villas-gallery" type="button">Gallery</button></li>
-                    <li><button class="quick-nav__link" data-section="villas-amenities" type="button">Amenities</button></li>
-                    <li><button class="quick-nav__link" data-section="villas-floorplan" type="button">Floor Plan</button></li>
-                    <li><button class="quick-nav__link" data-section="villas-specs" type="button">Specifications</button></li>
+                    <li><button class="quick-nav__link" data-section="apartments-gallery" type="button" aria-label="Apartments: Gallery">Gallery</button></li>
+                    <li><button class="quick-nav__link" data-section="apartments-amenities" type="button" aria-label="Apartments: Amenities">Amenities</button></li>
+                    <li><button class="quick-nav__link" data-section="apartments-floorplan" type="button" aria-label="Apartments: Floor Plan">Floor Plan</button></li>
+                    <li><button class="quick-nav__link" data-section="apartments-specs" type="button" aria-label="Apartments: Specifications">Specifications</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-gallery" type="button" aria-label="Villas: Gallery">Gallery</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-amenities" type="button" aria-label="Villas: Amenities">Amenities</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-floorplan" type="button" aria-label="Villas: Floor Plan">Floor Plan</button></li>
+                    <li><button class="quick-nav__link" data-section="villas-specs" type="button" aria-label="Villas: Specifications">Specifications</button></li>
                     <li><button class="quick-nav__link" data-section="location-community" type="button">Community Highlights</button></li>
                     <li><button class="quick-nav__link" data-section="location-map" type="button">Location</button></li>
                 </ul>
@@ -165,6 +166,15 @@
 
         <!-- Intro -->
         <section class="address-hero">
+            <img
+                src="assets/others/apartment_rendering.webp"
+                alt=""
+                class="address-hero__bg-image"
+                width="1009" height="640"
+                loading="eager"
+                aria-hidden="true"
+                fetchpriority="high"
+            >
             <div class="container address-hero__container">
                 <div class="address-hero__text">
                     <p class="address-hero__eyebrow">Flagship Project</p>
@@ -181,10 +191,10 @@
         <section class="address-tabs" aria-label="The Address configurations">
             <div class="container">
                 <div class="address-tabs__header" role="tablist" aria-label="Choose between villas and apartments">
-                    <button class="address-tab address-tab--active" data-tab="apartments" type="button" role="tab" id="tab-apartments-toggle" aria-selected="true" aria-controls="tab-apartments" tabindex="0">
+                    <button class="address-tab address-tab--active" data-tab="apartments" type="button" role="tab" id="tab-apartments-toggle" aria-selected="true" aria-controls="apartments" tabindex="0">
                         True 3 BHK Apartments
                     </button>
-                    <button class="address-tab" data-tab="villas" type="button" role="tab" id="tab-villas-toggle" aria-selected="false" aria-controls="tab-villas" tabindex="-1">
+                    <button class="address-tab" data-tab="villas" type="button" role="tab" id="tab-villas-toggle" aria-selected="false" aria-controls="villas" tabindex="-1">
                         Luxury 4 BHK Villas
                     </button>
                 </div>
@@ -907,6 +917,7 @@
                                     <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                 </div>
                                 <h3 class="amenity-tile__label">Solar back up</h3>
+                            </article>
                         </div>
                     </section>
                     </div>
@@ -1178,31 +1189,11 @@
                     </div>
                 </section>
             </div>
+        </section>
     </main>
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">↑</button>
-
-    <!-- Image Lightbox Modal -->
-    <div class="image-lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project image viewer">
-        <div class="image-lightbox__backdrop" id="image-lightbox-backdrop"></div>
-        <div class="image-lightbox__dialog" role="document">
-            <button class="image-lightbox__close" id="image-lightbox-close" type="button" aria-label="Close image viewer">
-                ×
-            </button>
-            <button class="image-lightbox__arrow image-lightbox__arrow--prev" id="image-lightbox-prev" aria-label="Previous image">
-                ‹
-            </button>
-            <div class="image-lightbox__body">
-                <img src="" alt="Expanded view" class="image-lightbox__image" id="image-lightbox-image">
-                <div class="image-lightbox__meta" id="image-lightbox-meta" aria-live="polite"></div>
-            </div>
-            <button class="image-lightbox__arrow image-lightbox__arrow--next" id="image-lightbox-next" aria-label="Next image">
-                ›
-            </button>
-            <div class="image-lightbox__thumbs" id="image-lightbox-thumbs" aria-label="More views"></div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
@@ -1254,6 +1245,7 @@
 
     <!-- JavaScript -->
     <script src="scripts/common.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
     <script src="scripts/address-page.js" defer></script>
 </body>
 </html>

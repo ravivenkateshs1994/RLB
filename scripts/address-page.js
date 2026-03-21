@@ -9,26 +9,69 @@
 
 const AMENITY_INTERVAL = 2600;
 const ACTIVE_CLASS = 'is-active';
-const SWIPE_THRESHOLD = 40;
 
 // ====================
-// FLOORPLAN ACCORDION (MOBILE) IMAGE LIGHTBOX
+// VIEWER.JS IMAGE VIEWER HELPER
+// ====================
+
+function openLightbox(items, startIndex, onClose) {
+    if (typeof Viewer === 'undefined') return;
+
+    let currentIndex = startIndex;
+
+    // Build a temporary off-screen image list for Viewer.js
+    const container = document.createElement('ul');
+    container.style.cssText = 'display:none;list-style:none;padding:0;margin:0;';
+    items.forEach(item => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = item.src;
+        if (item.alt) img.alt = item.alt;
+        li.appendChild(img);
+        container.appendChild(li);
+    });
+    document.body.appendChild(container);
+
+    const viewer = new Viewer(container, {
+        initialViewIndex: startIndex,
+        title: false,
+        navbar: items.length > 1,
+        toolbar: {
+            zoomIn: true,
+            zoomOut: true,
+            oneToOne: false,
+            reset: false,
+            prev: items.length > 1,
+            play: false,
+            next: items.length > 1,
+            rotateLeft: false,
+            rotateRight: false,
+            flipHorizontal: false,
+            flipVertical: false,
+        },
+        viewed(e) {
+            currentIndex = e.detail.index;
+        },
+        hidden() {
+            viewer.destroy();
+            document.body.removeChild(container);
+            if (typeof onClose === 'function') onClose(currentIndex);
+        },
+    });
+
+    viewer.show();
+}
+
+// ====================
+// FLOORPLAN ACCORDION (MOBILE) IMAGE VIEWER
 // ====================
 
 document.addEventListener('DOMContentLoaded', function () {
-    const lightbox = document.getElementById('image-lightbox');
-    const lightboxImg = document.getElementById('image-lightbox-image');
-    const lightboxMeta = document.getElementById('image-lightbox-meta');
-
     document.querySelectorAll('.floorplan-accordion__panel img').forEach(img => {
-        img.style.cursor = 'pointer';
+        img.style.cursor = 'zoom-in';
+        img.title = 'Click to view full size';
         img.addEventListener('click', function () {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            lightboxMeta.textContent = img.alt;
-            lightbox.setAttribute('aria-hidden', 'false');
-            lightbox.classList.add('is-open');
-            lightbox.classList.add('is-floorplan');
+            openLightbox([{ src: img.src, alt: img.alt }], 0);
         });
     });
 });
@@ -44,12 +87,15 @@ document.addEventListener('DOMContentLoaded', function () {
         items.forEach(function (item) {
             const header = item.querySelector('.floorplan-accordion__header');
             const panel = item.querySelector('.floorplan-accordion__panel');
+            header.setAttribute('aria-expanded', 'false');
 
             header.addEventListener('click', function () {
                 // Close all other panels
                 items.forEach(function (otherItem) {
                     if (otherItem !== item) {
-                        otherItem.querySelector('.floorplan-accordion__header').classList.remove('active');
+                        const otherHeader = otherItem.querySelector('.floorplan-accordion__header');
+                        otherHeader.classList.remove('active');
+                        otherHeader.setAttribute('aria-expanded', 'false');
                         otherItem.querySelector('.floorplan-accordion__panel').style.display = 'none';
                     }
                 });
@@ -58,9 +104,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 const isActive = header.classList.contains('active');
                 if (isActive) {
                     header.classList.remove('active');
+                    header.setAttribute('aria-expanded', 'false');
                     panel.style.display = 'none';
                 } else {
                     header.classList.add('active');
+                    header.setAttribute('aria-expanded', 'true');
                     panel.style.display = 'block';
                 }
             });
@@ -68,30 +116,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Open the first panel by default
         if (items.length > 0) {
-            items[0].querySelector('.floorplan-accordion__header').classList.add('active');
+            const firstHeader = items[0].querySelector('.floorplan-accordion__header');
+            firstHeader.classList.add('active');
+            firstHeader.setAttribute('aria-expanded', 'true');
             items[0].querySelector('.floorplan-accordion__panel').style.display = 'block';
         }
     });
 });
 
 // ====================
-// FLOORPLAN TAB IMAGES OPEN IN LIGHTBOX
+// FLOORPLAN TAB IMAGES VIEWER
 // ====================
 
 document.addEventListener('DOMContentLoaded', function () {
-    const floorplanImages = document.querySelectorAll('.floorplan-tabs__image');
-    const lightbox = document.getElementById('image-lightbox');
-    const lightboxImg = document.getElementById('image-lightbox-image');
-    const lightboxMeta = document.getElementById('image-lightbox-meta');
-
-    floorplanImages.forEach(img => {
-        img.addEventListener('click', function () {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            lightboxMeta.textContent = img.alt;
-            lightbox.setAttribute('aria-hidden', 'false');
-            lightbox.classList.add('is-open');
-            lightbox.classList.add('is-floorplan');
+    document.querySelectorAll('.floorplan-tabs--desktop').forEach(tabContainer => {
+        const images = Array.from(tabContainer.querySelectorAll('.floorplan-tabs__image'));
+        images.forEach((img, idx) => {
+            img.style.cursor = 'zoom-in';
+            img.title = 'Click to view full size';
+            img.addEventListener('click', function () {
+                const items = images.map(i => ({
+                    src: i.getAttribute('src'),
+                    alt: i.alt,
+                }));
+                openLightbox(items, idx);
+            });
         });
     });
 });
@@ -236,6 +285,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentIndex = activeIdx;
                 showSlide(currentIndex);
             }
+        });
+
+        // Open lightbox when main image is clicked
+        mainImg.style.cursor = 'zoom-in';
+        mainImg.title = 'Click to view full size';
+
+        const thumbsContainer = gallery.querySelector('.address-gallery__thumbs');
+
+        mainImg.addEventListener('click', () => {
+            const items = thumbs.map(btn => {
+                const largeSrc = btn.getAttribute('data-large-src');
+                const tImg = btn.querySelector('img');
+                return { src: largeSrc, alt: tImg ? tImg.alt : '' };
+            });
+            const startIdx = Math.max(0, currentIndex);
+
+            // Freeze the gallery while lightbox is open
+            stopSlideshow();
+            if (thumbsContainer) thumbsContainer.style.pointerEvents = 'none';
+
+            openLightbox(items, startIdx, (finalIndex) => {
+                // Restore gallery
+                if (thumbsContainer) thumbsContainer.style.pointerEvents = '';
+                // Sync gallery to the slide that was showing when lightbox closed
+                currentIndex = finalIndex;
+                showSlide(currentIndex);
+                startSlideshow();
+            });
         });
     });
 
@@ -506,403 +583,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tiles[0].classList.add(ACTIVE_CLASS);
         setInterval(step, AMENITY_INTERVAL);
     });
-
-    // ====================
-    // IMAGE LIGHTBOX WITH ZOOM AND PAN
-    // ====================
-
-    const lightbox = document.getElementById('image-lightbox');
-    const lightboxImage = document.getElementById('image-lightbox-image');
-    const lightboxBackdrop = document.getElementById('image-lightbox-backdrop');
-    const lightboxThumbs = document.getElementById('image-lightbox-thumbs');
-    const lightboxMeta = document.getElementById('image-lightbox-meta');
-    const lightboxPrev = document.getElementById('image-lightbox-prev');
-    const lightboxNext = document.getElementById('image-lightbox-next');
-    const lightboxCloseBtn = document.getElementById('image-lightbox-close');
-
-    if (lightbox && lightboxImage && lightboxBackdrop && lightboxThumbs && lightboxMeta && lightboxPrev && lightboxNext && lightboxCloseBtn) {
-        // Variables for zoom, pan, and navigation
-        let zoomLevel = 1;
-        let panX = 0;
-        let panY = 0;
-        let isPanning = false;
-        let startX, startY;
-        let initialDistance = 0;
-        let initialZoom = 1;
-        let currentIndex = 0;
-        let currentThumbGroup = [];
-        let lastFocusedElement = null;
-
-        // Touch variables
-        let touchStartX = null;
-        let touchEndX = null;
-
-        // Update metadata display
-        const updateMeta = () => {
-            if (!currentThumbGroup.length) {
-                lightboxMeta.textContent = '';
-                return;
-            }
-            const total = currentThumbGroup.length;
-            const displayIndex = currentIndex + 1;
-            lightboxMeta.textContent = `${displayIndex} / ${total}`;
-            lightboxPrev.disabled = total <= 1;
-            lightboxNext.disabled = total <= 1;
-        };
-
-        // Set active thumbnail
-        const setActiveThumb = (index) => {
-            currentThumbGroup.forEach((thumb, i) => {
-                if (i === index) {
-                    thumb.classList.add('image-lightbox__thumb--active');
-                    const target = thumb;
-                    const container = lightboxThumbs;
-                    const offsetLeft = target.offsetLeft;
-                    const targetWidth = target.offsetWidth;
-                    const containerWidth = container.clientWidth;
-                    const desiredScrollLeft = offsetLeft - (containerWidth - targetWidth) / 2;
-                    container.scrollTo({ left: desiredScrollLeft, behavior: 'smooth' });
-                } else {
-                    thumb.classList.remove('image-lightbox__thumb--active');
-                }
-            });
-            currentIndex = index;
-            updateMeta();
-        };
-
-        // Show image by index
-        const showByIndex = (index) => {
-            if (!currentThumbGroup.length) return;
-            const total = currentThumbGroup.length;
-            const wrappedIndex = ((index % total) + total) % total;
-            const thumb = currentThumbGroup[wrappedIndex];
-            const largeSrc = thumb.getAttribute('data-large-src');
-            const thumbImg = thumb.querySelector('img');
-            const thumbAlt = thumbImg && thumbImg.alt;
-
-            if (largeSrc) {
-                lightboxImage.src = largeSrc;
-                if (thumbAlt) {
-                    lightboxImage.alt = thumbAlt;
-                }
-            }
-            zoomLevel = 1;
-            panX = 0;
-            panY = 0;
-            applyTransform();
-            setActiveThumb(wrappedIndex);
-        };
-
-        // Apply zoom and pan transform
-        const applyTransform = () => {
-            lightboxImage.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`;
-            lightboxImage.style.transformOrigin = 'center center';
-        };
-
-        // Constrain pan to keep image in view
-        const constrainPan = () => {
-            const imgRect = lightboxImage.getBoundingClientRect();
-            const containerRect = lightbox.getBoundingClientRect();
-            const scaledWidth = imgRect.width * zoomLevel;
-            const scaledHeight = imgRect.height * zoomLevel;
-
-            const maxPanX = Math.max(0, (scaledWidth - containerRect.width) / 2);
-            const maxPanY = Math.max(0, (scaledHeight - containerRect.height) / 2);
-            panX = Math.max(-maxPanX, Math.min(maxPanX, panX));
-            panY = Math.max(-maxPanY, Math.min(maxPanY, panY));
-        };
-
-        // Open lightbox
-        const openLightbox = (src, alt, thumbSources) => {
-            lightboxImage.src = src;
-            lightboxImage.alt = alt || 'Expanded view';
-
-            lightboxThumbs.innerHTML = '';
-            currentThumbGroup = [];
-            currentIndex = 0;
-
-            thumbSources.forEach(({ largeSrc, thumbSrc, thumbAlt }, index) => {
-                const wrapper = document.createElement('button');
-                wrapper.type = 'button';
-                wrapper.className = 'image-lightbox__thumb';
-                wrapper.setAttribute('data-large-src', largeSrc);
-
-                const img = document.createElement('img');
-                img.src = thumbSrc || largeSrc;
-                if (thumbAlt) img.alt = thumbAlt;
-
-                wrapper.appendChild(img);
-                lightboxThumbs.appendChild(wrapper);
-                currentThumbGroup.push(wrapper);
-
-                wrapper.addEventListener('click', () => {
-                    showByIndex(index);
-                });
-            });
-
-            const initialIndex = thumbSources.findIndex(({ largeSrc }) => largeSrc === src);
-            if (initialIndex >= 0) {
-                showByIndex(initialIndex);
-            } else {
-                setActiveThumb(0);
-            }
-
-            lastFocusedElement = document.activeElement;
-            lightbox.classList.add('is-open');
-            lightbox.setAttribute('aria-hidden', 'false');
-            lightboxCloseBtn.focus();
-            document.body.style.overflow = 'hidden';
-            document.addEventListener('keydown', handleLightboxKeydown, true);
-        };
-
-        // Close lightbox
-        const closeLightboxAdvanced = () => {
-            zoomLevel = 1;
-            panX = 0;
-            panY = 0;
-            applyTransform();
-
-            if (document.activeElement && lightbox.contains(document.activeElement)) {
-                document.activeElement.blur();
-            }
-
-            lightbox.classList.remove('is-open');
-            lightbox.setAttribute('aria-hidden', 'true');
-            lightboxImage.src = '';
-            lightboxThumbs.innerHTML = '';
-            currentThumbGroup = [];
-            currentIndex = 0;
-            lightboxMeta.textContent = '';
-            document.body.style.overflow = '';
-            document.removeEventListener('keydown', handleLightboxKeydown, true);
-
-            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-                lastFocusedElement.focus();
-            }
-        };
-
-        // Handle keyboard navigation in lightbox
-        const handleLightboxKeydown = (event) => {
-            if (event.key === 'Tab') {
-                const focusable = Array.from(getLightboxFocusable());
-                if (!focusable.length) return;
-
-                const first = focusable[0];
-                const last = focusable[focusable.length - 1];
-                const current = document.activeElement;
-
-                if (event.shiftKey) {
-                    if (current === first || !focusable.includes(current)) {
-                        event.preventDefault();
-                        last.focus();
-                    }
-                } else {
-                    if (current === last || !focusable.includes(current)) {
-                        event.preventDefault();
-                        first.focus();
-                    }
-                }
-            }
-        };
-
-        // Get focusable elements in lightbox
-        const getLightboxFocusable = () => {
-            return lightbox.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
-        };
-
-        // Touch event handlers
-        const onTouchStart = (e) => {
-            if (e.touches.length === 1) {
-                if (zoomLevel > 1) {
-                    startX = e.touches[0].clientX - panX;
-                    startY = e.touches[0].clientY - panY;
-                    isPanning = true;
-                } else {
-                    touchStartX = e.touches[0].clientX;
-                }
-            } else if (e.touches.length === 2) {
-                const dx = e.touches[0].clientX - e.touches[1].clientX;
-                const dy = e.touches[0].clientY - e.touches[1].clientY;
-                initialDistance = Math.sqrt(dx * dx + dy * dy);
-                initialZoom = zoomLevel;
-            }
-        };
-
-        const onTouchMove = (e) => {
-            if (e.touches.length === 1) {
-                if (isPanning) {
-                    panX = e.touches[0].clientX - startX;
-                    panY = e.touches[0].clientY - startY;
-                    constrainPan();
-                    applyTransform();
-                } else {
-                    touchEndX = e.touches[0].clientX;
-                }
-            } else if (e.touches.length === 2) {
-                e.preventDefault();
-                const dx = e.touches[0].clientX - e.touches[1].clientX;
-                const dy = e.touches[0].clientY - e.touches[1].clientY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                const newZoom = Math.max(1, Math.min(5, initialZoom * (distance / initialDistance)));
-                if (newZoom !== zoomLevel) {
-                    zoomLevel = newZoom;
-                    constrainPan();
-                    applyTransform();
-                }
-            }
-        };
-
-        const onTouchEnd = () => {
-            if (isPanning) {
-                isPanning = false;
-            }
-            if (touchStartX !== null && touchEndX !== null) {
-                const dx = touchEndX - touchStartX;
-                if (Math.abs(dx) > SWIPE_THRESHOLD) {
-                    if (dx < 0) {
-                        showByIndex(currentIndex + 1);
-                    } else {
-                        showByIndex(currentIndex - 1);
-                    }
-                }
-            }
-            touchStartX = null;
-            touchEndX = null;
-        };
-
-        // Event listeners
-        lightboxImage.addEventListener('touchstart', onTouchStart, { passive: true });
-        lightboxImage.addEventListener('touchmove', onTouchMove, { passive: true });
-        lightboxImage.addEventListener('touchend', onTouchEnd, { passive: true });
-
-        lightboxBackdrop.addEventListener('click', closeLightboxAdvanced);
-        lightboxCloseBtn.addEventListener('click', closeLightboxAdvanced);
-
-        document.addEventListener('keydown', (event) => {
-            if (!lightbox.classList.contains('is-open')) return;
-            if (event.key === 'Escape') {
-                closeLightboxAdvanced();
-            } else if (event.key === 'ArrowLeft') {
-                showByIndex(currentIndex - 1);
-            } else if (event.key === 'ArrowRight') {
-                showByIndex(currentIndex + 1);
-            }
-        });
-
-        lightboxPrev.addEventListener('click', () => {
-            showByIndex(currentIndex - 1);
-        });
-
-        lightboxNext.addEventListener('click', () => {
-            showByIndex(currentIndex + 1);
-        });
-
-        // Mouse wheel zoom
-        lightboxImage.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
-            const newZoom = Math.max(1, Math.min(5, zoomLevel * zoomFactor));
-
-            if (newZoom !== zoomLevel) {
-                const rect = lightboxImage.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const scaleChange = newZoom / zoomLevel;
-                panX = (panX - x) * scaleChange + x;
-                panY = (panY - y) * scaleChange + y;
-                zoomLevel = newZoom;
-                constrainPan();
-                applyTransform();
-            }
-        });
-
-        // Mouse pan
-        lightboxImage.addEventListener('mousedown', (e) => {
-            if (zoomLevel > 1) {
-                e.preventDefault();
-                isPanning = true;
-                startX = e.clientX - panX;
-                startY = e.clientY - panY;
-                lightboxImage.classList.add('is-zoomed');
-            }
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (isPanning && zoomLevel > 1) {
-                panX = e.clientX - startX;
-                panY = e.clientY - startY;
-                constrainPan();
-                applyTransform();
-            }
-        });
-
-        document.addEventListener('mouseup', () => {
-            if (isPanning) {
-                isPanning = false;
-                lightboxImage.classList.remove('is-zoomed');
-            }
-        });
-
-        // Double-click to reset zoom
-        lightboxImage.addEventListener('dblclick', () => {
-            zoomLevel = 1;
-            panX = 0;
-            panY = 0;
-            applyTransform();
-        });
-
-        // Open lightbox for gallery images
-        document.querySelectorAll('.address-gallery__main-image').forEach((img) => {
-            img.style.cursor = 'zoom-in';
-            img.addEventListener('click', () => {
-                const gallery = img.closest('.address-gallery--with-main');
-                const thumbs = gallery ? Array.from(gallery.querySelectorAll('.address-gallery__thumb')) : [];
-
-                const thumbSources = thumbs.map((thumb) => {
-                    const largeSrc = thumb.getAttribute('data-large-src');
-                    const thumbImg = thumb.querySelector('img');
-                    return {
-                        largeSrc: largeSrc || (thumbImg && thumbImg.src) || img.src,
-                        thumbSrc: thumbImg && thumbImg.src,
-                        thumbAlt: thumbImg && thumbImg.alt,
-                    };
-                });
-
-                const src = img.getAttribute('src');
-                const alt = img.getAttribute('alt');
-                if (src) {
-                    openLightbox(src, alt, thumbSources);
-                }
-            });
-        });
-
-        // Open lightbox for floorplan images
-        document.querySelectorAll('.address-floorplan__main-image').forEach((img) => {
-            img.style.cursor = 'zoom-in';
-            img.addEventListener('click', () => {
-                const floorplan = img.closest('.address-floorplan');
-                const thumbs = floorplan ? Array.from(floorplan.querySelectorAll('.address-floorplan__thumb')) : [];
-
-                const thumbSources = thumbs.map((thumb) => {
-                    const largeSrc = thumb.getAttribute('data-large-src');
-                    const thumbImg = thumb.querySelector('img');
-                    return {
-                        largeSrc: largeSrc || (thumbImg && thumbImg.src) || img.src,
-                        thumbSrc: thumbImg && thumbImg.src,
-                        thumbAlt: thumbImg && thumbImg.alt,
-                    };
-                });
-
-                const src = img.getAttribute('src');
-                const alt = img.getAttribute('alt');
-                if (src) {
-                    openLightbox(src, alt, thumbSources);
-                }
-            });
-        });
-    }
 });
 
 // ====================
