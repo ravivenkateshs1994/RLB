@@ -796,6 +796,21 @@ textarea.form-control {
    RESPONSIVE DESIGN
    =========================================== */
 
+/* XL screens — expand containers so content doesn't look narrow on 1440p/1920p */
+@media (min-width: 1440px) {
+    :root {
+        --container-max-width: 1280px;
+    }
+
+    .container {
+        max-width: 1280px;
+    }
+
+    .header__container {
+        max-width: 1440px;
+    }
+}
+
 @media (max-width: 960px) {
     .nav {
         display: none;

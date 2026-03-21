@@ -542,6 +542,8 @@ body.quick-nav-open {
 .address-hero__container {
     padding: 0 1.5rem;
     margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
     position: relative;
     z-index: 2;
 }
@@ -1447,13 +1449,16 @@ body.quick-nav-open {
    RESPONSIVE DESIGN
    =========================================== */
 
-@media (min-width: 1600px) {
+/* Auto-surface the side-nav only when there is enough horizontal room beside
+   the 1280px content container (container expansion kicks in at 1440px+).       
+   At 1920px: (1920-1280)/2 - 240 = 80px — subnav fits neatly left of content. */
+@media (min-width: 1920px) {
     .floating-subnav {
-        left: calc((100vw - 1120px) / 2 - 280px);
+        left: calc((100vw - 1280px) / 2 - 240px);
     }
 }
 
-@media (max-width: 1599px), (pointer: coarse) {
+@media (max-width: 1919px), (pointer: coarse) {
     .quick-nav-toggle:not(.is-hidden) {
         display: inline-flex;
     }
