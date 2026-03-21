@@ -11,20 +11,6 @@ const AMENITY_INTERVAL = 2600;
 const ACTIVE_CLASS = 'is-active';
 const SWIPE_THRESHOLD = 40;
 
-// Utility to close the lightbox
-function closeLightbox() {
-    const lightbox = document.getElementById('image-lightbox');
-    const lightboxImg = document.getElementById('image-lightbox-image');
-    const lightboxMeta = document.getElementById('image-lightbox-meta');
-
-    lightbox.setAttribute('aria-hidden', 'true');
-    lightbox.classList.remove('is-open');
-    lightbox.classList.remove('is-floorplan');
-    lightboxImg.src = '';
-    lightboxImg.alt = '';
-    lightboxMeta.textContent = '';
-}
-
 // ====================
 // FLOORPLAN ACCORDION (MOBILE) IMAGE LIGHTBOX
 // ====================
@@ -33,9 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const lightbox = document.getElementById('image-lightbox');
     const lightboxImg = document.getElementById('image-lightbox-image');
     const lightboxMeta = document.getElementById('image-lightbox-meta');
-    const lightboxClose = document.getElementById('image-lightbox-close');
 
-    // Make images clickable and open in lightbox
     document.querySelectorAll('.floorplan-accordion__panel img').forEach(img => {
         img.style.cursor = 'pointer';
         img.addEventListener('click', function () {
@@ -46,17 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
             lightbox.classList.add('is-open');
             lightbox.classList.add('is-floorplan');
         });
-    });
-
-    // Close lightbox on button click or backdrop click
-    lightboxClose.addEventListener('click', closeLightbox);
-    document.getElementById('image-lightbox-backdrop').addEventListener('click', closeLightbox);
-
-    // Close on Escape key
-    document.addEventListener('keydown', function (e) {
-        if (lightbox.classList.contains('is-open') && (e.key === 'Escape' || e.key === 'Esc')) {
-            closeLightbox();
-        }
     });
 });
 
@@ -111,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const lightboxImg = document.getElementById('image-lightbox-image');
     const lightboxMeta = document.getElementById('image-lightbox-meta');
 
-    // Open floorplan images in lightbox
     floorplanImages.forEach(img => {
         img.addEventListener('click', function () {
             lightboxImg.src = img.src;
@@ -120,19 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
             lightbox.setAttribute('aria-hidden', 'false');
             lightbox.classList.add('is-open');
             lightbox.classList.add('is-floorplan');
-        });
-    });
-
-    // Gallery images: open in lightbox without floorplan class
-    document.querySelectorAll('.address-gallery__main-image').forEach(img => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', function () {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            lightboxMeta.textContent = img.alt;
-            lightbox.setAttribute('aria-hidden', 'false');
-            lightbox.classList.add('is-open');
-            lightbox.classList.remove('is-floorplan');
         });
     });
 });
