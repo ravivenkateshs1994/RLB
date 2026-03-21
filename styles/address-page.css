@@ -266,34 +266,172 @@ body.quick-nav-open {
 }
 
 /* ===========================================
-   VIEWER.JS OVERRIDES
+   VIEWER.JS OVERRIDES — MODERNISED
    =========================================== */
 
 .viewer-backdrop {
-    background-color: rgba(5, 5, 5, 0.92);
+    background-color: rgba(5, 5, 5, 0.94);
+}
+
+/* Blur the page content behind the lightbox */
+body > *:not(.viewer-container) {
+    transition: filter 0.3s ease;
+}
+
+body.viewer-open > *:not(.viewer-container) {
+    filter: blur(6px);
 }
 
 .viewer-container {
     z-index: 1400 !important;
 }
 
-/* Hide title bar (we pass title:false but belt-and-suspenders) */
+/* Hide title bar */
 .viewer-title {
     display: none !important;
 }
 
-/* Slightly larger toolbar buttons */
-.viewer-toolbar > ul > li {
-    width: 38px;
-    height: 38px;
+/* Suppress default CSS-generated icons; our JS injects real SVGs */
+.viewer-toolbar > ul > li::before,
+.viewer-close::before,
+.viewer-button::before {
+    display: none !important;
 }
 
-.viewer-toolbar > ul > li > .viewer-zoom-in::before,
-.viewer-toolbar > ul > li > .viewer-zoom-out::before,
-.viewer-toolbar > ul > li > .viewer-prev::before,
-.viewer-toolbar > ul > li > .viewer-next::before {
-    width: 22px;
-    height: 22px;
+/* ── Toolbar pill ── */
+.viewer-toolbar > ul {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    padding: 6px 10px;
+}
+
+/* ── Toolbar buttons ── */
+.viewer-toolbar > ul > li {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 0.15s;
+}
+
+.viewer-toolbar > ul > li:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Close button ── */
+.viewer-close {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    transition: background 0.15s !important;
+}
+
+.viewer-close:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ── Injected SVG sizing ── */
+.viewer-toolbar > ul > li svg,
+.viewer-close svg {
+    display: block;
+    flex-shrink: 0;
+    pointer-events: none; /* let clicks pass through to the li/button */
+}
+
+.viewer-toolbar > ul > li svg {
+    width: 20px;
+    height: 20px;
+}
+
+.viewer-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ── Navbar (thumbnail strip) ── */
+.viewer-navbar {
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.viewer-navbar .viewer-list > li.viewer-active {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 2px;
+}
+
+/* ── Side navigation arrows ── */
+.viewer-side-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    cursor: pointer;
+    transition: background 0.18s, transform 0.18s;
+    padding: 0;
+}
+
+.viewer-side-arrow:hover {
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.viewer-side-arrow--prev {
+    left: clamp(12px, 2.5vw, 36px);
+}
+
+.viewer-side-arrow--next {
+    right: clamp(12px, 2.5vw, 36px);
+}
+
+.viewer-side-arrow:hover.viewer-side-arrow--prev {
+    transform: translateY(-50%) translateX(-2px);
+}
+
+.viewer-side-arrow:hover.viewer-side-arrow--next {
+    transform: translateY(-50%) translateX(2px);
+}
+
+.viewer-side-arrow svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    .viewer-side-arrow {
+        width: 42px;
+        height: 42px;
+    }
+    .viewer-side-arrow svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 /* ===========================================
@@ -1572,28 +1710,6 @@ body.quick-nav-open {
 
     .address-location__map iframe {
         height: 380px;
-    }
-
-    .image-lightbox__dialog {
-        max-width: 100vw;
-        max-height: 90vh;
-        border-radius: 0;
-    }
-
-    .image-lightbox__body {
-        padding: 0.9rem 0.9rem 0.6rem;
-        height: 40vh;
-    }
-
-    .image-lightbox__thumb {
-        width: 64px;
-        height: 48px;
-    }
-
-    .image-lightbox__arrow {
-        width: 34px;
-        height: 34px;
-        font-size: 1.2rem;
     }
 }
 
