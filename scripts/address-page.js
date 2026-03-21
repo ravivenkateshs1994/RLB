@@ -9,46 +9,57 @@
 
 const AMENITY_INTERVAL = 2600;
 const ACTIVE_CLASS = 'is-active';
-const SWIPE_THRESHOLD = 40;
 
 // ====================
-// GLIGHTBOX IMAGE VIEWER HELPER
+// VIEWER.JS IMAGE VIEWER HELPER
 // ====================
 
-function openGLightbox(items, startIndex, onClose) {
-    if (typeof GLightbox === 'undefined') return;
-    let currentSlideIndex = startIndex;
-    const lb = GLightbox({
-        elements: items.map(item => ({
-            href: item.src,
-            type: 'image',
-            alt: item.alt || '',
-        })),
-        startAt: startIndex,
-        touchNavigation: true,
-        touchFollowAxis: true,
-        keyboardNavigation: true,
-        closeOnOutsideClick: true,
-        loop: true,
-        zoomable: true,
-        draggable: true,
-        dragAutoSnap: true,
-        openEffect: 'fade',
-        closeEffect: 'fade',
-        slideEffect: 'slide',
-        descPosition: 'bottom',
-        skin: 'clean',
+function openLightbox(items, startIndex, onClose) {
+    if (typeof Viewer === 'undefined') return;
+
+    let currentIndex = startIndex;
+
+    // Build a temporary off-screen image list for Viewer.js
+    const container = document.createElement('ul');
+    container.style.cssText = 'display:none;list-style:none;padding:0;margin:0;';
+    items.forEach(item => {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = item.src;
+        if (item.alt) img.alt = item.alt;
+        li.appendChild(img);
+        container.appendChild(li);
     });
-    lb.on('slide_changed', ({ current }) => {
-        if (current && typeof current.index === 'number') {
-            currentSlideIndex = current.index;
-        }
+    document.body.appendChild(container);
+
+    const viewer = new Viewer(container, {
+        initialViewIndex: startIndex,
+        title: false,
+        navbar: items.length > 1,
+        toolbar: {
+            zoomIn: true,
+            zoomOut: true,
+            oneToOne: false,
+            reset: false,
+            prev: items.length > 1,
+            play: false,
+            next: items.length > 1,
+            rotateLeft: false,
+            rotateRight: false,
+            flipHorizontal: false,
+            flipVertical: false,
+        },
+        viewed(e) {
+            currentIndex = e.detail.index;
+        },
+        hidden() {
+            viewer.destroy();
+            document.body.removeChild(container);
+            if (typeof onClose === 'function') onClose(currentIndex);
+        },
     });
-    lb.on('close', () => {
-        if (typeof onClose === 'function') onClose(currentSlideIndex);
-        lb.destroy();
-    });
-    lb.open();
+
+    viewer.show();
 }
 
 // ====================
@@ -60,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
         img.style.cursor = 'zoom-in';
         img.title = 'Click to view full size';
         img.addEventListener('click', function () {
-            openGLightbox([{ src: img.src, alt: img.alt }], 0);
+            openLightbox([{ src: img.src, alt: img.alt }], 0);
         });
     });
 });
@@ -128,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     src: i.getAttribute('src'),
                     alt: i.alt,
                 }));
-                openGLightbox(items, idx);
+                openLightbox(items, idx);
             });
         });
     });
@@ -294,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stopSlideshow();
             if (thumbsContainer) thumbsContainer.style.pointerEvents = 'none';
 
-            openGLightbox(items, startIdx, (finalIndex) => {
+            openLightbox(items, startIdx, (finalIndex) => {
                 // Restore gallery
                 if (thumbsContainer) thumbsContainer.style.pointerEvents = '';
                 // Sync gallery to the slide that was showing when lightbox closed
@@ -572,250 +583,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tiles[0].classList.add(ACTIVE_CLASS);
         setInterval(step, AMENITY_INTERVAL);
     });
-
-    // Dead code block — legacy custom lightbox removed in favour of PhotoSwipe.
-    // openGLightbox() is defined at module scope; gallery/floorplan hooks below.
-    if (false) { // eslint-disable-line no-constant-condition
-        let panzoomInstance = null;
-        let panzoomWheelHandler = null;
-        let currentIndex = 0;
-        let currentThumbGroup = [];
-        let lastFocusedElement = null;
-        const lightboxBody = lightboxImage.parentElement;
-
-        // Touch swipe variables (single-finger when not zoomed)
-        let touchStartX = null;
-        let touchEndX = null;
-
-        // Update metadata display
-        const updateMeta = () => {
-            if (!currentThumbGroup.length) {
-                lightboxMeta.textContent = '';
-                return;
-            }
-            const total = currentThumbGroup.length;
-            const displayIndex = currentIndex + 1;
-            lightboxMeta.textContent = `${displayIndex} / ${total}`;
-            lightboxPrev.disabled = total <= 1;
-            lightboxNext.disabled = total <= 1;
-        };
-
-        // Set active thumbnail
-        const setActiveThumb = (index) => {
-            currentThumbGroup.forEach((thumb, i) => {
-                if (i === index) {
-                    thumb.classList.add('image-lightbox__thumb--active');
-                    const target = thumb;
-                    const container = lightboxThumbs;
-                    const offsetLeft = target.offsetLeft;
-                    const targetWidth = target.offsetWidth;
-                    const containerWidth = container.clientWidth;
-                    const desiredScrollLeft = offsetLeft - (containerWidth - targetWidth) / 2;
-                    container.scrollTo({ left: desiredScrollLeft, behavior: 'smooth' });
-                } else {
-                    thumb.classList.remove('image-lightbox__thumb--active');
-                }
-            });
-            currentIndex = index;
-            updateMeta();
-        };
-
-        // Show image by index
-        const showByIndex = (index) => {
-            if (!currentThumbGroup.length) return;
-            const total = currentThumbGroup.length;
-            const wrappedIndex = ((index % total) + total) % total;
-            const thumb = currentThumbGroup[wrappedIndex];
-            const largeSrc = thumb.getAttribute('data-large-src');
-            const thumbImg = thumb.querySelector('img');
-            const thumbAlt = thumbImg && thumbImg.alt;
-
-            if (panzoomInstance) panzoomInstance.reset({ animate: false });
-            setActiveThumb(wrappedIndex);
-
-            if (largeSrc) {
-                lightboxImage.classList.add('is-navigating');
-                setTimeout(() => {
-                    lightboxImage.src = largeSrc;
-                    if (thumbAlt) lightboxImage.alt = thumbAlt;
-                    lightboxImage.classList.remove('is-navigating');
-                }, 130);
-            }
-        };
-
-        // Open lightbox
-        const openLightbox = (src, alt, thumbSources) => {
-            lightboxImage.src = src;
-            lightboxImage.alt = alt || 'Expanded view';
-
-            lightboxThumbs.innerHTML = '';
-            currentThumbGroup = [];
-            currentIndex = 0;
-
-            thumbSources.forEach(({ largeSrc, thumbSrc, thumbAlt }, index) => {
-                const wrapper = document.createElement('button');
-                wrapper.type = 'button';
-                wrapper.className = 'image-lightbox__thumb';
-                wrapper.setAttribute('data-large-src', largeSrc);
-
-                const img = document.createElement('img');
-                img.src = thumbSrc || largeSrc;
-                if (thumbAlt) img.alt = thumbAlt;
-
-                wrapper.appendChild(img);
-                lightboxThumbs.appendChild(wrapper);
-                currentThumbGroup.push(wrapper);
-
-                wrapper.addEventListener('click', () => {
-                    showByIndex(index);
-                });
-            });
-
-            const initialIndex = thumbSources.findIndex(({ largeSrc }) => largeSrc === src);
-            if (initialIndex >= 0) {
-                showByIndex(initialIndex);
-            } else {
-                setActiveThumb(0);
-            }
-
-            lastFocusedElement = document.activeElement;
-            lightbox.classList.add('is-open');
-            lightbox.setAttribute('aria-hidden', 'false');
-            lightboxCloseBtn.focus();
-            document.body.style.overflow = 'hidden';
-            document.addEventListener('keydown', handleLightboxKeydown, true);
-
-            // Initialise Panzoom for smooth wheel zoom, pinch-to-zoom, and mouse drag
-            if (typeof Panzoom !== 'undefined') {
-                panzoomInstance = Panzoom(lightboxImage, {
-                    maxScale: 5,
-                    minScale: 1,
-                    contain: 'outside',
-                    cursor: 'grab',
-                    step: 0.15,
-                });
-                panzoomWheelHandler = panzoomInstance.zoomWithWheel;
-                lightboxBody.addEventListener('wheel', panzoomWheelHandler, { passive: false });
-            }
-        };
-
-        // Close lightbox
-        const closeLightboxAdvanced = () => {
-            if (panzoomInstance) {
-                if (panzoomWheelHandler) {
-                    lightboxBody.removeEventListener('wheel', panzoomWheelHandler);
-                    panzoomWheelHandler = null;
-                }
-                panzoomInstance.destroy();
-                panzoomInstance = null;
-            }
-
-            if (document.activeElement && lightbox.contains(document.activeElement)) {
-                document.activeElement.blur();
-            }
-
-            lightbox.classList.remove('is-open');
-            lightbox.setAttribute('aria-hidden', 'true');
-            lightboxImage.src = '';
-            lightboxThumbs.innerHTML = '';
-            currentThumbGroup = [];
-            currentIndex = 0;
-            lightboxMeta.textContent = '';
-            document.body.style.overflow = '';
-            document.removeEventListener('keydown', handleLightboxKeydown, true);
-
-            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-                lastFocusedElement.focus();
-            }
-        };
-
-        // Handle keyboard navigation in lightbox
-        const handleLightboxKeydown = (event) => {
-            if (event.key === 'Tab') {
-                const focusable = Array.from(getLightboxFocusable());
-                if (!focusable.length) return;
-
-                const first = focusable[0];
-                const last = focusable[focusable.length - 1];
-                const current = document.activeElement;
-
-                if (event.shiftKey) {
-                    if (current === first || !focusable.includes(current)) {
-                        event.preventDefault();
-                        last.focus();
-                    }
-                } else {
-                    if (current === last || !focusable.includes(current)) {
-                        event.preventDefault();
-                        first.focus();
-                    }
-                }
-            }
-        };
-
-        // Get focusable elements in lightbox
-        const getLightboxFocusable = () => {
-            return lightbox.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
-        };
-
-        // Swipe to navigate — single finger, only when Panzoom is at base scale
-        lightboxImage.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 1 && (!panzoomInstance || panzoomInstance.getScale() <= 1.01)) {
-                touchStartX = e.touches[0].clientX;
-                touchEndX = null;
-            } else {
-                touchStartX = null;
-            }
-        }, { passive: true });
-
-        lightboxImage.addEventListener('touchmove', (e) => {
-            if (touchStartX !== null && e.touches.length === 1) {
-                touchEndX = e.touches[0].clientX;
-            }
-        }, { passive: true });
-
-        lightboxImage.addEventListener('touchend', () => {
-            if (touchStartX !== null && touchEndX !== null) {
-                const dx = touchEndX - touchStartX;
-                if (Math.abs(dx) > SWIPE_THRESHOLD) {
-                    dx < 0 ? showByIndex(currentIndex + 1) : showByIndex(currentIndex - 1);
-                }
-            }
-            touchStartX = null;
-            touchEndX = null;
-        }, { passive: true });
-
-        // Double-click / double-tap to reset zoom
-        lightboxImage.addEventListener('dblclick', () => {
-            if (panzoomInstance) panzoomInstance.reset({ animate: true });
-        });
-
-        lightboxBackdrop.addEventListener('click', closeLightboxAdvanced);
-        lightboxCloseBtn.addEventListener('click', closeLightboxAdvanced);
-
-        document.addEventListener('keydown', (event) => {
-            if (!lightbox.classList.contains('is-open')) return;
-            if (event.key === 'Escape') {
-                closeLightboxAdvanced();
-            } else if (event.key === 'ArrowLeft') {
-                showByIndex(currentIndex - 1);
-            } else if (event.key === 'ArrowRight') {
-                showByIndex(currentIndex + 1);
-            }
-        });
-
-        lightboxPrev.addEventListener('click', () => {
-            showByIndex(currentIndex - 1);
-        });
-
-        lightboxNext.addEventListener('click', () => {
-            showByIndex(currentIndex + 1);
-        });
-
-    } // end dead code block
-
 });
 
 // ====================

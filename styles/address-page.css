@@ -266,60 +266,34 @@ body.quick-nav-open {
 }
 
 /* ===========================================
-   GLIGHTBOX OVERRIDES
+   VIEWER.JS OVERRIDES
    =========================================== */
 
-.glightbox-clean .gslide-description {
-    background: rgba(5, 5, 5, 0.88);
+.viewer-backdrop {
+    background-color: rgba(5, 5, 5, 0.92);
 }
 
-.glightbox-clean .gslide-title {
-    font-family: var(--font-body, inherit);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    color: #fff;
+.viewer-container {
+    z-index: 1400 !important;
 }
 
-.glightbox-clean .gnext,
-.glightbox-clean .gprev {
-    background-color: rgba(0, 0, 0, 0.55);
+/* Hide title bar (we pass title:false but belt-and-suspenders) */
+.viewer-title {
+    display: none !important;
 }
 
-.glightbox-clean .gnext:hover,
-.glightbox-clean .gprev:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+/* Slightly larger toolbar buttons */
+.viewer-toolbar > ul > li {
+    width: 38px;
+    height: 38px;
 }
 
-/* Force prev/next arrows visible on all viewport sizes */
-.glightbox-clean .gnext,
-.glightbox-clean .gprev {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    border-radius: 50%;
-}
-
-@media (max-width: 768px) {
-    .glightbox-clean .gnext,
-    .glightbox-clean .gprev {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        bottom: auto;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .glightbox-clean .gprev {
-        left: 8px;
-    }
-
-    .glightbox-clean .gnext {
-        right: 8px;
-    }
+.viewer-toolbar > ul > li > .viewer-zoom-in::before,
+.viewer-toolbar > ul > li > .viewer-zoom-out::before,
+.viewer-toolbar > ul > li > .viewer-prev::before,
+.viewer-toolbar > ul > li > .viewer-next::before {
+    width: 22px;
+    height: 22px;
 }
 
 /* ===========================================
