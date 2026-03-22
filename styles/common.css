@@ -227,6 +227,8 @@ section[id] {
     align-items: center;
     justify-content: center;
     padding: 0.35rem;
+    min-width: 44px;
+    min-height: 44px;
     border-radius: 999px;
     border: none;
     background: rgba(255, 255, 255, 0.95);
@@ -238,8 +240,8 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-    outline: 2px solid rgba(121, 17, 14, 0.45);
-    outline-offset: 2px;
+    outline: 2px solid #79110e;
+    outline-offset: 3px;
 }
 
 .mobile-menu-icon {
@@ -563,7 +565,7 @@ textarea.form-control {
     flex: 1 1 320px;
 }
 
-.footer-column h4 {
+.footer-column h3 {
     font-family: var(--font-heading);
     font-size: 0.95rem;
     margin: 0 0 0.6rem;
@@ -664,6 +666,9 @@ textarea.form-control {
 }
 
 .mobile-nav__link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--color-text-main);
