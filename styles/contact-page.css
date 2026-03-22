@@ -99,40 +99,35 @@
     outline-offset: 3px;
 }
 
-/* Mobile: collapse to circle icon, expand on tap/hover */
+/* Hide FAB when contact form is on screen */
+.whatsapp-fab.is-visible.fab--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    animation: none;
+}
+.whatsapp-fab.is-visible.fab--hidden::after {
+    animation: none;
+}
+
+/* Mobile: circle icon only */
 @media (max-width: 600px) {
     .whatsapp-fab {
         width: 52px;
         height: 52px;
         padding: 0;
+        gap: 0;
         justify-content: center;
-        bottom: 1.5rem;
-        right: 1rem;
-        transition:
-            opacity 240ms var(--ease, ease),
-            transform 240ms var(--ease, ease),
-            background 160ms var(--ease, ease),
-            width 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
-            padding 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        bottom: auto;
+        top: 80%;
+        transform: translateY(-50%);
+        right: 2rem;
+    }
+    .whatsapp-fab.is-visible {
+        transform: translateY(-50%);
     }
     .whatsapp-fab__label {
-        width: 0;
-        overflow: hidden;
-        opacity: 0;
-        white-space: nowrap;
-        transition:
-            width 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
-            opacity 200ms ease;
-    }
-    .whatsapp-fab:hover,
-    .whatsapp-fab:focus-visible {
-        width: auto;
-        padding: 0.75rem 1.35rem;
-    }
-    .whatsapp-fab:hover .whatsapp-fab__label,
-    .whatsapp-fab:focus-visible .whatsapp-fab__label {
-        width: auto;
-        opacity: 1;
+        display: none;
     }
 }
 
