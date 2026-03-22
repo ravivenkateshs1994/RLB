@@ -143,7 +143,7 @@ class Carousel {
             if (!this.isPaused) {
                 this.nextSlide();
             }
-        }, 5000);
+        }, 7500);
     }
 
     pause() {

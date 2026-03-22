@@ -1184,15 +1184,16 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const fab = document.getElementById('enquire-fab');
     if (!fab) return;
-    const hero = document.querySelector('.address-hero');
+    const heroCta = document.querySelector('.address-hero__cta');
     const sectionsBtn = document.getElementById('quick-nav-toggle');
 
     const updateFab = () => {
-        const heroGone = hero ? hero.getBoundingClientRect().bottom < 0 : true;
+        // Show FAB as soon as the hero Enquire Now button leaves the viewport
+        const ctaGone = heroCta ? heroCta.getBoundingClientRect().bottom < 0 : true;
         const sectionsBtnVisible = sectionsBtn
             ? !sectionsBtn.classList.contains('is-hidden') && !sectionsBtn.hasAttribute('hidden')
             : false;
-        fab.classList.toggle('is-visible', heroGone || sectionsBtnVisible);
+        fab.classList.toggle('is-visible', ctaGone || sectionsBtnVisible);
     };
 
     window.addEventListener('scroll', updateFab, { passive: true });
