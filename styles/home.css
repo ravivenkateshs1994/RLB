@@ -619,7 +619,7 @@
 }
 
 .testimonial-card__stars {
-    color: var(--color-gold);
+    color: #7a5c00; /* darkened gold — 6.3:1 on white, WCAG AA */
     font-size: 0.85rem;
     letter-spacing: 0.08em;
 }
