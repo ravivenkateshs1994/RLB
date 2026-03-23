@@ -315,57 +315,52 @@ document.querySelectorAll('.fade-in').forEach(el => newObserver.observe(el));
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent email sending
+        e.preventDefault();
 
-        // Get form data
         const form = e.target;
         const formData = new FormData(form);
-        const name = formData.get('name') ? formData.get('name').trim() : '';
-        const email = formData.get('email') ? formData.get('email').trim() : '';
-        const phone = formData.get('phone') ? formData.get('phone').trim() : '';
-        const message = formData.get('message') || '';
+        const name     = (formData.get('name')     || '').trim();
+        const email    = (formData.get('email')    || '').trim();
+        const phone    = (formData.get('phone')    || '').trim();
+        const message  = (formData.get('message')  || '').trim();
 
-        // Basic validation
+        // Client-side validation
         let error = '';
         if (!name || name.length < 2) {
             error = 'Please enter your full name.';
         } else if (!/^\S+@\S+\.\S+$/.test(email)) {
             error = 'Please enter a valid email address.';
-        } else if (!/^\+\d{1,4}\d{4,15}$/.test(phone.replace(/\s|\-/g, ''))) {
+        } else if (!/^\+\d{1,4}\d{4,15}$/.test(phone.replace(/[\s\-]/g, ''))) {
             error = 'Please enter a valid phone number with country code, e.g., +91 9876543210.';
         }
 
         if (error) {
-            let notification = document.getElementById('form-notification');
-            if (!notification) {
-                notification = document.createElement('div');
-                notification.id = 'form-notification';
-                notification.setAttribute('role', 'status');
-                notification.setAttribute('aria-live', 'polite');
-                notification.className = 'notification';
-                contactForm.parentNode.insertBefore(notification, contactForm);
-            }
-            notification.textContent = error;
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-                notification.textContent = '';
-            }, 4000);
+            setFormStatus(error, 'error');
             return;
         }
 
-        // Send WhatsApp message
-        const waNumber = '919876543210'; // Replace with your WhatsApp number (with country code, no +)
-        const fullPhone = phone.replace(/\s|\-/g, '');
+        // Open WhatsApp with pre-filled enquiry
+        const waNumber  = '919087878414';
+        const fullPhone = phone.replace(/[\s\-]/g, '');
         const waMsg =
             `Hi Rich Land Builders,\n` +
-            `I'm ${name} and I came across your website. I'm interested in learning more about your homes.\n` +
+            `I\u2019m ${name} and I came across your website. I\u2019m interested in learning more about your homes.\n` +
             `Here are my details:\n` +
             `Email: ${email}\n` +
             `Phone: ${fullPhone}\n` +
-            (message ? `A little about what I'm looking for: ${message}` : '');
-        const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`;
-        window.open(waUrl, '_blank');
+            (message ? `A little about what I\u2019m looking for: ${message}` : '');
+        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`, '_blank');
+
+        setFormStatus('WhatsApp opened \u2014 please send the pre-filled message to complete your enquiry.', 'success');
         form.reset();
     });
+}
+
+function setFormStatus(msg, type) {
+    const el = document.getElementById('form-status');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'form-status form-status--' + type;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 6000);
 }
