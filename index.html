@@ -33,7 +33,8 @@
                 "postalCode": "641048",
                 "addressCountry": "IN"
             },
-            "telephone": "+1-555-123-4567",
+            "telephone": "+91 90878 78414, +91 90878 78432",
+            "whatsappNumber": "+919087878414",
             "sameAs": [
                 "https://www.facebook.com/richlandbuilders",
                 "https://www.instagram.com/richlandbuilders"
@@ -56,47 +57,8 @@
     <!-- Skip Link for Accessibility -->
     <a href="#home-page" class="sr-only">Skip to main content</a>
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="header__container">
-            <div class="header__logo-container">
-                <a href="index.html" aria-label="Rich Land Builders – Home">
-                    <img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo" loading="eager" width="140" height="48">
-                </a>
-            </div>
-
-            <nav class="nav" id="nav" aria-label="Primary">
-                <a href="#hero" class="nav__link active">Home</a>
-                <a href="#about" class="nav__link">About</a>
-                <a href="#values" class="nav__link">Values</a>
-                <a href="address.html" class="nav__link">The Address</a>
-                <a href="contact.html" class="nav__link">Contact Us</a>
-            </nav>
-
-                <button
-                    class="mobile-menu-btn"
-                    id="mobile-menu-btn"
-                    aria-label="Open menu"
-                    aria-expanded="false"
-                >
-                    <svg class="mobile-menu-icon mobile-menu-icon--menu" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M4 7h16M4 12h16M4 17h16" />
-                    </svg>
-                    <svg class="mobile-menu-icon mobile-menu-icon--close" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M6 6l12 12M18 6l-12 12" />
-                    </svg>
-                </button>
-        </div>
-    </header>
-    <!-- Mobile nav + backdrop -->
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile primary">
-        <a href="#hero" class="mobile-nav__link">Home</a>
-        <a href="#about" class="mobile-nav__link">About</a>
-        <a href="#values" class="mobile-nav__link">Values</a>
-        <a href="address.html" class="mobile-nav__link">The Address</a>
-        <a href="contact.html" class="mobile-nav__link mobile-nav__link--primary">Contact Us</a>
-    </nav>
-    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <!-- Header + mobile nav (rendered by scripts/components.js) -->
+    <div id="site-header-placeholder"></div>
 
     <main id="home-page">
     <!-- Hero Section with Carousel -->
@@ -433,55 +395,11 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img
-                        src="assets/logo/updated_logo.png" loading="lazy" width="140" height="48"
-                        alt="Rich Land Builders"
-                        class="footer-logo-image"
-                    >
-                    <p class="footer-tagline">Where Dreams and Designs meet Reality!</p>
-                    <p class="vision-text">Crafting foundations with compassion in construction.</p>
-                </div>
-
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="#hero">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#values">Values</a></li>
-                            <li><a href="address.html">The Address</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Contact</h3>
-                        <ul>
-                            <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
-                            <li><a href="mailto:info@richlandbuilders.com">info@richlandbuilders.com</a></li>
-                            <li>
-                                JV Avenue PHASE - 3, <br>
-                                Thirumurugan Nagar, <br>
-                                Kalapatti, <br>
-                                Coimbatore - 641048
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Rich Land Builders. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer (rendered by scripts/components.js) -->
+    <div id="site-footer-placeholder"></div>
 
     <!-- JavaScript -->
+    <script src="scripts/components.js" defer></script>
     <script src="scripts/common.js" defer></script>
     <script src="scripts/home.js" defer></script>
 </body>
