@@ -1240,3 +1240,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateFab();
 });
+
+// Mobile one-shot hint: briefly expand FABs into pills to reveal their labels
+(function () {
+    if (window.innerWidth > 600) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    function runHint(el, delay) {
+        setTimeout(function () {
+            el.classList.add('mob-hint');
+            setTimeout(function () { el.classList.remove('mob-hint'); }, 2000);
+        }, delay);
+    }
+
+    // Sections toggle — hint shortly after page load
+    var toggle = document.getElementById('quick-nav-toggle');
+    if (toggle && !toggle.classList.contains('is-hidden')) {
+        runHint(toggle, 700);
+    }
+
+    // Enquire FAB — hint the first time it becomes visible (user scrolls past hero CTA)
+    var fab = document.getElementById('enquire-fab');
+    if (fab) {
+        var fabHinted = false;
+        var fabObs = new MutationObserver(function () {
+            if (!fabHinted && fab.classList.contains('is-visible')) {
+                fabHinted = true;
+                fabObs.disconnect();
+                runHint(fab, 300);
+            }
+        });
+        fabObs.observe(fab, { attributes: true, attributeFilter: ['class'] });
+    }
+})();
