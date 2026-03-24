@@ -347,8 +347,8 @@ if (contactForm) {
             error = 'Please enter your full name.';
         } else if (!/^\S+@\S+\.\S+$/.test(email)) {
             error = 'Please enter a valid email address.';
-        } else if (!/^\+\d{1,4}\d{4,15}$/.test(phone.replace(/[\s\-]/g, ''))) {
-            error = 'Please enter a valid phone number with country code, e.g., +91 9876543210.';
+        } else if (phone.replace(/[\s\-\+\(\)]/g, '').length < 10) {
+            error = 'Please enter a valid phone number (at least 10 digits).'
         }
 
         if (error) {
@@ -368,8 +368,14 @@ if (contactForm) {
             (message ? `A little about what I\u2019m looking for: ${message}` : '');
         window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`, '_blank');
 
-        setFormStatus('WhatsApp opened \u2014 please send the pre-filled message to complete your enquiry.', 'success');
         form.reset();
+
+        // Show sent confirmation state
+        const sentEl = document.getElementById('contact-form-sent');
+        if (sentEl) {
+            form.classList.add('is-sent');
+            sentEl.removeAttribute('hidden');
+        }
     });
 }
 
