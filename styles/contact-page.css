@@ -110,7 +110,7 @@
     animation: none;
 }
 
-/* Mobile: circle icon only */
+/* Mobile: circle icon only — consistent bottom anchor, same translateY lifecycle as desktop */
 @media (max-width: 600px) {
     .whatsapp-fab {
         width: 52px;
@@ -118,13 +118,12 @@
         padding: 0;
         gap: 0;
         justify-content: center;
-        bottom: auto;
-        top: 80%;
-        transform: translateY(-50%);
-        right: 2rem;
+        bottom: 5.5rem;
+        right: 1.25rem;
+        transform: translateY(12px);
     }
     .whatsapp-fab.is-visible {
-        transform: translateY(-50%);
+        transform: translateY(0);
     }
     .whatsapp-fab__label {
         display: none;
@@ -395,7 +394,7 @@
 
 .contact-project-card__link svg {
     align-self: flex-end;
-    color: var(--color-gold, #d4af37);
+    color: var(--color-gold-text, #9a7c1e); /* accessible dark gold — passes 3:1 non-text contrast on white */
     margin-top: 0.4rem;
     transition: transform 0.2s ease;
 }
@@ -479,6 +478,36 @@ select.form-control {
 }
 
 /* ===========================================
+   CONSENT CHECKBOX
+   =========================================== */
+
+.form-group--consent {
+    margin-top: 0.15rem;
+}
+
+.form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    cursor: pointer;
+}
+
+.form-consent__checkbox {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+}
+
+.form-consent__text {
+    font-size: 0.8rem;
+    color: var(--color-text-soft);
+    line-height: 1.55;
+}
+
+/* ===========================================
    SUBMIT BUTTON
    =========================================== */
 
@@ -487,6 +516,96 @@ select.form-control {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+}
+
+/* ===========================================
+   FORM STATUS MESSAGE
+   =========================================== */
+
+.form-status {
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 8px;
+    margin: 0.65rem 0 0;
+    transition: opacity 300ms ease;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-status--success {
+    background: #ecf9f1;
+    border: 1px solid #a3d9b8;
+    color: #1a7a40;
+    padding: 0.65rem 1rem;
+}
+
+.form-status--error {
+    background: #fff2f2;
+    border: 1px solid #f5a5a5;
+    color: #c0392b;
+    padding: 0.65rem 1rem;
+}
+
+/* ===========================================
+   FORM SENT STATE
+   =========================================== */
+
+.contact-form.is-sent {
+    display: none;
+}
+
+.contact-form__sent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    gap: 0.85rem;
+}
+
+.contact-form__sent[hidden] {
+    display: none;
+}
+
+.contact-form__sent-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #ecf9f1;
+    border: 2px solid #a3d9b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a7a40;
+    margin-bottom: 0.35rem;
+}
+
+.contact-form__sent-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0;
+}
+
+.contact-form__sent-body {
+    font-size: 0.95rem;
+    color: var(--color-text-soft);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 360px;
+}
+
+.contact-form__sent-body a {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.contact-form__sent-body a:hover {
+    text-decoration: underline;
 }
 
 /* ===========================================

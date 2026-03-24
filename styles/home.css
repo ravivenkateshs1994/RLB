@@ -8,8 +8,8 @@
 
 .hero {
     position: relative;
-    min-height: 520px;
-    height: min(100vh, 640px);
+    min-height: 580px;
+    height: min(100vh, 820px);
     background: #020308;
     overflow: hidden;
 }
@@ -166,6 +166,24 @@
     justify-content: center;
 }
 
+/* Hero carousel CTA — gold-outlined ghost reinforces the luxury brand on dark overlay */
+.carousel__actions .btn--primary {
+    background: transparent;
+    color: #ffffff;
+    border: 1.5px solid var(--color-gold);
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.carousel__actions .btn--primary:hover {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: #e8c84a;
+    color: #ffffff;
+    box-shadow: 0 8px 28px rgba(212, 175, 55, 0.32);
+    transform: translateY(-2px);
+}
+
 .carousel__arrow {
     position: absolute;
     top: 50%;
@@ -202,14 +220,23 @@
     right: 1.25rem;
 }
 
-.carousel__controls {
+.hero__bottom {
     position: absolute;
-    bottom: 1.25rem;
+    bottom: 1.4rem;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.carousel__controls {
+    position: static;
+    transform: none;
     display: flex;
     gap: 0.48rem;
-    z-index: 3;
 }
 
 .carousel__dot {
@@ -503,8 +530,8 @@
 
 .values__grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem;
 }
 
 .values-card {
@@ -523,7 +550,7 @@
 
 .values-card__image-wrap {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
 }
 
@@ -536,20 +563,20 @@
 }
 
 .values-card__body {
-    padding: 1.08rem 1.2rem 1.28rem;
+    padding: 1.3rem 1.5rem 1.55rem;
 }
 
 .values-card__title {
     font-family: var(--font-heading);
-    font-size: 1rem;
-    margin: 0 0 0.4rem;
+    font-size: 1.12rem;
+    margin: 0 0 0.5rem;
     color: var(--color-text-main);
 }
 
 .values-card__text {
     margin: 0;
-    font-size: 0.91rem;
-    line-height: 1.7;
+    font-size: 0.94rem;
+    line-height: 1.72;
     color: var(--color-text-soft);
 }
 
@@ -643,17 +670,20 @@
 }
 
 .testimonial-card__avatar {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 999px;
-    background: linear-gradient(135deg, var(--color-primary), #b01a17);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #9e1410 100%);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
     flex-shrink: 0;
+    box-shadow: 0 0 0 2px var(--color-gold), 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial-card__name {
@@ -874,19 +904,78 @@
 }
 
 /* ===========================================
+   SCROLL INDICATOR
+   =========================================== */
+
+@keyframes scrollIndicatorFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollChevronPulse {
+    0%, 100% { opacity: 0.85; transform: translateY(0); }
+    50%       { opacity: 1;    transform: translateY(5px); }
+}
+
+.hero__scroll-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--color-gold);
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.55));
+    opacity: 0;
+    animation: scrollIndicatorFadeIn 0.5s ease 1.2s forwards;
+    transition: color 200ms ease, opacity 400ms ease, filter 200ms ease;
+}
+
+.hero__scroll-indicator:hover {
+    color: #f0cc5a;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.85));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero__scroll-indicator svg {
+        animation: scrollChevronPulse 2s ease-in-out 1.7s infinite;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero__scroll-indicator {
+        display: none;
+    }
+    .hero__bottom {
+        bottom: 1rem;
+    }
+}
+
+/* ===========================================
+   SCROLL ENTRANCE STAGGER — VALUES & TESTIMONIALS
+   =========================================== */
+
+/* Values cards: cascade left → right, 90ms apart */
+.values__grid .values-card:nth-child(2) { transition-delay: 90ms; }
+.values__grid .values-card:nth-child(3) { transition-delay: 180ms; }
+.values__grid .values-card:nth-child(4) { transition-delay: 270ms; }
+
+/* Testimonials: cascade left → right, 110ms apart */
+.testimonials .testimonial-card:nth-child(2) { transition-delay: 110ms; }
+.testimonials .testimonial-card:nth-child(3) { transition-delay: 220ms; }
+
+/* ===========================================
    RESPONSIVE DESIGN
    =========================================== */
 
 /* XL screens — taller hero so it fills more of the viewport on large monitors */
 @media (min-width: 1921px) {
     .hero {
-        height: min(100vh, 860px);
+        height: min(100vh, 960px);
     }
 }
 
 @media (max-width: 960px) {
     .hero {
-        height: min(80vh, 620px);
+        height: min(85vh, 700px);
     }
 
     .values__header,
@@ -897,10 +986,6 @@
 
     .about__container {
         grid-template-columns: minmax(0, 1fr);
-    }
-
-    .values__grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .address-project__container {
@@ -1028,6 +1113,10 @@
         gap: 1.1rem;
     }
 
+    .values-card__image-wrap {
+        aspect-ratio: 4 / 3;
+    }
+
     .address-project {
         padding: 2.6rem 0 3rem;
     }
@@ -1081,3 +1170,4 @@
         transform: scale(1.02);
     }
 }
+

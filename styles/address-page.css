@@ -116,6 +116,33 @@
 }
 
 /* ===========================================
+   FLOATING SUBNAV GROUP HEADERS
+   =========================================== */
+
+.floating-subnav__group-header {
+    padding: 0.6rem 1.5rem 0.2rem;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 0.75;
+    pointer-events: none;
+    user-select: none;
+    list-style: none;
+}
+
+.floating-subnav__group-header--below {
+    margin-top: 0.4rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.floating-subnav__group-header.is-hidden {
+    display: none;
+}
+
+/* ===========================================
    QUICK NAV DRAWER
    =========================================== */
 
@@ -259,6 +286,28 @@
     background: rgba(121, 17, 14, 0.15);
     color: var(--color-primary);
     font-weight: 600;
+}
+
+.quick-nav__group-header {
+    padding: 0.5rem 1.4rem 0.2rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    opacity: 0.7;
+    pointer-events: none;
+    list-style: none;
+}
+
+.quick-nav__group-header--below {
+    margin-top: 0.35rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.quick-nav__group-header.is-hidden {
+    display: none;
 }
 
 body.quick-nav-open {
@@ -550,6 +599,32 @@ body.quick-nav-open {
     font-size: 1rem;
     line-height: 1.72;
     color: rgba(255, 255, 255, 0.9);
+}
+
+.address-hero__price-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0.4rem 0 0.9rem;
+    font-size: 0.855rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.address-hero__price-note svg {
+    flex-shrink: 0;
+    color: var(--color-gold);
+}
+
+.address-hero__price-link {
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+
+.address-hero__price-link:hover {
+    color: #ffffff;
+    text-decoration-color: rgba(255, 255, 255, 0.7);
 }
 
 /* ===========================================
@@ -2103,5 +2178,88 @@ body.quick-nav-open {
     outline: 2px solid rgba(212, 175, 55, 0.7);
     outline-offset: 0;
     border-radius: 14px 14px 0 0;
+}
+
+/* ===========================================
+   TRUE 3 BHK EXPLAINER
+   =========================================== */
+
+.bhk-explainer {
+    border: 1px solid rgba(212, 175, 55, 0.32);
+    border-radius: 10px;
+    background: #fffdf5;
+    overflow: hidden;
+    margin: 1.5rem 0 0;
+    transition: border-color 180ms ease;
+}
+
+.bhk-explainer[open] {
+    border-color: rgba(212, 175, 55, 0.55);
+}
+
+.bhk-explainer__trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.75rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-soft);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.bhk-explainer__trigger::-webkit-details-marker {
+    display: none;
+}
+
+.bhk-explainer__trigger em {
+    font-style: normal;
+    color: var(--color-primary);
+}
+
+.bhk-explainer__trigger svg {
+    color: var(--color-gold-text, #9a7c1e);
+    flex-shrink: 0;
+}
+
+.bhk-explainer__trigger::after {
+    content: '\25b8';
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--color-text-soft);
+    opacity: 0.6;
+    transition: transform 200ms ease;
+}
+
+.bhk-explainer[open] .bhk-explainer__trigger::after {
+    transform: rotate(90deg);
+}
+
+.bhk-explainer__body {
+    padding: 0 1.1rem 0.9rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--color-text-soft);
+    border-top: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.bhk-explainer__body p {
+    margin: 0.6rem 0 0.5rem;
+}
+
+.bhk-explainer__body ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.bhk-explainer__body li + li {
+    margin-top: 0.3rem;
+}
+
+.bhk-explainer__body strong {
+    color: var(--color-text-main);
+    font-weight: 600;
 }
 

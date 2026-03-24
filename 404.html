@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Rich Land Builders</title>
+    <meta name="description" content="The page you were looking for couldn't be found. Explore The Address by Rich Land Builders — 3 BHK apartments and 4 BHK villas in Coimbatore.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#79110e">
+    <link rel="canonical" href="https://www.richlandbuilders.com/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="icon" type="image/png" href="assets/logo/favicon.png" sizes="32x32">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/common.css">
+
+    <style>
+        .error-page {
+            min-height: calc(100vh - var(--header-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 1.25rem;
+            text-align: center;
+            background: var(--color-bg);
+        }
+
+        .error-page__inner {
+            max-width: 520px;
+        }
+
+        .error-page__code {
+            font-family: var(--font-heading);
+            font-size: clamp(5rem, 18vw, 9rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--color-primary);
+            opacity: 0.12;
+            letter-spacing: -0.04em;
+            margin: 0 0 -1.2rem;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .error-page__eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin: 0 0 0.85rem;
+        }
+
+        .error-page__title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 700;
+            line-height: 1.18;
+            color: var(--color-text-main);
+            margin: 0 0 1rem;
+            text-wrap: balance;
+        }
+
+        .error-page__body {
+            font-size: 1rem;
+            color: var(--color-text-soft);
+            line-height: 1.7;
+            margin: 0 0 2rem;
+        }
+
+        .error-page__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .error-page__divider {
+            width: 40px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
+            margin: 0 auto 1.5rem;
+        }
+
+        .error-page__links {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-border-soft);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            justify-content: center;
+        }
+
+        .error-page__link {
+            font-size: 0.875rem;
+            color: var(--color-text-soft);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .error-page__link:hover {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .error-page__actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .error-page__actions .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header + mobile nav (rendered by scripts/components.js) -->
+    <div id="site-header-placeholder"></div>
+
+    <main id="error-page">
+        <div class="error-page">
+            <div class="error-page__inner">
+                <p class="error-page__code" aria-hidden="true">404</p>
+                <p class="error-page__eyebrow">Page not found</p>
+                <div class="error-page__divider" aria-hidden="true"></div>
+                <h1 class="error-page__title">This page doesn't exist — but your home might.</h1>
+                <p class="error-page__body">
+                    The link you followed may be outdated or mistyped. Head back to explore
+                    The Address — true 3 BHK apartments and luxury 4 BHK villas in Coimbatore.
+                </p>
+                <div class="error-page__actions">
+                    <a href="index.html" class="btn btn--primary">Back to Home</a>
+                    <a href="address.html" class="btn btn--outline">Explore The Address</a>
+                </div>
+                <nav class="error-page__links" aria-label="Quick links">
+                    <a href="address.html#apartments" class="error-page__link">3 BHK Apartments</a>
+                    <a href="address.html#villas" class="error-page__link">4 BHK Villas</a>
+                    <a href="contact.html" class="error-page__link">Contact Us</a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (rendered by scripts/components.js) -->
+    <div id="site-footer-placeholder"></div>
+
+    <!-- JavaScript -->
+    <script src="scripts/components.js" defer></script>
+    <script src="scripts/common.js" defer></script>
+</body>
+</html>
