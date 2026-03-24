@@ -67,8 +67,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="icon" type="image/png" href="assets/logo/favicon.png" sizes="32x32">
+    <meta name="theme-color" content="#79110e">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/common.css">
@@ -88,10 +89,12 @@
         <nav class="floating-subnav" id="floating-subnav" aria-label="Page sections navigation">
             <div class="floating-subnav__content">
                 <ul class="floating-subnav__list">
+                    <li class="floating-subnav__group-header" data-group="apartments">Apartments</li>
                     <li><a href="#apartments-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-gallery" aria-label="Apartments: Gallery">Gallery</a></li>
                     <li><a href="#apartments-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-amenities" aria-label="Apartments: Amenities">Amenities</a></li>
                     <li><a href="#apartments-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-floorplan" aria-label="Apartments: Floor Plan">Floor Plan</a></li>
                     <li><a href="#apartments-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-specs" aria-label="Apartments: Specifications">Specifications</a></li>
+                    <li class="floating-subnav__group-header floating-subnav__group-header--below" data-group="villas">Villas</li>
                     <li><a href="#villas-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-gallery" aria-label="Villas: Gallery">Gallery</a></li>
                     <li><a href="#villas-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-amenities" aria-label="Villas: Amenities">Amenities</a></li>
                     <li><a href="#villas-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-floorplan" aria-label="Villas: Floor Plan">Floor Plan</a></li>
@@ -114,10 +117,12 @@
                     <button class="quick-nav-drawer__close" id="quick-nav-close" type="button" aria-label="Close quick navigation">×</button>
                 </header>
                 <ul class="quick-nav__list">
+                    <li class="quick-nav__group-header" data-group="apartments">Apartments</li>
                     <li><button class="quick-nav__link" data-section="apartments-gallery" type="button" aria-label="Apartments: Gallery">Gallery</button></li>
                     <li><button class="quick-nav__link" data-section="apartments-amenities" type="button" aria-label="Apartments: Amenities">Amenities</button></li>
                     <li><button class="quick-nav__link" data-section="apartments-floorplan" type="button" aria-label="Apartments: Floor Plan">Floor Plan</button></li>
                     <li><button class="quick-nav__link" data-section="apartments-specs" type="button" aria-label="Apartments: Specifications">Specifications</button></li>
+                    <li class="quick-nav__group-header quick-nav__group-header--below" data-group="villas">Villas</li>
                     <li><button class="quick-nav__link" data-section="villas-gallery" type="button" aria-label="Villas: Gallery">Gallery</button></li>
                     <li><button class="quick-nav__link" data-section="villas-amenities" type="button" aria-label="Villas: Amenities">Amenities</button></li>
                     <li><button class="quick-nav__link" data-section="villas-floorplan" type="button" aria-label="Villas: Floor Plan">Floor Plan</button></li>
@@ -131,7 +136,10 @@
         <!-- Intro -->
         <section class="address-hero">
             <img
+                id="address-hero-bg"
                 src="assets/others/apartment_rendering.webp"
+                data-apartments-src="assets/others/apartment_rendering.webp"
+                data-villas-src="assets/others/villa_rendering.webp"
                 alt=""
                 class="address-hero__bg-image"
                 width="1009" height="640"
@@ -146,6 +154,10 @@
                     <p class="address-hero__subtitle">True 3 BHK Apartments &amp; Luxury 4 BHK Villas in Coimbatore.</p>
                     <p class="address-hero__lead">
                         A focused, low‑density community where light, ventilation, and everyday comfort guide every decision.
+                    </p>
+                    <p class="address-hero__price-note">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                        Price on request &mdash; <a href="contact.html" class="address-hero__price-link">enquire for details</a>
                     </p>
                     <div class="address-hero__actions">
                         <a href="contact.html" class="address-hero__cta">
@@ -174,6 +186,21 @@
                 </div>
                 <!-- Apartments Tab Panel -->
                 <div class="address-tabs__panel address-tabs__panel--active" id="apartments" role="tabpanel" aria-labelledby="tab-apartments-toggle">
+                    <!-- True 3 BHK explainer -->
+                    <details class="bhk-explainer">
+                        <summary class="bhk-explainer__trigger">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                            What makes this a <em>True</em> 3 BHK?
+                        </summary>
+                        <div class="bhk-explainer__body">
+                            <p>In India, many projects are marketed as “3 BHK” but deliver shrunken bedrooms, borrowed light, or poor cross-ventilation — effectively a 2 BHK with an extra room. At The Address, every unit meets a stricter standard:</p>
+                            <ul>
+                                <li><strong>All three bedrooms are full-sized</strong> with dedicated natural light and a direct ventilation path</li>
+                                <li><strong>No borrowed rooms</strong> — every bedroom has its own external window</li>
+                                <li><strong>A genuine living area</strong> that isn’t a repurposed corridor or passage</li>
+                            </ul>
+                        </div>
+                    </details>
                     <!-- Gallery -->
                     <div class="address-section-row address-section-row--odd" id="apartments-gallery">
                     <section class="address-section">
@@ -676,6 +703,22 @@
                 </div>
                 <!-- Villas Tab Panel -->
                 <div class="address-tabs__panel" id="villas" role="tabpanel" aria-labelledby="tab-villas-toggle" hidden>
+                    <!-- Villa differentiator -->
+                    <details class="bhk-explainer">
+                        <summary class="bhk-explainer__trigger">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                            What sets this villa apart from a typical 4 BHK home?
+                        </summary>
+                        <div class="bhk-explainer__body">
+                            <p>Many projects label a stacked apartment floor as a "villa." At The Address, each home is a true independent villa — ground floor through first floor to a private terrace — with specifications rarely seen at this price point:</p>
+                            <ul>
+                                <li><strong>A dedicated Home Theatre</strong> with Dolby Atmos 7.1.2 surround sound, BenQ 4K projector, motorised recliners, and acoustically treated walls — fully installed, not just a room provision</li>
+                                <li><strong>Mitsubishi VRF air conditioning</strong> across every room including the theatre, with a single common outdoor unit on the terrace — no wall-mounted boxes on facades</li>
+                                <li><strong>A private terrace</strong> accessible only to your unit, not a shared rooftop</li>
+                                <li><strong>5 kVA solar-hybrid power backup</strong> covering lighting and fan circuits throughout the home</li>
+                            </ul>
+                        </div>
+                    </details>
                     <!-- Gallery -->
                     <div class="address-section-row address-section-row--odd" id="villas-gallery">
                     <section class="address-section">
@@ -964,6 +1007,18 @@
                                     <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                 </div>
                                 <h3 class="amenity-tile__label">Solar back up</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <img src="assets/icons/rooftop_garden.png" alt="Private terrace icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                </div>
+                                <h3 class="amenity-tile__label">Private Terrace</h3>
+                            </article>
+                            <article class="amenity-tile">
+                                <div class="amenity-tile__icon" aria-hidden="true">
+                                    <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="3"/><path d="M6 17v2M18 17v2M7 12h10M12 7V5"/><circle cx="12" cy="4" r="1" fill="currentColor" stroke="none"/></svg>
+                                </div>
+                                <h3 class="amenity-tile__label">VRF Air Conditioning</h3>
                             </article>
                         </div>
                     </section>
@@ -1333,7 +1388,7 @@
     <!-- JavaScript -->
     <script src="scripts/components.js" defer></script>
     <script src="scripts/common.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js" defer></script>
     <script src="scripts/address-page.js" defer></script>
 </body>
 </html>

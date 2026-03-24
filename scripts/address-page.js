@@ -408,6 +408,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update URL hash silently
             window.location.hash = `#${target}`;
 
+            // Swap hero background image to match active tab
+            const heroBg = document.getElementById('address-hero-bg');
+            if (heroBg) {
+                const newSrc = heroBg.getAttribute('data-' + target + '-src');
+                if (newSrc) heroBg.src = newSrc;
+            }
+
             // Scroll to tabs section
             const tabs = document.querySelector('.address-tabs');
             if (tabs) {
@@ -471,8 +478,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check URL hash on load
         const hash = window.location.hash;
         if (hash.startsWith('#')) {
-            const tabName = hash.slice(1);
-            const btn = document.querySelector(`.address-tab[data-tab="${tabName}"]`);
+            const hashVal = hash.slice(1);
+            const btn = document.querySelector(`.address-tab[data-tab="${hashVal}"]`);
             if (btn) {
                 activateTab(btn);
                 // Scroll to tabs section
@@ -491,6 +498,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
                 }, 100);
+            } else {
+                // Sub-section deep link (e.g. #villas-gallery): activate tab then scroll to element
+                const prefix = hashVal.split('-')[0];
+                const tabBtn = document.querySelector(`.address-tab[data-tab="${prefix}"]`);
+                if (tabBtn) {
+                    activateTab(tabBtn);
+                    setTimeout(() => {
+                        const target = document.getElementById(hashVal);
+                        if (target) {
+                            const hdr = document.querySelector('header');
+                            const hdrHeight = hdr ? hdr.offsetHeight : 80;
+                            const rect = target.getBoundingClientRect();
+                            const offsetTop = rect.top + window.pageYOffset - hdrHeight - 16;
+                            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                        }
+                        history.replaceState(null, '', `#${hashVal}`);
+                    }, 200);
+                }
             }
         }
     }
@@ -783,6 +808,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if (parentItem) {
                 parentItem.hidden = !shouldShow;
             }
+        });
+
+        // Show/hide group header labels based on active tab (floating subnav + mobile drawer)
+        document.querySelectorAll('.floating-subnav__group-header, .quick-nav__group-header').forEach(header => {
+            const group = header.getAttribute('data-group');
+            let shouldShow = true;
+            if (group === 'apartments') shouldShow = apartmentsActive;
+            else if (group === 'villas') shouldShow = villasActive;
+            header.classList.toggle('is-hidden', !shouldShow);
         });
     }
 

@@ -13,6 +13,7 @@
     --color-primary: #79110e;
     --color-primary-dark: #5e0d0b;
     --color-gold: #d4af37;
+    --color-gold-text: #9a7c1e;  /* accessible dark gold for text/icons on light backgrounds — ≥3.6:1 on white */
     --color-text-main: #13343b;
     --color-text-soft: #4c555a;
     --color-border-soft: rgba(0, 0, 0, 0.06);
@@ -860,3 +861,4 @@ textarea.form-control {
         padding: 2.2rem 0 1.4rem;
     }
 }
+

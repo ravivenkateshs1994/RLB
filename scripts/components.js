@@ -78,6 +78,7 @@
                         '<li><a href="index.html#values">Values</a></li>' +
                         '<li><a href="address.html">The Address</a></li>' +
                         '<li><a href="contact.html">Contact</a></li>' +
+                        '<li><a href="privacy-policy.html">Privacy Policy</a></li>' +
                       '</ul>' +
                     '</div>' +
                     '<div class="footer-column">' +
