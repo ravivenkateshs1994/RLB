@@ -415,20 +415,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (newSrc) heroBg.src = newSrc;
             }
 
-            // Scroll to tabs section
-            const tabs = document.querySelector('.address-tabs');
-            if (tabs) {
-                const header = document.querySelector('header');
-                const headerHeight = header ? header.offsetHeight : 80;
-                const rect = tabs.getBoundingClientRect();
-                const offsetTop = rect.top + window.pageYOffset - headerHeight;
-                window.requestAnimationFrame(() => {
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                });
-            }
+            // Scroll to top of page
+            window.requestAnimationFrame(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         };
 
         // Event listeners for tabs

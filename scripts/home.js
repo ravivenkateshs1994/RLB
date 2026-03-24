@@ -146,40 +146,37 @@ class Carousel {
         }, 7500);
     }
 
-    pause() {
-        this.isPaused = true;
-    }
-
     resume() {
         this.isPaused = false;
     }
 
+    pause() {
+        this.isPaused = true;
+    }
+
     /* ===========================================
-       TOUCH/SWIPE SUPPORT
+       TOUCH / SWIPE SUPPORT
        =========================================== */
 
     initTouchSupport() {
-        let touchStartX = 0;
-        let touchEndX = 0;
-        const carousel = document.querySelector('.carousel');
+        const track = document.querySelector('.carousel__track');
+        if (!track) return;
 
-        if (!carousel) return;
+        let startX = 0;
+        let isDragging = false;
 
-        carousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
         }, { passive: true });
 
-        carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe(touchStartX, touchEndX);
+        track.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            const diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) {
+                diff > 0 ? this.nextSlide() : this.prevSlide();
+            }
+            isDragging = false;
         }, { passive: true });
-    }
-
-    handleSwipe(touchStartX, touchEndX) {
-        if (touchEndX < touchStartX - 50) {
-            this.nextSlide();
-        } else if (touchEndX > touchStartX + 50) {
-            this.prevSlide();
-        }
     }
 }

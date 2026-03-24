@@ -907,43 +907,7 @@
    SCROLL INDICATOR
    =========================================== */
 
-@keyframes scrollIndicatorFadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scrollChevronPulse {
-    0%, 100% { opacity: 0.85; transform: translateY(0); }
-    50%       { opacity: 1;    transform: translateY(5px); }
-}
-
-.hero__scroll-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: var(--color-gold);
-    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.55));
-    opacity: 0;
-    animation: scrollIndicatorFadeIn 0.5s ease 1.2s forwards;
-    transition: color 200ms ease, opacity 400ms ease, filter 200ms ease;
-}
-
-.hero__scroll-indicator:hover {
-    color: #f0cc5a;
-    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.85));
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .hero__scroll-indicator svg {
-        animation: scrollChevronPulse 2s ease-in-out 1.7s infinite;
-    }
-}
-
 @media (max-width: 640px) {
-    .hero__scroll-indicator {
-        display: none;
-    }
     .hero__bottom {
         bottom: 1rem;
     }

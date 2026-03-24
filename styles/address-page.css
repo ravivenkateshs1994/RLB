@@ -498,7 +498,8 @@ body.quick-nav-open {
 
 .address-hero {
     position: relative;
-    min-height: 560px;
+    min-height: 580px;
+    height: min(100vh, 820px);
     display: flex;
     align-items: center;
     background: #020308;
@@ -604,10 +605,12 @@ body.quick-nav-open {
 .address-hero__price-note {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    margin: 0.4rem 0 0.9rem;
-    font-size: 0.855rem;
-    color: rgba(255, 255, 255, 0.7);
+    gap: 0.42rem;
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.01em;
 }
 
 .address-hero__price-note svg {
@@ -615,16 +618,12 @@ body.quick-nav-open {
     color: var(--color-gold);
 }
 
-.address-hero__price-link {
-    color: rgba(255, 255, 255, 0.88);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: rgba(255, 255, 255, 0.35);
-}
-
-.address-hero__price-link:hover {
-    color: #ffffff;
-    text-decoration-color: rgba(255, 255, 255, 0.7);
+.address-hero__actions-divider {
+    display: block;
+    width: 1px;
+    height: 1.5rem;
+    background: rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
 }
 
 /* ===========================================
