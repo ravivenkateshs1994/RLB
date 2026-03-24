@@ -2152,6 +2152,111 @@ body.quick-nav-open {
     }
 }
 
+/* Mobile: collapse both FABs to icon circles at ≤600px */
+@media (max-width: 600px) {
+    /* Enquire FAB — icon circle only (base) */
+    .enquire-fab {
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        gap: 0;
+        justify-content: center;
+        font-size: 0;
+        letter-spacing: 0;
+        bottom: calc(24px + 42px + 10px + 52px + 10px); /* 138px — above sections toggle */
+        right: 1rem;
+        transition:
+            width     0.35s ease,
+            padding   0.35s ease,
+            gap       0.3s ease,
+            font-size 0.25s ease,
+            letter-spacing 0.25s ease,
+            opacity   240ms var(--ease),
+            transform 240ms var(--ease),
+            background 160ms var(--ease),
+            box-shadow 160ms var(--ease);
+    }
+    .enquire-fab svg {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        max-width: 20px;
+        opacity: 1;
+        overflow: hidden;
+        transition: opacity 0.2s ease, max-width 0.2s ease;
+    }
+
+    /* Enquire FAB — hint pill state */
+    .enquire-fab.mob-hint {
+        width: 150px;
+        padding: 0 1rem 0 0.85rem;
+        gap: 0.45rem;
+        font-size: 0.82rem;
+        letter-spacing: 0.06em;
+    }
+    /* Hide icon when label is showing */
+    .enquire-fab.mob-hint svg {
+        max-width: 0;
+        opacity: 0;
+    }
+
+    /* Sections toggle — icon circle only (base) */
+    .quick-nav-toggle:not(.is-hidden) {
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        gap: 0;
+        justify-content: center;
+        bottom: calc(24px + 42px + 10px); /* 76px — above scroll-to-top */
+        right: 1rem;
+        font-size: 0;
+        letter-spacing: 0;
+        transition:
+            width          0.35s ease,
+            padding        0.35s ease,
+            gap            0.3s ease,
+            font-size      0.25s ease,
+            letter-spacing 0.25s ease;
+    }
+
+    /* Sections toggle — hint pill state */
+    .quick-nav-toggle.mob-hint:not(.is-hidden) {
+        width: 148px;
+        padding: 0.8rem 1.4rem;
+        gap: 0.4rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+    }
+
+    /* Label: hidden via clip */
+    .quick-nav-toggle__label {
+        overflow: hidden;
+        max-width: 0;
+        white-space: nowrap;
+        opacity: 0;
+        transition: max-width 0.3s ease, opacity 0.28s ease;
+    }
+    .quick-nav-toggle.mob-hint .quick-nav-toggle__label {
+        max-width: 120px;
+        opacity: 1;
+    }
+
+    /* Icon: hide when label is showing */
+    .quick-nav-toggle__icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        max-width: 20px;
+        opacity: 1;
+        overflow: hidden;
+        transition: opacity 0.2s ease, max-width 0.2s ease;
+    }
+    .quick-nav-toggle.mob-hint .quick-nav-toggle__icon {
+        max-width: 0;
+        opacity: 0;
+    }
+}
+
 /* ===========================================
    FOCUS-VISIBLE RINGS (address-page specific)
    =========================================== */
