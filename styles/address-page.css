@@ -582,9 +582,9 @@ body.quick-nav-open {
 
 .address-hero__title {
     font-family: var(--font-heading);
-    font-size: clamp(2.4rem, 4.8vw, 3.4rem);
-    font-weight: 700;
-    line-height: 1.12;
+    font-size: clamp(2.6rem, 5.2vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
     margin: 0 0 0.58rem;
     text-wrap: balance;
 }
@@ -782,9 +782,10 @@ body.quick-nav-open {
 
 .address-section__title {
     font-family: var(--font-heading);
-    font-size: clamp(1.42rem, 2vw, 1.6rem);
+    font-size: clamp(1.65rem, 2.4vw, 1.95rem);
+    font-weight: 800;
     line-height: 1.2;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.01em;
     margin: 0;
     text-wrap: balance;
 }
@@ -1663,7 +1664,8 @@ body.quick-nav-open {
     }
 
     .address-hero__title {
-        font-size: clamp(1.8rem, 8vw, 2.15rem);
+        font-size: clamp(2rem, 8vw, 2.4rem);
+        font-weight: 800;
         line-height: 1.14;
         margin-bottom: 0.42rem;
     }
@@ -1731,7 +1733,8 @@ body.quick-nav-open {
     }
 
     .address-section__title {
-        font-size: 1.32rem;
+        font-size: clamp(1.42rem, 5.5vw, 1.65rem);
+        font-weight: 800;
     }
 
     .address-section__subtitle {
