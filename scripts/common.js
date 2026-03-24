@@ -289,23 +289,6 @@ if (scrollToTopBtn) {
 }
 
 /* ===========================================
-   SCROLL INDICATOR — hide once user scrolls
-   =========================================== */
-
-const scrollIndicator = document.querySelector('.hero__scroll-indicator');
-if (scrollIndicator) {
-    const hideIndicator = () => {
-        if (window.scrollY > 60) {
-            scrollIndicator.style.animation = 'none';
-            scrollIndicator.style.opacity = '0';
-            scrollIndicator.style.pointerEvents = 'none';
-            window.removeEventListener('scroll', hideIndicator, { passive: true });
-        }
-    };
-    window.addEventListener('scroll', hideIndicator, { passive: true });
-}
-
-/* ===========================================
    FADE-IN ANIMATIONS
    =========================================== */
 
