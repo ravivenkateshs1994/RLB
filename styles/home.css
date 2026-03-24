@@ -377,6 +377,11 @@
     animation: heroFadeUp 0.65s ease 0.74s both;
 }
 
+/* ADDED: cta-prompt animates in just before the button */
+.carousel__slide.active .carousel__cta-prompt {
+    animation: heroFadeUp 0.65s ease 0.82s both;
+}
+
 .carousel__slide.active .carousel__actions {
     animation: heroFadeUp 0.65s ease 0.9s both;
 }
@@ -738,6 +743,156 @@
 @media (max-width: 580px) {
     .testimonials {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ===========================================
+   CAROUSEL CTA PROMPT (Slide 4 supporting line)
+   =========================================== */
+
+/* ADDED: wraps prompt + button so they stack cleanly */
+.carousel__cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.carousel__cta-prompt {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.86);
+    letter-spacing: 0.02em;
+    font-style: italic;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ===========================================
+   GEO STRIP — Based in Coimbatore
+   =========================================== */
+
+/* ADDED: Subtle local credibility strip between About and Values */
+.geo-strip {
+    background: linear-gradient(135deg, rgba(121, 17, 14, 0.04), rgba(212, 175, 55, 0.07));
+    border-top: 1px solid rgba(121, 17, 14, 0.08);
+    border-bottom: 1px solid rgba(121, 17, 14, 0.08);
+    padding: 1.6rem 0;
+}
+
+.geo-strip__container {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.geo-strip__icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(121, 17, 14, 0.09);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+}
+
+.geo-strip__body {
+    min-width: 0;
+}
+
+.geo-strip__heading {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    margin: 0 0 0.3rem;
+    color: var(--color-text-main);
+}
+
+.geo-strip__text {
+    font-size: 0.93rem;
+    line-height: 1.68;
+    color: var(--color-text-soft);
+    margin: 0;
+    max-width: 68ch;
+}
+
+/* ===========================================
+   OUR APPROACH SECTION (replaces testimonials)
+   =========================================== */
+
+/* ADDED: Honest process steps replacing fake testimonials */
+.approach-strip {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.28);
+}
+
+.approach-strip__header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.approach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.approach-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--color-white);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-md);
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--duration) var(--ease),
+        box-shadow var(--duration) var(--ease),
+        border-color var(--duration) var(--ease);
+}
+
+.approach-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(121, 17, 14, 0.18);
+}
+
+.approach-step__num {
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    opacity: 0.72;
+}
+
+.approach-step__title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    margin: 0;
+    color: var(--color-text-main);
+    line-height: 1.3;
+}
+
+.approach-step__text {
+    font-size: 0.92rem;
+    line-height: 1.72;
+    color: var(--color-text-soft);
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .approach-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .geo-strip__container {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
     }
 }
 
