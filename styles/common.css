@@ -416,6 +416,39 @@ textarea:focus-visible {
     background-color: #ffe9cf;
 }
 
+/* Map icon link — remove default <a> styling, keep icon look */
+.contact-item__icon--map {
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.contact-item__icon--map:hover,
+.contact-item__icon--map:focus-visible {
+    transform: translateY(-1px) scale(1.07);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+    background-color: #ffe0c4;
+    color: var(--color-primary-dark);
+}
+
+/* Map address link */
+.contact-item__map-link {
+    text-decoration: none;
+    color: var(--color-text-main);
+    font-size: inherit;
+    line-height: 1.7;
+    transition: color var(--duration-fast) var(--ease);
+    display: inline-block;
+}
+
+.contact-item__map-link:hover,
+.contact-item__map-link:focus-visible {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(121, 17, 14, 0.4);
+}
+
 .contact-item__content {
     display: flex;
     flex-direction: column;
