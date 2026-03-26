@@ -643,8 +643,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'villas-gallery',
         'villas-amenities',
         'villas-specs',
-        'location-community',
-        'location-map'
+        'location-map',
+        'location-community'
     ];
 
     function getTabState() {
@@ -851,20 +851,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     function updateSubnavTheme(sectionId) {
-        if (!sectionId) {
+        if (!sectionId) return;
+        // Force a distinct color for location-community
+        if (sectionId === 'location-community') {
+            const highlightColor = '#fff7ea'; // Soft gold/cream for visibility
+            if (highlightColor !== lastAppliedBg) {
+                floatingSubnavContent.style.backgroundColor = highlightColor;
+                lastAppliedBg = highlightColor;
+            }
             return;
         }
-
         const sectionEl = document.getElementById(sectionId);
-        if (!sectionEl) {
-            return;
-        }
-
+        if (!sectionEl) return;
         const alternateColor = getAlternateColor(sectionEl);
-        if (!alternateColor) {
-            return;
-        }
-
+        if (!alternateColor) return;
         let tintedColor = alternateColor;
         if (alternateColor === ODD_BG) {
             tintedColor = '#faf6f0';
