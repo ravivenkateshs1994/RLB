@@ -87,10 +87,13 @@
 }
 
 .floating-subnav__link.is-active {
-    background: rgba(121, 17, 14, 0.12);
+    background: linear-gradient(90deg, #fff7ea 60%, rgba(121, 17, 14, 0.12));
     border-right-color: var(--color-primary);
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 700;
+    box-shadow: 0 2px 12px -6px rgba(121,17,14,0.08);
+    position: relative;
+    z-index: 1;
 }
 
 .floating-subnav__link--sub.is-active {
