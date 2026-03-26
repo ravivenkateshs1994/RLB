@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,10 +58,23 @@
             "telephone": "+919087878414",
             "priceRange": "₹₹₹",
             "amenityFeature": [
-                { "@type": "LocationFeatureSpecification", "name": "Natural Ventilation", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Low Density Community", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Private Balcony", "value": true },
-                { "@type": "LocationFeatureSpecification", "name": "Specialist-Supervised Construction", "value": true }
+                { "@type": "LocationFeatureSpecification", "name": "Central Air-Conditioning", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Semi-Furnished Interiors", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "EV Charging Stations", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "24x7 Security", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "CCTV Surveillance", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Kids Play Area", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Community Hall", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Rainwater Harvesting", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Borewell", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Gas Pipeline", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Earthquake Resistant Footing", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Home Theatre (Dolby Atmos 7.1.2)", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "5 kVA Solar Power Backup", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "VRF Central Air-Conditioning", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Private Terrace Garden", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Rooftop Garden with Walk Space", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Covered Car Parking", "value": true }
             ],
             "containsPlace": [
                 {
@@ -129,6 +142,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/favicon.png">
     <link rel="icon" type="image/png" href="assets/logo/favicon.png" sizes="32x32">
     <meta name="theme-color" content="#79110e">
@@ -152,17 +166,17 @@
             <div class="floating-subnav__content">
                 <ul class="floating-subnav__list">
                     <li class="floating-subnav__group-header" data-group="apartments">Apartments</li>
+                    <li><a href="#apartments-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-floorplan" aria-label="Apartments: Floor Plan">Floor Plan</a></li>
                     <li><a href="#apartments-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-gallery" aria-label="Apartments: Gallery">Gallery</a></li>
                     <li><a href="#apartments-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-amenities" aria-label="Apartments: Amenities">Amenities</a></li>
-                    <li><a href="#apartments-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-floorplan" aria-label="Apartments: Floor Plan">Floor Plan</a></li>
                     <li><a href="#apartments-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="apartments-specs" aria-label="Apartments: Specifications">Specifications</a></li>
                     <li class="floating-subnav__group-header floating-subnav__group-header--below" data-group="villas">Villas</li>
+                    <li><a href="#villas-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-floorplan" aria-label="Villas: Floor Plan">Floor Plan</a></li>
                     <li><a href="#villas-gallery" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-gallery" aria-label="Villas: Gallery">Gallery</a></li>
                     <li><a href="#villas-amenities" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-amenities" aria-label="Villas: Amenities">Amenities</a></li>
-                    <li><a href="#villas-floorplan" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-floorplan" aria-label="Villas: Floor Plan">Floor Plan</a></li>
                     <li><a href="#villas-specs" class="floating-subnav__link floating-subnav__link--sub" data-section="villas-specs" aria-label="Villas: Specifications">Specifications</a></li>
-                    <li><a href="#location-community" class="floating-subnav__link floating-subnav__link--sub" data-section="location-community">Community Highlights</a></li>
                     <li><a href="#location-map" class="floating-subnav__link floating-subnav__link--sub" data-section="location-map">Location</a></li>
+                    <li><a href="#location-community" class="floating-subnav__link floating-subnav__link--sub" data-section="location-community">Loctation Highlights</a></li>
                 </ul>
             </div>
         </nav>
@@ -181,17 +195,17 @@
                 </header>
                 <ul class="quick-nav__list">
                     <li class="quick-nav__group-header" data-group="apartments">Apartments</li>
+                    <li><button class="quick-nav__link" data-section="apartments-floorplan" type="button" aria-label="Apartments: Floor Plan">Floor Plan</button></li>
                     <li><button class="quick-nav__link" data-section="apartments-gallery" type="button" aria-label="Apartments: Gallery">Gallery</button></li>
                     <li><button class="quick-nav__link" data-section="apartments-amenities" type="button" aria-label="Apartments: Amenities">Amenities</button></li>
-                    <li><button class="quick-nav__link" data-section="apartments-floorplan" type="button" aria-label="Apartments: Floor Plan">Floor Plan</button></li>
                     <li><button class="quick-nav__link" data-section="apartments-specs" type="button" aria-label="Apartments: Specifications">Specifications</button></li>
                     <li class="quick-nav__group-header quick-nav__group-header--below" data-group="villas">Villas</li>
+                    <li><button class="quick-nav__link" data-section="villas-floorplan" type="button" aria-label="Villas: Floor Plan">Floor Plan</button></li>
                     <li><button class="quick-nav__link" data-section="villas-gallery" type="button" aria-label="Villas: Gallery">Gallery</button></li>
                     <li><button class="quick-nav__link" data-section="villas-amenities" type="button" aria-label="Villas: Amenities">Amenities</button></li>
-                    <li><button class="quick-nav__link" data-section="villas-floorplan" type="button" aria-label="Villas: Floor Plan">Floor Plan</button></li>
                     <li><button class="quick-nav__link" data-section="villas-specs" type="button" aria-label="Villas: Specifications">Specifications</button></li>
-                    <li><button class="quick-nav__link" data-section="location-community" type="button">Community Highlights</button></li>
                     <li><button class="quick-nav__link" data-section="location-map" type="button">Location</button></li>
+                    <li><button class="quick-nav__link" data-section="location-community" type="button">Location Highlights</button></li>    
                 </ul>
             </div>
         </div>
@@ -265,8 +279,84 @@
                             </ul>
                         </div>
                     </details>
+                    <!-- Floor Plan -->
+                    <div class="address-section-row address-section-row--odd" id="apartments-floorplan">
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Floor Plan</h2>
+                            <p class="address-section__subtitle">
+                                Explore efficient and modern floor plans tailored for contemporary apartment living.
+                            </p>
+                        </header>
+                        <div class="address-floorplan" data-floorplan="apartments">
+                            <!-- Tabs for desktop -->
+                            <div class="floorplan-tabs floorplan-tabs--desktop">
+                                <div class="floorplan-tabs__nav">
+                                    <button class="floorplan-tabs__button is-active" type="button">Typical Floor Layout</button>
+                                    <button class="floorplan-tabs__button" type="button">Type A</button>
+                                    <button class="floorplan-tabs__button" type="button">Type B</button>
+                                    <button class="floorplan-tabs__button" type="button">Type C</button>
+                                </div>
+                                <div class="floorplan-tabs__content">
+                                     <div class="floorplan-tabs__image-wrap is-active"><img class="floorplan-tabs__image"
+                                         src="assets/floorplan/apartments/floor_view.webp"
+                                         alt="Overall floor layout"
+                                         width="1009" height="640"></div>
+                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
+                                         src="assets/floorplan/apartments/type_a.webp"
+                                         alt="Type A layout"
+                                         width="1009" height="640"></div>
+                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
+                                         src="assets/floorplan/apartments/type_b.webp"
+                                         alt="Type B layout"
+                                         width="1009" height="640"></div>
+                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
+                                         src="assets/floorplan/apartments/type_c.webp"
+                                         alt="Type C layout"
+                                         width="1009" height="640"></div>
+                                </div>
+                            </div>
+                            <!-- Accordion for mobile -->
+                            <div class="floorplan-accordion floorplan-accordion--mobile">
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Typical Floor Layout</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/floor_view.webp"
+                                            alt="Overall floor layout"
+                                            width="1009" height="640">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Type A</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/type_a.webp"
+                                            alt="Type A layout"
+                                            width="1009" height="640">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Type B</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/type_b.webp"
+                                            alt="Type B layout"
+                                            width="1009" height="640">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Type C</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/apartments/type_c.webp"
+                                            alt="Type C layout"
+                                            width="1009" height="640">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    </div>
+
                     <!-- Gallery -->
-                    <div class="address-section-row address-section-row--odd" id="apartments-gallery">
+                    <div class="address-section-row address-section-row--even" id="apartments-gallery">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Project Gallery</h2>
@@ -409,7 +499,7 @@
                     </div>
 
                     <!-- Apartments – Amenities -->
-                    <div class="address-section-row address-section-row--even" id="apartments-amenities">
+                    <div class="address-section-row address-section-row--odd" id="apartments-amenities">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Amenities</h2>
@@ -417,124 +507,122 @@
                                 Experience a range of amenities crafted for comfort, connection, and a vibrant apartment lifestyle.
                             </p>
                         </header>
-                        <div class="address-amenities">
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/clubhouse.png" alt="Clubhouse icon" aria-hidden="true">
-                                </div>
-                                <h3 class="amenity-tile__label">Community Hall</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/playground.png" alt="Playground icon" aria-hidden="true">
-                                </div>
-                                <h3 class="amenity-tile__label">Kids Play Area</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/rooftop_garden.png" alt="Garden icon" aria-hidden="true">
-                                </div>
-                                <h3 class="amenity-tile__label">Rooftop Garden with walk space</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/gym.png" alt="Gym icon" aria-hidden="true">
-                                </div>
-                                <h3 class="amenity-tile__label">Indoor Gym</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true">
-                                </div>
-                                <h3 class="amenity-tile__label">Dedicated Parking Space</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/elevator.png" alt="Elevator icon" aria-hidden="true">
-                                </div>
-                                <h3 class="amenity-tile__label">Elevator</h3>
-                            </article> 
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true">
-                                </div>
-                                <h3 class="amenity-tile__label">Solar back up for common areas</h3>
-                            </article>
-                        </div>
-                    </section>
-                    </div>
-
-                    <!-- Floor Plan -->
-                    <div class="address-section-row address-section-row--odd" id="apartments-floorplan">
-                    <section class="address-section">
-                        <header class="address-section__header">
-                            <h2 class="address-section__title">Floor Plan</h2>
-                            <p class="address-section__subtitle">
-                                Explore efficient and modern floor plans tailored for contemporary apartment living.
-                            </p>
-                        </header>
-                        <div class="address-floorplan" data-floorplan="apartments">
-                            <!-- Tabs for desktop -->
-                            <div class="floorplan-tabs floorplan-tabs--desktop">
-                                <div class="floorplan-tabs__nav">
-                                    <button class="floorplan-tabs__button is-active" type="button">Typical Floor Layout</button>
-                                    <button class="floorplan-tabs__button" type="button">Type A</button>
-                                    <button class="floorplan-tabs__button" type="button">Type B</button>
-                                    <button class="floorplan-tabs__button" type="button">Type C</button>
-                                </div>
-                                <div class="floorplan-tabs__content">
-                                     <div class="floorplan-tabs__image-wrap is-active"><img class="floorplan-tabs__image"
-                                         src="assets/floorplan/apartments/floor_view.webp"
-                                         alt="Overall floor layout"
-                                         width="1009" height="640"></div>
-                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
-                                         src="assets/floorplan/apartments/type_a.webp"
-                                         alt="Type A layout"
-                                         width="1009" height="640"></div>
-                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
-                                         src="assets/floorplan/apartments/type_b.webp"
-                                         alt="Type B layout"
-                                         width="1009" height="640"></div>
-                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
-                                         src="assets/floorplan/apartments/type_c.webp"
-                                         alt="Type C layout"
-                                         width="1009" height="640"></div>
-                                </div>
+                        <div class="amenity-group">
+                            <h3 class="amenity-group__title">In Your Apartment</h3>
+                            <div class="address-amenities">
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Covered Car Parking</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/elevator.png" alt="Elevator icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Lift</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/ac-unit.png" alt="Air conditioning icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Central Air-Conditioning</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/interior.png" alt="Semi-furnished interiors icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Semi-Furnished Interiors</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/generator-backup.png" alt="Genset power backup icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Genset Power Backup</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/maid-utility-area.png" alt="Maid utility area icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Maid Utility Space</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/rooftop_garden.png" alt="Rooftop garden icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Rooftop Garden &amp; Walk Space</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/gym.png" alt="Gym icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Terrace Gym</h3>
+                                </article>
                             </div>
-                            <!-- Accordion for mobile -->
-                            <div class="floorplan-accordion floorplan-accordion--mobile">
-                                <div class="floorplan-accordion__item">
-                                    <button class="floorplan-accordion__header" type="button">Typical Floor Layout</button>
-                                    <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/floor_view.webp"
-                                            alt="Overall floor layout"
-                                            width="1009" height="640">
+                        </div>
+                        <div class="amenity-group">
+                            <h3 class="amenity-group__title">Community Amenities</h3>
+                            <div class="address-amenities">
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/security.png" alt="24x7 security icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                     </div>
-                                </div>
-                                <div class="floorplan-accordion__item">
-                                    <button class="floorplan-accordion__header" type="button">Type A</button>
-                                    <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/type_a.webp"
-                                            alt="Type A layout"
-                                            width="1009" height="640">
+                                    <h3 class="amenity-tile__label">24×7 Security</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/charging-station.png" alt="EV charging station icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                     </div>
-                                </div>
-                                <div class="floorplan-accordion__item">
-                                    <button class="floorplan-accordion__header" type="button">Type B</button>
-                                    <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/type_b.webp"
-                                            alt="Type B layout"
-                                            width="1009" height="640">
+                                    <h3 class="amenity-tile__label">EV Charging Stations</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/playground.png" alt="Kids play area icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                     </div>
-                                </div>
-                                <div class="floorplan-accordion__item">
-                                    <button class="floorplan-accordion__header" type="button">Type C</button>
-                                    <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/apartments/type_c.webp"
-                                            alt="Type C layout"
-                                            width="1009" height="640">
+                                    <h3 class="amenity-tile__label">Kids Play Area</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/clubhouse.png" alt="Community hall icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                     </div>
-                                </div>
+                                    <h3 class="amenity-tile__label">Community Hall</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/rainwater-harvesting.png" alt="Rainwater harvesting icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Rainwater Harvesting</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/cctv-surveillance.png" alt="CCTV surveillance icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">CCTV Surveillance</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/fire-extinguisher.png" alt="Fire safety icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Fire Safety</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/borewell.png" alt="Borewell icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Borewell</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/gas-pipeline.png" alt="Gas pipeline icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Gas Pipeline</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/earthquake-resistance.png" alt="Earthquake resistant footing icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Earthquake Resistant Footing</h3>
+                                </article>
                             </div>
                         </div>
                     </section>
@@ -783,8 +871,58 @@
                             </ul>
                         </div>
                     </details>
+                    <!-- Floor Plan -->
+                    <div class="address-section-row address-section-row--odd" id="villas-floorplan">
+                    <section class="address-section">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Floor Plan</h2>
+                            <p class="address-section__subtitle">
+                                View the thoughtfully designed layouts that maximize space, light, and everyday comfort.
+                            </p>
+                        </header>
+                        <div class="address-floorplan" data-floorplan="villas">
+                            <!-- Tabs for desktop -->
+                            <div class="floorplan-tabs floorplan-tabs--desktop">
+                                <div class="floorplan-tabs__nav">
+                                    <button class="floorplan-tabs__button is-active" type="button">Ground Floor</button>
+                                    <button class="floorplan-tabs__button" type="button">First Floor</button>
+                                </div>
+                                <div class="floorplan-tabs__content">
+                                     <div class="floorplan-tabs__image-wrap is-active"><img class="floorplan-tabs__image"
+                                         src="assets/floorplan/villa/ground-floor.webp"
+                                         alt="Ground floor plan"
+                                         width="960" height="640"></div>
+                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
+                                         src="assets/floorplan/villa/first-floor.webp"
+                                         alt="First floor plan"
+                                         width="960" height="640"></div>
+                                </div>
+                            </div>
+                            <!-- Accordion for mobile -->
+                            <div class="floorplan-accordion floorplan-accordion--mobile">
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">Ground Floor</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/villa/ground-floor.webp"
+                                            alt="Ground floor plan"
+                                            width="960" height="640">
+                                    </div>
+                                </div>
+                                <div class="floorplan-accordion__item">
+                                    <button class="floorplan-accordion__header" type="button">First Floor</button>
+                                    <div class="floorplan-accordion__panel">
+                                        <img src="assets/floorplan/villa/first-floor.webp"
+                                            alt="First floor plan"
+                                            width="960" height="640">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    </div>
+
                     <!-- Gallery -->
-                    <div class="address-section-row address-section-row--odd" id="villas-gallery">
+                    <div class="address-section-row address-section-row--even" id="villas-gallery">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Project Gallery</h2>
@@ -1033,7 +1171,7 @@
                     </div>
 
                     <!-- Villas – Amenities -->
-                    <div class="address-section-row address-section-row--even" id="villas-amenities">
+                    <div class="address-section-row address-section-row--odd" id="villas-amenities">
                     <section class="address-section">
                         <header class="address-section__header">
                             <h2 class="address-section__title">Amenities</h2>
@@ -1041,98 +1179,122 @@
                                 Discover the thoughtful amenities designed to elevate comfort, convenience, and community living every day.
                             </p>
                         </header>
-                        <div class="address-amenities">
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/home-theatre.png" alt="Home Theatre icon" aria-hidden="true" width="48" height="48" loading="lazy">
-                                </div>
-                                <h3 class="amenity-tile__label">Home Theatre Room</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/playground.png" alt="Playground icon" aria-hidden="true" width="48" height="48" loading="lazy">
-                                </div>
-                                <h3 class="amenity-tile__label">Kids Play Area</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true" width="48" height="48" loading="lazy">
-                                </div>
-                                <h3 class="amenity-tile__label">Dedicated Parking Spaces</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/maid-utility-area.png" alt="Maid Utility Area icon" aria-hidden="true" width="48" height="48" loading="lazy">
-                                </div>
-                                <h3 class="amenity-tile__label">Dedicated Maid Utility Area</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true" width="48" height="48" loading="lazy">
-                                </div>
-                                <h3 class="amenity-tile__label">Solar back up</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <img src="assets/icons/rooftop_garden.png" alt="Private terrace icon" aria-hidden="true" width="48" height="48" loading="lazy">
-                                </div>
-                                <h3 class="amenity-tile__label">Private Terrace</h3>
-                            </article>
-                            <article class="amenity-tile">
-                                <div class="amenity-tile__icon" aria-hidden="true">
-                                    <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="3"/><path d="M6 17v2M18 17v2M7 12h10M12 7V5"/><circle cx="12" cy="4" r="1" fill="currentColor" stroke="none"/></svg>
-                                </div>
-                                <h3 class="amenity-tile__label">VRF Air Conditioning</h3>
-                            </article>
-                        </div>
-                    </section>
-                    </div>
-
-                    <!-- Floor Plan -->
-                    <div class="address-section-row address-section-row--odd" id="villas-floorplan">
-                    <section class="address-section">
-                        <header class="address-section__header">
-                            <h2 class="address-section__title">Floor Plan</h2>
-                            <p class="address-section__subtitle">
-                                View the thoughtfully designed layouts that maximize space, light, and everyday comfort.
-                            </p>
-                        </header>
-                        <div class="address-floorplan" data-floorplan="villas">
-                            <!-- Tabs for desktop -->
-                            <div class="floorplan-tabs floorplan-tabs--desktop">
-                                <div class="floorplan-tabs__nav">
-                                    <button class="floorplan-tabs__button is-active" type="button">Ground Floor</button>
-                                    <button class="floorplan-tabs__button" type="button">First Floor</button>
-                                </div>
-                                <div class="floorplan-tabs__content">
-                                     <div class="floorplan-tabs__image-wrap is-active"><img class="floorplan-tabs__image"
-                                         src="assets/floorplan/villa/ground-floor.webp"
-                                         alt="Ground floor plan"
-                                         width="960" height="640"></div>
-                                     <div class="floorplan-tabs__image-wrap"><img class="floorplan-tabs__image"
-                                         src="assets/floorplan/villa/first-floor.webp"
-                                         alt="First floor plan"
-                                         width="960" height="640"></div>
-                                </div>
+                        <div class="amenity-group">
+                            <h3 class="amenity-group__title">In Your Villa</h3>
+                            <div class="address-amenities">
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/parking.png" alt="Parking icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">3 Parking Spaces (1 Indoor + 2 Outdoor)</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/home-theatre.png" alt="Home theatre icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Home Theatre (Dolby Atmos 7.1.2)</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/solar-panel.png" alt="Solar panel icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">5 kVA Solar Power Backup</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/inverter-battery.png" alt="Inverter backup icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">4 kVA Inverter Backup</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/ac-unit.png" alt="VRF Central Air-Conditioning icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">VRF Central Air-Conditioning</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/interior.png" alt="Semi-Furnished Interiors icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Semi-Furnished Interiors</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/rooftop_garden.png" alt="Private terrace icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Private Terrace Garden</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/solar-heat-pump.png" alt="300 L Solar Heat Pump icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">300 L Solar Heat Pump</h3>
+                                </article>
                             </div>
-                            <!-- Accordion for mobile -->
-                            <div class="floorplan-accordion floorplan-accordion--mobile">
-                                <div class="floorplan-accordion__item">
-                                    <button class="floorplan-accordion__header" type="button">Ground Floor</button>
-                                    <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/villa/ground-floor.webp"
-                                            alt="Ground floor plan"
-                                            width="960" height="640">
+                        </div>
+                        <div class="amenity-group">
+                            <h3 class="amenity-group__title">Community Amenities</h3>
+                            <div class="address-amenities">
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/security.png" alt="24×7 Security icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                     </div>
-                                </div>
-                                <div class="floorplan-accordion__item">
-                                    <button class="floorplan-accordion__header" type="button">First Floor</button>
-                                    <div class="floorplan-accordion__panel">
-                                        <img src="assets/floorplan/villa/first-floor.webp"
-                                            alt="First floor plan"
-                                            width="960" height="640">
+                                    <h3 class="amenity-tile__label">24×7 Security</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/charging-station.png" alt="EV charging station icon" aria-hidden="true" width="48" height="48" loading="lazy">
                                     </div>
-                                </div>
+                                    <h3 class="amenity-tile__label">EV Charging Stations</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/playground.png" alt="Kids play area icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Kids Play Area</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/clubhouse.png" alt="Community hall icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Community Hall</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/rainwater-harvesting.png" alt="Rainwater Harvesting icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Rainwater Harvesting</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/cctv-surveillance.png" alt="CCTV Surveillance icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">CCTV Surveillance</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/fire-extinguisher.png" alt="Fire Extinguisher icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Fire Safety</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/borewell.png" alt="Borewell icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Borewell</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/gas-pipeline.png" alt="Gas pipeline icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Gas Pipeline</h3>
+                                </article>
+                                <article class="amenity-tile">
+                                    <div class="amenity-tile__icon" aria-hidden="true">
+                                        <img src="assets/icons/earthquake-resistance.png" alt="Earthquake Resistant Footing icon" aria-hidden="true" width="48" height="48" loading="lazy">
+                                    </div>
+                                    <h3 class="amenity-tile__label">Earthquake Resistant Footing</h3>
+                                </article>
                             </div>
                         </div>
                     </section>
@@ -1390,28 +1552,7 @@
 
         <!-- Location & Map -->
         <section class="address-section address-location" id="location">
-            <div class="address-section-row address-section-row--odd" id="location-community">
-                <section class="address-section address-location-info">
-                    <div class="container">
-                        <header class="address-section__header">
-                            <h2 class="address-section__title">Prime Location &amp; Urban Access</h2>
-                            <p class="address-section__subtitle">
-                                Well‑connected yet tucked away, The Address keeps you close to everyday essentials in Coimbatore.
-                            </p>
-                        </header>
-                        <div class="address-location__info">
-                            <ul class="address-location__highlights">
-                                <li>✈️ <strong>Airport Access:</strong> Reach Coimbatore International Airport in just 15 minutes by car for effortless travel connections.</li>
-                                <li>🏥 <strong>Healthcare Hub:</strong> A 10-minute drive brings you to a cluster of clinics and specialty hospitals for peace of mind.</li>
-                                <li>🎓 <strong>Education Zone:</strong> Top schools and colleges are only 13 minutes away, making daily commutes easy for students.</li>
-                                <li>🛒 <strong>Everyday Essentials:</strong> Supermarkets, pharmacies, and popular restaurants are within a quick 6-minute drive or auto ride.</li>
-                                <li>🚗 <strong>Citywide Connectivity:</strong> Central Coimbatore is just 25 minutes by car, and the main railway station is accessible in about 30 minutes, traffic permitting.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="address-section-row address-section-row--even" id="location-map">
+            <div class="address-section-row address-section-row--odd" id="location-map">
                 <section class="address-section address-location-map">
                     <div class="container">
                         <header class="address-section__header">
@@ -1432,6 +1573,31 @@
                             <div class="map-caption">
                                 <span>Map location: The Address by Rich Land Builders, JV Avenue PHASE - 3, Thirumurugan Nagar, Kalapatti, Coimbatore - 641048</span>
                             </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="address-section-row address-section-row--even" id="location-community">
+                <section class="address-section address-location-info">
+                    <div class="container">
+                        <header class="address-section__header">
+                            <h2 class="address-section__title">Prime Location &amp; Urban Access</h2>
+                            <p class="address-section__subtitle">
+                                Well‑connected yet tucked away, The Address keeps you close to everyday essentials in Coimbatore.
+                            </p>
+                        </header>
+                        <div class="address-location__info">
+                            <ul class="address-location__highlights">
+                                <li>🛣️ <strong>Proximity to Major Roads:</strong> Located just off Kalapatti Main Road, offering direct access to Avinashi Road and seamless connectivity to the city’s IT and industrial corridors.</li>
+                                <li>🛒 <strong>Everyday Essentials:</strong> Supermarkets, pharmacies, and popular restaurants are within a quick 6-minute drive or auto ride.</li>
+                                <li>🎓 <strong>Education Zone:</strong> Top schools and colleges are only 13 minutes away, making daily commutes easy for students.</li>
+                                <li>🏢 <strong>Business &amp; IT Parks:</strong> TIDEL Park and KGISL Tech Park are less than 15 minutes away, making daily commutes for professionals quick and convenient.</li>
+                                <li>🏥 <strong>Healthcare Hub:</strong> A 10-minute drive brings you to a cluster of clinics and specialty hospitals for peace of mind.</li>
+                                <li>🏬 <strong>Shopping &amp; Leisure:</strong> Fun Republic Mall and Prozone Mall are both within a 20-minute drive for shopping, dining, and entertainment.</li>
+                                <li>🌳 <strong>Green Spaces:</strong> Enjoy easy access to Codissia Trade Fair Complex and the city’s parks for recreation and events.</li>
+                                <li>✈️ <strong>Airport Access:</strong> Reach Coimbatore International Airport in just 15 minutes by car for effortless travel connections.</li>
+                                <li>🚗 <strong>Citywide Connectivity:</strong> Central Coimbatore is just 25 minutes by car, and the main railway station is accessible in about 30 minutes, traffic permitting.</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
