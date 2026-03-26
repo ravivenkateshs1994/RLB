@@ -635,13 +635,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let lastAppliedBg = '';
     let quickNavActiveLink = null;
     const sectionOrder = [
+        'apartments-floorplan',
         'apartments-gallery',
         'apartments-amenities',
-        'apartments-floorplan',
         'apartments-specs',
+        'villas-floorplan',
         'villas-gallery',
         'villas-amenities',
-        'villas-floorplan',
         'villas-specs',
         'location-community',
         'location-map'
@@ -757,9 +757,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!currentSection) {
             if (apartmentsActive) {
-                currentSection = 'apartments-gallery';
+                currentSection = 'apartments-floorplan';
             } else if (villasActive) {
-                currentSection = 'villas-gallery';
+                currentSection = 'villas-floorplan';
             } else {
                 currentSection = 'location-community';
             }
