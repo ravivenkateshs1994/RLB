@@ -1493,6 +1493,21 @@ body.quick-nav-open {
     margin: 0;
 }
 
+.amenity-group + .amenity-group {
+    margin-top: 2.5rem;
+}
+
+.amenity-group__title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 /* ===========================================
    LOCATION SECTION
    =========================================== */
