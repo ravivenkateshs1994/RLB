@@ -578,8 +578,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // Auto-highlight amenities
-    document.querySelectorAll('.address-amenities').forEach(grid => {
+    // Auto-highlight lifestyle-offerings
+    document.querySelectorAll('.address-lifestyle-offerings').forEach(grid => {
         const tiles = Array.from(grid.querySelectorAll('.amenity-tile'));
         if (!tiles.length) return;
 
@@ -637,11 +637,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const sectionOrder = [
         'apartments-floorplan',
         'apartments-gallery',
-        'apartments-amenities',
+        'apartments-lifestyle-offerings',
         'apartments-specs',
         'villas-floorplan',
         'villas-gallery',
-        'villas-amenities',
+        'villas-lifestyle-offerings',
         'villas-specs',
         'location-map',
         'location-community'
