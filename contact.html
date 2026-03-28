@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- UPDATED: Title updated with construction company identity -->
+    
     <title>Contact Rich Land Builders – Construction Company in Coimbatore</title>
-    <!-- UPDATED: Meta description includes construction and building services -->
+    
     <meta name="description" content="Contact Rich Land Builders in Coimbatore to enquire about 3 BHK apartments &amp; 4 BHK villas at The Address. We respond within one business day.">
     <meta name="keywords" content="Rich Land Builders contact, enquiry, The Address Coimbatore, 3 BHK apartments, 4 BHK villas">
     <meta name="author" content="Rich Land Builders">
@@ -61,7 +61,6 @@
     }
     </script>
 
-    <!-- ADDED: ConstructionCompany schema for Rich Land Builders -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -198,8 +197,11 @@
 
                     <!-- Form column -->
                     <div class="contact-form-wrap">
+                        <!-- To use a server endpoint (Apps Script, third-party form service, etc.), set data-form-endpoint on the form -->
                         <form class="contact-form" id="contact-form"
-                            aria-label="Enquiry form">
+                            aria-label="Enquiry form"
+                            data-recaptcha-sitekey="6LcVZ5ssAAAAALCYHq7-b1BvtdVuRnOEqr3dnu_c"
+                            data-form-endpoint="https://script.google.com/macros/s/AKfycby2s6vbsSi6wxN7Af8r0YC-hEFRyrTW5SBZlPh4ib0vkYF-LfsVcJkkvmBqx93NMlf2qQ/exec">
 
                             <div class="contact-form__header">
                                 <h2 class="contact-form__heading">Send an Enquiry</h2>
@@ -240,15 +242,15 @@
 
                             <div class="form-group form-group--consent">
                                 <label class="form-consent">
-                                    <input type="checkbox" name="consent" required class="form-consent__checkbox">
+                                    <input type="checkbox" name="consent" class="form-consent__checkbox">
                                     <span class="form-consent__text">I authorise Rich Land Builders and its representatives to contact me with updates and notifications via Email / SMS / WhatsApp / Call. This may override DND / NDNC settings. See our <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
                                 </label>
                             </div>
-
+                            <!-- reCAPTCHA v3 uses invisible token; configure site key on the form using data-recaptcha-sitekey -->
                             <button type="submit" class="btn btn--submit" id="contact-submit-btn">
-                                Send Message
+                                Submit Enquiry
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-                            </button>
+                            </button>                            
                             <p class="form-status" id="form-status" aria-live="polite"></p>
                             <div class="contact-form__trust">
                                 <span>
@@ -269,7 +271,7 @@
                             <div class="contact-form__sent-icon" aria-hidden="true">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
                             </div>
-                            <h3 class="contact-form__sent-title">Message received!</h3>
+                            <h3 class="contact-form__sent-title">Enquiry received!</h3>
                             <p class="contact-form__sent-body">We&rsquo;ll be in touch within one business day. You can also reach us directly at <a href="tel:+919087878414">+91&nbsp;90878&nbsp;78414</a>.</p>
                         </div>
                     </div>

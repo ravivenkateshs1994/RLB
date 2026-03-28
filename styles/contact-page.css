@@ -26,6 +26,25 @@
     100% { background-position: 200% center; }
 }
 
+#contact-submit-btn {
+    margin-top: 10px;
+}
+
+/* Disabled submit visual state */
+#contact-submit-btn[disabled],
+.btn[disabled],
+.btn:disabled {
+    opacity: 0.48;
+    cursor: not-allowed;
+    transform: translateY(0);
+    box-shadow: none !important;
+    pointer-events: none;
+}
+
+#contact-submit-btn[disabled] svg {
+    opacity: 0.6;
+}
+
 .whatsapp-fab {
     position: fixed;
     bottom: 5.5rem;
@@ -548,6 +567,53 @@ select.form-control {
     border: 1px solid #f5a5a5;
     color: #c0392b;
     padding: 0.65rem 1rem;
+}
+
+/* Pending / sending state */
+.form-status--pending {
+    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+    border: 1px solid rgba(51,102,153,0.08);
+    color: #254b72;
+    padding: 0.7rem 1rem;
+    position: relative;
+}
+
+/* Small spinner for pending */
+.form-status--pending::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 111, 183, 0.18);
+    border-top-color: #1e78c6;
+    display: inline-block;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Form submitting overlay and visual lock */
+.contact-form.is-submitting {
+    position: relative;
+    opacity: 0.7;
+    transition: opacity 180ms ease;
+    pointer-events: none;
+}
+
+.contact-form.is-submitting::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.0));
+    pointer-events: none;
+}
+
+/* When disabled, keep submit button visibly disabled */
+.contact-form.is-submitting #contact-submit-btn {
+    opacity: 0.48;
+    cursor: not-allowed;
 }
 
 /* ===========================================
