@@ -983,6 +983,14 @@ body.quick-nav-open {
     filter: brightness(1.08);
 }
 
+/* Small muted disclosure shown under galleries */
+.gallery-disclaimer {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--color-text-soft);
+    font-style: italic;
+}
+
 .address-gallery__thumbs:hover .address-gallery__thumb:not(.is-active) {
     opacity: 0.7;
 }
