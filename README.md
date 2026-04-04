@@ -21,9 +21,11 @@ npm run build
 
 What this does:
 
-- Minifies all CSS files from `styles/` and writes them to `dist/styles/*.min.css`
-- Minifies all JS files from `scripts/` and writes them to `dist/scripts/*.min.js`
-- Updates all HTML files in-place so their `<link>` and `<script>` tags point at the minified files
+- Minifies all CSS files from `styles/` and writes them to `dist/styles/` with a content hash in the filename (e.g. `common.b7d03560.min.css`)
+- Minifies all JS files from `scripts/` and writes them to `dist/scripts/` with a content hash (e.g. `home.9deba11f.min.js`)
+- Updates all HTML files in-place so their `<link>` and `<script>` tags point at the hashed filenames
+
+The content hash changes automatically whenever the file content changes. This allows browsers and CDNs to cache CSS and JS for 1 year safely, because a changed file gets a new name.
 
 After running the build, commit the result. The `dist/` folder is committed to the repository because the HTML files depend on it at runtime. `node_modules/` is excluded from git and never uploaded.
 
@@ -59,6 +61,7 @@ Root files:
 - `privacy-policy.html`
 - `robots.txt`
 - `sitemap.xml`
+- `.htaccess` — sets long cache headers for CSS, JS, and images on Apache/GoDaddy hosting
 - `README.md` is optional and does not need to be uploaded
 
 Folders that must be uploaded completely:
@@ -91,12 +94,14 @@ Important:
 
 - `index.html` must sit directly inside `public_html`
 - the `assets`, `scripts`, `styles`, and `dist` folders must also sit directly inside `public_html`
+- `.htaccess` must sit directly inside `public_html`
 - do not upload `node_modules/`
 
 Expected live structure:
 
 ```text
 public_html/
+  .htaccess
   index.html
   address.html
   contact.html
@@ -109,9 +114,9 @@ public_html/
   styles/
   dist/
     scripts/
-      *.min.js
+      *.HASH.min.js
     styles/
-      *.min.css
+      *.HASH.min.css
 ```
 
 ## 4. Domain Connection In GoDaddy

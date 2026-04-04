@@ -1,7 +1,9 @@
 /**
  * Build script: minify JS and CSS into dist/styles/ and dist/scripts/.
- * HTML files stay in the project root and are updated in-place so their
- * stylesheet/script references point at the dist/*.min.* files.
+ * Output filenames include a content hash (e.g. common.a1b2c3d4.min.css)
+ * so assets can be served with a 1-year Cache-Control header safely —
+ * the hash changes whenever the source changes, busting the cache automatically.
+ * HTML files are updated in-place to reference the hashed filenames.
  * Rewrites are idempotent — safe to run multiple times.
  *
  * Usage: npm run build
@@ -10,6 +12,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, statSync } from 'fs';
 import { join, extname, basename, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createHash } from 'crypto';
 import CleanCSS from 'clean-css';
 import { minify } from 'terser';
 
@@ -17,23 +20,42 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT  = join(__dirname, '..');
 const DIST  = join(ROOT, 'dist');
 
+// Maps base name → hashed output filename, populated during the minify steps.
+// e.g. 'common' → 'common.a1b2c3d4.min.css'
+const cssMap = {};
+const jsMap  = {};
+
 // ─── helpers ────────────────────────────────────────────────────────────────
 
 function ensureDir(dir) {
   mkdirSync(dir, { recursive: true });
 }
 
+function contentHash(str) {
+  return createHash('sha256').update(str).digest('hex').slice(0, 8);
+}
+
 /**
- * Idempotently rewrite CSS/JS references in HTML to point at dist/*.min.* files.
- * Matches both the original form (styles/foo.css) and an already-rewritten form
- * (dist/styles/foo.min.css) so re-running build never corrupts the file.
+ * Idempotently rewrite CSS/JS references using the generated hash maps.
+ * Matches all three forms a file reference can be in across repeated builds:
+ *   styles/foo.css
+ *   dist/styles/foo.min.css           (non-hashed, from a previous build)
+ *   dist/styles/foo.a1b2c3d4.min.css  (hashed, from a previous build)
  */
 function rewriteHtmlRefs(html) {
-  return html
-    .replace(/(href=["'])(?:dist\/)?styles\/([^"']+?)(?:\.min)?\.css(["'])/g,
-             '$1dist/styles/$2.min.css$3')
-    .replace(/(src=["'])(?:dist\/)?scripts\/([^"']+?)(?:\.min)?\.js(["'])/g,
-             '$1dist/scripts/$2.min.js$3');
+  for (const [base, outName] of Object.entries(cssMap)) {
+    html = html.replace(
+      new RegExp(`(href=["'])(?:dist\\/)?styles\\/${base}(?:\\.[a-f0-9]+)?(?:\\.min)?\\.css(["'])`, 'g'),
+      `$1dist/styles/${outName}$2`
+    );
+  }
+  for (const [base, outName] of Object.entries(jsMap)) {
+    html = html.replace(
+      new RegExp(`(src=["'])(?:dist\\/)?scripts\\/${base}(?:\\.[a-f0-9]+)?(?:\\.min)?\\.js(["'])`, 'g'),
+      `$1dist/scripts/${outName}$2`
+    );
+  }
+  return html;
 }
 
 // ─── steps ──────────────────────────────────────────────────────────────────
@@ -76,7 +98,10 @@ async function minifyCSS() {
       console.error(`CSS error in ${file}:`, result.errors);
       process.exit(1);
     }
-    const outName = basename(file, '.css') + '.min.css';
+    const base    = basename(file, '.css');
+    const hash    = contentHash(result.styles);
+    const outName = `${base}.${hash}.min.css`;
+    cssMap[base]  = outName;
     writeFileSync(join(outDir, outName), result.styles);
     const saving = Math.round((1 - result.stats.minifiedSize / result.stats.originalSize) * 100);
     console.log(`CSS: ${file} → dist/styles/${outName}  (${saving}% smaller)`);
@@ -96,7 +121,10 @@ async function minifyJS() {
       mangle:   true,
       format:   { comments: false },
     });
-    const outName = basename(file, '.js') + '.min.js';
+    const base    = basename(file, '.js');
+    const hash    = contentHash(result.code);
+    const outName = `${base}.${hash}.min.js`;
+    jsMap[base]   = outName;
     writeFileSync(join(outDir, outName), result.code);
     const saving = Math.round((1 - result.code.length / src.length) * 100);
     console.log(`JS:  ${file} → dist/scripts/${outName}  (${saving}% smaller)`);
