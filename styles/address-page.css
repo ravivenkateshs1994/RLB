@@ -619,22 +619,28 @@ body.quick-nav-open {
 
 .address-hero__rera {
     margin: 0.9rem 0 1.1rem;
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.72);
-    letter-spacing: 0.03em;
+    font-size: 0.77rem;
+    color: rgba(255, 240, 214, 0.88);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.08);
+    gap: 0.28rem 0.55rem;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(18, 14, 10, 0.28);
+    box-shadow: 0 14px 30px -24px rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 .address-hero__rera span {
     font-weight: 700;
     color: #ffffff;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    text-transform: none;
 }
 
 .address-hero__price-note {
