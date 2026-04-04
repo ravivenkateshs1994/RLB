@@ -13,6 +13,17 @@ const ACTIVE_CLASS = 'is-active';
 // Signal that JS is running — used to gate scroll-in animation CSS
 document.documentElement.classList.add('js-loaded');
 
+// Scroll hint chevron
+(function () {
+    var hint = document.getElementById('address-hero-scroll-hint');
+    if (hint) {
+        hint.addEventListener('click', function () {
+            var target = document.querySelector('.address-tabs');
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+})();
+
 // ====================
 // VIEWER.JS IMAGE VIEWER HELPER
 // ====================
@@ -319,17 +330,35 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Track whether the gallery section is in the viewport
+        let isInView = false;
+        let isInActivePanel = false;
+
+        const maybeStart = () => {
+            if (isInView && isInActivePanel) startSlideshow();
+            else stopSlideshow();
+        };
+
+        const sectionEl = gallery.closest('.address-section-row') || gallery;
+        const viewObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    isInView = entry.isIntersecting;
+                    maybeStart();
+                });
+            },
+            { threshold: 0.2 }
+        );
+        viewObserver.observe(sectionEl);
+
         // Start slideshow if gallery is in active panel
         const parentPanel = gallery.closest('.address-tabs__panel');
-        const isInActivePanel = !parentPanel || parentPanel.classList.contains('address-tabs__panel--active');
-        if (isInActivePanel) {
-            startSlideshow();
-        }
+        isInActivePanel = !parentPanel || parentPanel.classList.contains('address-tabs__panel--active');
 
         // Store controller for later use
         galleryControllers.set(gallery, {
-            start: startSlideshow,
-            stop: stopSlideshow,
+            start: () => { isInActivePanel = true;  maybeStart(); },
+            stop:  () => { isInActivePanel = false; stopSlideshow(); },
             resetToFirst: () => {
                 // Always use showSlide to sync main image and thumb
                 let activeIdx = thumbs.findIndex(t => t.classList.contains('is-active'));
@@ -415,9 +444,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (newSrc) heroBg.src = newSrc;
             }
 
-            // Scroll to top of page
+            // Scroll to top — double rAF ensures panel reflow is committed before scrolling
             window.requestAnimationFrame(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.requestAnimationFrame(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
             });
         };
 

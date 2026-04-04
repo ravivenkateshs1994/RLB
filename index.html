@@ -108,7 +108,7 @@
                             <p class="carousel__subtitle">Homes built around how you actually live.</p>
                             <p class="carousel__description">We start with questions before drawings. Every plan is shaped around how your family moves, rests, and gathers — then we build around that, carefully.</p>
                             <div class="carousel__actions">
-                                <a href="#about" class="btn btn--primary btn--lg">Discover Our Story</a>
+                                <a href="#about" class="btn btn--primary btn--lg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>Discover Our Story</a>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                             <p class="carousel__subtitle">Low-density living. No compromises.</p>
                             <p class="carousel__description">We plan for spacing, cross-ventilation, and natural light — because you'll feel those choices every single morning for years to come.</p>
                             <div class="carousel__actions">
-                                <a href="#values" class="btn btn--primary btn--lg">Our Approach</a>
+                                <a href="#values" class="btn btn--primary btn--lg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Our Approach</a>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                             <p class="carousel__subtitle">True 3 BHK Apartments &amp; Luxury 4 BHK Villas in Coimbatore.</p>
                             <p class="carousel__description">A focused, limited-unit community — planned around comfort, built under specialist oversight, and delivered with full transparency from slab to handover.</p>
                             <div class="carousel__actions">
-                                <a href="address.html" class="btn btn--primary btn--lg explore-address-btn">Explore The Address</a>
+                                <a href="address.html" class="btn btn--primary btn--lg explore-address-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Explore The Address</a>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                             <div class="carousel__cta-wrap">
                                 <p class="carousel__cta-prompt">Looking for an Apartment or Villa in Coimbatore?</p>
                                 <div class="carousel__actions">
-                                    <a href="contact.html" class="btn btn--primary btn--lg">Contact Us</a>
+                                    <a href="contact.html" class="btn btn--primary btn--lg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Contact Us</a>
                                 </div>
                             </div>
                         </div>
@@ -189,9 +189,9 @@
                     <button class="carousel__dot" aria-label="Slide 3: The Address"></button>
                     <button class="carousel__dot" aria-label="Slide 4: Our Commitment"></button>
                 </div>
-                <div class="hero__scroll-hint" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </div>
+                <button class="hero__scroll-hint" id="hero-scroll-hint" aria-label="Scroll to next section">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
             </div>
     </section>
 
@@ -389,6 +389,7 @@
             <div class="address-project__content fade-in">
                 <p class="address-project__eyebrow">Flagship Project</p>
                 <h2 class="address-project__title">The Address</h2>
+                <p class="address-project__rera">RERA Reg. No.: <span id="home-rera-number">TN/11/BUILDING/009/2024</span></p>
                 <p class="address-project__subtitle">Thoughtfully planned homes in Coimbatore.</p>
                 <p class="address-project__body">
                     The Address is our first fully‑owned residential project—limited homes planned around light,
@@ -396,23 +397,39 @@
                     and the attention only a single‑project team can offer.
                 </p>
 
-                <div class="address-project__tags">
-                    <span>Low‑density living</span>
-                    <span>Planned for natural light</span>
-                    <span>Detail‑driven finishes</span>
+                <div class="address-project__highlights" aria-label="Why buyers shortlist The Address">
+                    <article class="address-project__highlight">
+                        <h3>Focused oversight</h3>
+                        <p>A flagship project shaped with close review and clear accountability.</p>
+                    </article>
+                    <article class="address-project__highlight">
+                        <h3>One address, two lifestyles</h3>
+                        <p>Apartments and villas delivered within the same design standard.</p>
+                    </article>
+                    <article class="address-project__highlight">
+                        <h3>Infrastructure considered early</h3>
+                        <p>Core systems are planned in from the start, not layered on later.</p>
+                    </article>
+                    <article class="address-project__highlight">
+                        <h3>Comfort with intent</h3>
+                        <p>Premium features chosen for everyday ease, not just brochure value.</p>
+                    </article>
                 </div>
 
                 <div class="address-project__footer">
                     <p class="address-project__note">
                         Explore architectural layout, lifestyle offerings, and technical specifications.
                     </p>
-                    <a
-                        href="address.html"
-                        class="btn btn--primary address-project__btn explore-address-btn"
-                        aria-label="Explore The Address project details"
-                    >
-                        Explore The Address
-                    </a>
+                    <div class="address-project__cta-group">
+                        <a
+                            href="address.html"
+                            class="btn btn--primary address-project__btn explore-address-btn"
+                            aria-label="Explore The Address project details"
+                        >
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            Explore The Address
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -429,6 +446,7 @@
     <!-- JavaScript -->
     <script src="scripts/components.js" defer></script>
     <script src="scripts/common.js" defer></script>
+    <script src="scripts/brochure-modal.js" defer></script>
     <script src="scripts/home.js" defer></script>
 </body>
 </html>

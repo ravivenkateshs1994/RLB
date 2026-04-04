@@ -617,6 +617,32 @@ body.quick-nav-open {
     color: rgba(255, 255, 255, 0.9);
 }
 
+.address-hero__rera {
+    margin: 0.9rem 0 1.1rem;
+    font-size: 0.77rem;
+    color: rgba(255, 240, 214, 0.88);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.28rem 0.55rem;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(18, 14, 10, 0.28);
+    box-shadow: 0 14px 30px -24px rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.address-hero__rera span {
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+    text-transform: none;
+}
+
 .address-hero__price-note {
     display: inline-flex;
     align-items: center;
@@ -1293,6 +1319,12 @@ body.quick-nav-open {
    SPECS SECTION — ICON GRID CARDS
    =========================================== */
 
+.address-specs__brochure {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
 .address-specs--cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1909,6 +1941,25 @@ body.quick-nav-open {
     .address-specs--cards {
         grid-template-columns: 1fr;
     }
+
+    /* Hero actions — stack price above buttons on mobile */
+    .address-hero__actions {
+        flex-wrap: wrap;
+        gap: 0.65rem 0.75rem;
+    }
+
+    .address-hero__price-note {
+        flex: 0 0 100%;
+    }
+
+    .address-hero__actions-divider {
+        display: none;
+    }
+
+    .address-hero__cta {
+        padding: 0.65rem 1.2rem;
+        font-size: 0.84rem;
+    }
 }
 
 /* ===========================================
@@ -2021,17 +2072,15 @@ body.quick-nav-open {
         rgba(255, 255, 255, 0.38) 50%,
         transparent 65%
     );
-    background-size: 200% 100%;
     pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .address-hero__cta {
-        animation: hero-cta-pulse 2.4s ease-out 0.6s infinite;
-    }
-    .address-hero__cta::after {
-        animation: fab-shimmer 4s ease-in-out 1.2s infinite;
-    }
+.address-hero__cta {
+    animation: hero-cta-pulse 2.4s ease-out 0.6s infinite;
+}
+
+.address-hero__cta::after {
+    animation: fab-shimmer 4s ease-in-out 1.2s infinite;
 }
 
 .address-hero__cta:hover {
@@ -2049,6 +2098,27 @@ body.quick-nav-open {
     outline-offset: 3px;
 }
 
+/* Primary variant — Download Brochure */
+.address-hero__cta--outline {
+    background: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    animation: btn-brochure-pulse 2.4s ease-out 0.6s infinite;
+}
+
+.address-hero__cta--outline::after {
+    animation: btn-brochure-shimmer 4s ease-in-out 1.2s infinite;
+}
+
+.address-hero__cta--outline:hover {
+    background: var(--color-primary-dark);
+    animation: none;
+}
+
+.address-hero__cta--outline:hover::after {
+    animation: none;
+}
+
 .address-hero__scroll-hint {
     position: absolute;
     bottom: 1.85rem;
@@ -2056,8 +2126,12 @@ body.quick-nav-open {
     transform: translateX(-50%);
     color: rgba(255, 255, 255, 0.7);
     z-index: 4;
-    pointer-events: none;
+    pointer-events: auto;
     line-height: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
 .address-hero__scroll-hint svg {
@@ -2094,8 +2168,8 @@ body.quick-nav-open {
 }
 
 @keyframes fab-shimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
 .enquire-fab {
@@ -2126,6 +2200,7 @@ body.quick-nav-open {
     overflow: hidden;
 }
 
+
 /* Shimmer sweep overlay */
 .enquire-fab::after {
     content: '';
@@ -2138,7 +2213,6 @@ body.quick-nav-open {
         rgba(255,255,255,0.45) 50%,
         transparent 65%
     );
-    background-size: 200% 100%;
     opacity: 0;
     pointer-events: none;
 }
@@ -2176,16 +2250,19 @@ body.quick-nav-open {
     outline-offset: 3px;
 }
 
-/* On screens where quick-nav-toggle is visible (≤ 1919px), lift the FAB above it */
+/* On screens where quick-nav-toggle is visible (≤ 1919px), place FAB below toggle */
 @media (max-width: 1919px) {
     .enquire-fab {
-        bottom: calc(24px + 64px + 52px + 12px); /* clears scroll-to-top + toggle height + gap */
+        bottom: calc(24px + 64px); /* above scroll-to-top, below sections toggle */
+    }
+    .quick-nav-toggle:not(.is-hidden) {
+        bottom: calc(24px + 64px + 52px + 12px); /* above FAB */
     }
 }
 
 @media (max-width: 640px) {
     .enquire-fab {
-        bottom: calc(24px + 64px + 48px + 10px);
+        bottom: calc(24px + 64px);
         right: 1rem;
         padding: 0.65rem 1.1rem;
         font-size: 0.82rem;
@@ -2203,7 +2280,7 @@ body.quick-nav-open {
         justify-content: center;
         font-size: 0;
         letter-spacing: 0;
-        bottom: calc(24px + 42px + 10px + 52px + 10px); /* 138px — above sections toggle */
+        bottom: calc(24px + 42px + 10px); /* 76px — above scroll-to-top, below sections toggle */
         right: 1rem;
         transition:
             width     0.35s ease,
@@ -2226,6 +2303,7 @@ body.quick-nav-open {
         transition: opacity 0.2s ease, max-width 0.2s ease;
     }
 
+
     /* Enquire FAB — hint pill state */
     .enquire-fab.mob-hint {
         width: 150px;
@@ -2247,7 +2325,7 @@ body.quick-nav-open {
         padding: 0;
         gap: 0;
         justify-content: center;
-        bottom: calc(24px + 42px + 10px); /* 76px — above scroll-to-top */
+        bottom: calc(24px + 42px + 10px + 52px + 10px); /* 138px — above enquire FAB */
         right: 1rem;
         font-size: 0;
         letter-spacing: 0;
