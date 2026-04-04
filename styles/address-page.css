@@ -1957,8 +1957,11 @@ body.quick-nav-open {
     }
 
     .address-hero__cta {
-        padding: 0.65rem 1.2rem;
-        font-size: 0.84rem;
+        padding: 0.65rem 1.05rem;
+        font-size: 0.8rem;
+        line-height: 1.25;
+        text-align: center;
+        gap: 0.42rem;
     }
 }
 
