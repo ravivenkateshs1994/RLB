@@ -319,17 +319,35 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Track whether the gallery section is in the viewport
+        let isInView = false;
+        let isInActivePanel = false;
+
+        const maybeStart = () => {
+            if (isInView && isInActivePanel) startSlideshow();
+            else stopSlideshow();
+        };
+
+        const sectionEl = gallery.closest('.address-section-row') || gallery;
+        const viewObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    isInView = entry.isIntersecting;
+                    maybeStart();
+                });
+            },
+            { threshold: 0.2 }
+        );
+        viewObserver.observe(sectionEl);
+
         // Start slideshow if gallery is in active panel
         const parentPanel = gallery.closest('.address-tabs__panel');
-        const isInActivePanel = !parentPanel || parentPanel.classList.contains('address-tabs__panel--active');
-        if (isInActivePanel) {
-            startSlideshow();
-        }
+        isInActivePanel = !parentPanel || parentPanel.classList.contains('address-tabs__panel--active');
 
         // Store controller for later use
         galleryControllers.set(gallery, {
-            start: startSlideshow,
-            stop: stopSlideshow,
+            start: () => { isInActivePanel = true;  maybeStart(); },
+            stop:  () => { isInActivePanel = false; stopSlideshow(); },
             resetToFirst: () => {
                 // Always use showSlide to sync main image and thumb
                 let activeIdx = thumbs.findIndex(t => t.classList.contains('is-active'));
