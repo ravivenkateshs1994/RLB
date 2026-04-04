@@ -4,6 +4,31 @@ This project is a static website. It can be hosted on GoDaddy if you have normal
 
 This guide is written as a practical checklist for launch.
 
+## 0. Build The Minified Assets First
+
+Before uploading anything, run the build step on your local machine.
+
+Requirements:
+
+- Node.js installed locally
+
+Steps:
+
+```
+npm install
+npm run build
+```
+
+What this does:
+
+- Minifies all CSS files from `styles/` and writes them to `dist/styles/*.min.css`
+- Minifies all JS files from `scripts/` and writes them to `dist/scripts/*.min.js`
+- Updates all HTML files in-place so their `<link>` and `<script>` tags point at the minified files
+
+After running the build, commit the result. The `dist/` folder is committed to the repository because the HTML files depend on it at runtime. `node_modules/` is excluded from git and never uploaded.
+
+If you edit any CSS or JS source file, run `npm run build` again before deploying.
+
 ## 1. Confirm The Hosting Type First
 
 Before doing anything, check what exact GoDaddy product you are using.
@@ -41,6 +66,7 @@ Folders that must be uploaded completely:
 - `assets`
 - `scripts`
 - `styles`
+- `dist`
 
 Do not rename folders or files after upload.
 
@@ -64,7 +90,8 @@ Alternative method:
 Important:
 
 - `index.html` must sit directly inside `public_html`
-- the `assets`, `scripts`, and `styles` folders must also sit directly inside `public_html`
+- the `assets`, `scripts`, `styles`, and `dist` folders must also sit directly inside `public_html`
+- do not upload `node_modules/`
 
 Expected live structure:
 
@@ -80,6 +107,11 @@ public_html/
   assets/
   scripts/
   styles/
+  dist/
+    scripts/
+      *.min.js
+    styles/
+      *.min.css
 ```
 
 ## 4. Domain Connection In GoDaddy
@@ -305,19 +337,20 @@ DNS changes can take time. File uploads usually appear much faster than DNS upda
 
 Use this order to avoid confusion.
 
-1. confirm GoDaddy hosting type supports static file upload
-2. upload the site files to `public_html`
-3. connect domain / verify DNS
-4. enable SSL
-5. confirm redirects to the primary domain
-6. verify metadata URLs are correct
-7. verify Google Apps Script form submissions
-8. verify reCAPTCHA domain setup
-9. test brochure flows
-10. test contact form
-11. test mobile layout
-12. test 404 page
-13. submit sitemap to Search Console
+1. run `npm run build` locally and commit the result
+2. confirm GoDaddy hosting type supports static file upload
+3. upload the site files to `public_html` (exclude `node_modules/`)
+4. connect domain / verify DNS
+5. enable SSL
+6. confirm redirects to the primary domain
+7. verify metadata URLs are correct
+8. verify Google Apps Script form submissions
+9. verify reCAPTCHA domain setup
+10. test brochure flows
+11. test contact form
+12. test mobile layout
+13. test 404 page
+14. submit sitemap to Search Console
 
 ## 17. Final Go-Live Checklist
 
