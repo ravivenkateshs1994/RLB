@@ -8,6 +8,15 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeHeroCarousel();
+
+    // Scroll hint chevron
+    const scrollHint = document.getElementById('hero-scroll-hint');
+    if (scrollHint) {
+        scrollHint.addEventListener('click', () => {
+            const target = document.getElementById('about');
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
 });
 
 /* ===========================================

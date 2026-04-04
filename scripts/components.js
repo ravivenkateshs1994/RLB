@@ -4,7 +4,8 @@
     var path = window.location.pathname;
     var isAddress = path.indexOf('address.html') !== -1;
     var isContact = path.indexOf('contact.html') !== -1;
-    var isHome    = !isAddress && !isContact;
+    var is404     = path.indexOf('404.html') !== -1;
+    var isHome    = !isAddress && !isContact && !is404;
 
     var homeHref    = isHome    ? '#hero'          : 'index.html';
     var aboutHref   = isHome    ? '#about'         : 'index.html#about';
@@ -101,5 +102,51 @@
                 '</div>' +
               '</div>' +
             '</footer>';
+    }
+    // ── BROCHURE LEAD MODAL (shared across all pages) ────────────────────────
+    var existingModal = document.getElementById('brochure-modal');
+    if (!existingModal) {
+        var modalEl = document.createElement('div');
+        modalEl.id = 'brochure-modal';
+        modalEl.className = 'brochure-modal';
+        modalEl.setAttribute('role', 'dialog');
+        modalEl.setAttribute('aria-modal', 'true');
+        modalEl.setAttribute('aria-labelledby', 'brochure-modal-title');
+        modalEl.setAttribute('hidden', '');
+        modalEl.setAttribute('aria-hidden', 'true');
+        modalEl.innerHTML =
+            '<div class="brochure-modal__box">' +
+                '<button class="brochure-modal__close" id="brochure-modal-close" type="button" aria-label="Close">' +
+                    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+                '</button>' +
+                '<div class="brochure-modal__header">' +
+                    '<div class="brochure-modal__icon" aria-hidden="true">' +
+                        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' +
+                    '</div>' +
+                    '<h2 class="brochure-modal__title" id="brochure-modal-title">Download Brochure</h2>' +
+                    '<p class="brochure-modal__sub">Share your details and we\u2019ll get the brochure across to you.</p>' +
+                '</div>' +
+                '<form class="brochure-modal__form" id="brochure-modal-form" novalidate>' +
+                    '<div class="form-group">' +
+                        '<label class="form-label" for="bm-name">Full Name <span aria-hidden="true">*</span></label>' +
+                        '<input class="form-control" id="bm-name" name="bm-name" type="text" autocomplete="name" required placeholder="Your name">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                        '<label class="form-label" for="bm-phone">Phone <span aria-hidden="true">*</span></label>' +
+                        '<input class="form-control" id="bm-phone" name="bm-phone" type="tel" autocomplete="tel" required placeholder="+91 98765 43210">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                        '<label class="form-label" for="bm-email">Email <span aria-hidden="true">*</span></label>' +
+                        '<input class="form-control" id="bm-email" name="bm-email" type="email" autocomplete="email" required placeholder="you@email.com">' +
+                    '</div>' +
+                    '<div id="brochure-modal-status" class="brochure-modal__status" aria-live="polite"></div>' +
+                    '<button type="submit" id="brochure-modal-submit" class="btn btn--submit brochure-modal__submit">' +
+                        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
+                        'Get Brochure' +
+                    '</button>' +
+                '</form>' +
+                '<p class="brochure-modal__privacy">Your details are kept private and never shared with third parties.</p>' +
+            '</div>';
+        document.body.appendChild(modalEl);
     }
 })();
