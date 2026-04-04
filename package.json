@@ -1,0 +1,13 @@
+{
+  "name": "rlb-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build-static.mjs"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "terser": "^5.39.0"
+  }
+}
