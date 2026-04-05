@@ -88,22 +88,47 @@ async function minifyCSS() {
   const outDir = join(DIST, 'styles');
   ensureDir(outDir);
 
-  const cleancss = new CleanCSS({ level: 2, returnPromise: false });
+  const cleancss = new CleanCSS({ level: 1, returnPromise: false });
 
   for (const file of readdirSync(srcDir)) {
     if (extname(file) !== '.css') continue;
-    const src    = readFileSync(join(srcDir, file), 'utf8');
-    const result = cleancss.minify(src);
+    const src = readFileSync(join(srcDir, file), 'utf8');
+
+    // Extract @keyframes blocks before passing to CleanCSS (CleanCSS v5
+    // corrupts percentage-stop keyframes with level-1 optimisations).
+    // Strategy: pull every @keyframes { … } block out of the source,
+    // minify the rest normally, then prepend the raw (whitespace-stripped)
+    // keyframe blocks.
+    const keyframeBlocks = [];
+    const srcWithoutKeyframes = src.replace(/@keyframes\s+[\w-]+\s*\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}/g, (match) => {
+      // Compact the raw block: collapse runs of whitespace to a single space,
+      // strip spaces around { } : ; , so it reads like minified CSS.
+      const compact = match
+        .replace(/\/\*.*?\*\//gs, '')     // strip comments
+        .replace(/\s+/g, ' ')             // collapse whitespace
+        .replace(/\s*\{\s*/g, '{')
+        .replace(/\s*\}\s*/g, '}')
+        .replace(/\s*:\s*/g, ':')
+        .replace(/\s*;\s*/g, ';')
+        .replace(/\s*,\s*/g, ',')
+        .trim();
+      keyframeBlocks.push(compact);
+      return '';                          // remove from src passed to CleanCSS
+    });
+
+    const result = cleancss.minify(srcWithoutKeyframes);
     if (result.errors.length) {
       console.error(`CSS error in ${file}:`, result.errors);
       process.exit(1);
     }
+
+    const styles = keyframeBlocks.join('') + result.styles;
     const base    = basename(file, '.css');
-    const hash    = contentHash(result.styles);
+    const hash    = contentHash(styles);
     const outName = `${base}.${hash}.min.css`;
     cssMap[base]  = outName;
-    writeFileSync(join(outDir, outName), result.styles);
-    const saving = Math.round((1 - result.stats.minifiedSize / result.stats.originalSize) * 100);
+    writeFileSync(join(outDir, outName), styles);
+    const saving = Math.round((1 - styles.length / src.length) * 100);
     console.log(`CSS: ${file} → dist/styles/${outName}  (${saving}% smaller)`);
   }
 }
