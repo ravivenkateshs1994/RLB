@@ -671,6 +671,63 @@ select.form-control {
     text-decoration: underline;
 }
 
+.contact-form__sent-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.contact-form__sent-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+}
+
+.contact-form__sent-link--primary {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: #ffffff;
+    box-shadow: 0 12px 28px -18px rgba(121, 17, 14, 0.55);
+}
+
+.contact-form__sent-link--primary:hover {
+    background: linear-gradient(180deg, var(--color-primary-dark) 0%, #4b0908 100%);
+    transform: translateY(-2px);
+}
+
+.contact-form__sent-link--secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-primary);
+    border: 1px solid rgba(121, 17, 14, 0.16);
+    box-shadow: 0 10px 24px -20px rgba(19, 52, 59, 0.45);
+}
+
+.contact-form__sent-link--secondary:hover {
+    background: rgba(121, 17, 14, 0.06);
+    border-color: rgba(121, 17, 14, 0.32);
+    transform: translateY(-2px);
+}
+
+.contact-form__sent-link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
 /* ===========================================
    FORM TRUST BAR
    =========================================== */
@@ -736,5 +793,14 @@ select.form-control {
 
     .contact-form__trust {
         justify-content: flex-start;
+    }
+
+    .contact-form__sent-actions {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .contact-form__sent-link {
+        width: 100%;
     }
 }

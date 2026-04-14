@@ -2,16 +2,122 @@
    COMMON.JS - SHARED FUNCTIONALITY
    =========================================== */
 
+const RLB_SOURCE_STORAGE_KEY = 'rlb_source_v1';
+
 /* ===========================================
    DOM CONTENT LOADED - MAIN INITIALIZATION
    =========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all common functionality
+    captureSourceState();
     initializeHeaderState();
     initializeNavigationHighlighting();
     initializeMobileNavigation();
 });
+
+function captureSourceState() {
+    const storage = getSafeSessionStorage();
+    if (!storage) return;
+
+    writeSourceState(storage, describeSource(document.referrer || ''));
+}
+
+function getSafeSessionStorage() {
+    try {
+        return window.sessionStorage;
+    } catch (err) {
+        return null;
+    }
+}
+
+function readSourceState(storage) {
+    if (!storage) return null;
+
+    try {
+        return storage.getItem(RLB_SOURCE_STORAGE_KEY) || null;
+    } catch (err) {
+        return null;
+    }
+}
+
+function writeSourceState(storage, source) {
+    if (!storage) return;
+
+    try {
+        storage.setItem(RLB_SOURCE_STORAGE_KEY, source);
+    } catch (err) {}
+}
+
+function describeSource(referrer) {
+    if (!referrer) return 'Direct / unknown';
+
+    try {
+        const referrerUrl = new URL(referrer, window.location.href);
+        if (referrerUrl.origin === window.location.origin) {
+            return describeInternalSource(referrerUrl.pathname || '');
+        }
+
+        return `External: ${referrerUrl.hostname}`;
+    } catch (err) {
+        return `Referrer: ${referrer}`;
+    }
+}
+
+function describeInternalSource(pathname) {
+    const normalizedPath = String(pathname || '')
+        .replace(/^\/+/, '')
+        .replace(/\/+$/, '')
+        .toLowerCase();
+
+    if (!normalizedPath || normalizedPath === 'index.html' || normalizedPath === 'index.htm' || normalizedPath === 'index') {
+        return 'Homepage';
+    }
+
+    if (normalizedPath.includes('address')) {
+        return 'Address page';
+    }
+
+    if (normalizedPath.includes('contact')) {
+        return 'Contact page';
+    }
+
+    if (normalizedPath.includes('villa')) {
+        return 'Villa page';
+    }
+
+    if (normalizedPath.includes('apartment')) {
+        return 'Apartment page';
+    }
+
+    if (normalizedPath.includes('privacy-policy')) {
+        return 'Privacy policy page';
+    }
+
+    if (normalizedPath.includes('404')) {
+        return '404 page';
+    }
+
+    const lastSegment = normalizedPath.split('/').filter(Boolean).pop() || normalizedPath;
+    return `${toTitleCase(lastSegment.replace(/[-_]+/g, ' '))} page`;
+}
+
+function toTitleCase(value) {
+    return String(value || '')
+        .split(/\s+/)
+        .filter(Boolean)
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ');
+}
+
+window.rlbGetSource = function () {
+    const storage = getSafeSessionStorage();
+    const state = readSourceState(storage);
+
+    if (state) return state;
+
+    return describeSource(document.referrer || '');
+};
 
 /* ===========================================
    HEADER SCROLL STATE
