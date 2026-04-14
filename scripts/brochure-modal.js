@@ -10,6 +10,28 @@
     var pendingFilename = null;
     var pendingSource   = null;
 
+    function getSubmissionSource() {
+        if (pendingSource) {
+            if (pendingSource.indexOf('Address page') === 0) return 'Address page';
+            if (pendingSource.indexOf('Homepage') === 0) return 'Homepage';
+        }
+
+        var path = (window.location && window.location.pathname) ? window.location.pathname.toLowerCase() : '';
+        if (!path || path === '/' || path === '/index.html' || path === '/index.htm') {
+            return 'Homepage';
+        }
+
+        if (path.indexOf('address') !== -1) {
+            return 'Address page';
+        }
+
+        if (path.indexOf('contact') !== -1) {
+            return 'Contact page';
+        }
+
+        return 'Website brochure CTA';
+    }
+
     // ── Intercept every .btn--brochure click ─────────────────────────────────
     document.addEventListener('click', function (e) {
         var btn = e.target.closest('.btn--brochure');
@@ -130,7 +152,7 @@
             fd.append('phone',   phone);
             fd.append('interest', 'Brochure Download');
             fd.append('message', 'Requested brochure from ' + (pendingSource || 'website') + '.');
-            fd.append('source', pendingSource || 'Website');
+            fd.append('source', getSubmissionSource());
             fd.append('brochure_filename', pendingFilename || 'The-Address-Brochure.pdf');
             if (token) fd.append('g-recaptcha-response', token);
 

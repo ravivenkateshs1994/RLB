@@ -863,6 +863,25 @@ textarea.form-control {
     color: rgba(255, 245, 230, 0.75);
 }
 
+.footer-recaptcha {
+    max-width: 42rem;
+    margin: 0.45rem auto 0;
+    font-size: 0.76rem;
+    line-height: 1.6;
+    color: rgba(255, 245, 230, 0.72);
+}
+
+.footer-recaptcha a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer-recaptcha a:hover,
+.footer-recaptcha a:focus-visible {
+    color: #ffe3b4;
+}
+
 /* ===========================================
    MOBILE NAVIGATION
    =========================================== */
@@ -1039,6 +1058,11 @@ textarea.form-control {
 .scroll-to-top:hover {
     background-color: #f7f3ea;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.16), var(--shadow-md);
+}
+
+/* Hide the reCAPTCHA badge because the required notice is shown in the footer. */
+.grecaptcha-badge {
+    visibility: hidden !important;
 }
 
 /* ===========================================

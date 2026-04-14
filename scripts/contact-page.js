@@ -27,6 +27,73 @@
         setTimeout(function () { el.style.display = 'none'; }, 6000);
     }
 
+    function getFriendlySubmitError(err) {
+        var fallback = 'We could not send your enquiry right now. Please try again in a moment or contact us directly.';
+        var message = (err && err.message) ? String(err.message) : '';
+
+        if (!message) return fallback;
+        if (/Invalid server response|Endpoint response error|Failed to send email|reCAPTCHA verification error|reCAPTCHA suspicious|Server not configured/i.test(message)) {
+            return fallback;
+        }
+
+        return message;
+    }
+
+    function clearFormStatus() {
+        var el = document.getElementById('form-status');
+        if (!el) return;
+        el.textContent = '';
+        el.className = 'form-status';
+        el.style.display = 'none';
+    }
+
+    function getSubmissionSource() {
+        if (typeof window.rlbGetSource === 'function') {
+            try {
+                return window.rlbGetSource() || 'Direct / unknown';
+            } catch (err) {}
+        }
+
+        var fallback = 'Direct / unknown';
+        var referrer = document.referrer || '';
+        if (!referrer) return fallback;
+
+        try {
+            var referrerUrl = new URL(referrer);
+            var path = (referrerUrl.pathname || '').replace(/^\/+/, '');
+
+            if (referrerUrl.origin !== window.location.origin) {
+                return 'External: ' + referrerUrl.hostname + (path ? ' / ' + path : '');
+            }
+
+            return 'Internal: ' + (path || 'Home') + (referrerUrl.hash || '');
+        } catch (err) {
+            return 'Referrer: ' + referrer;
+        }
+    }
+
+    function reopenContactForm() {
+        var sentEl = document.getElementById('contact-form-sent');
+        if (sentEl) {
+            sentEl.setAttribute('hidden', '');
+        }
+
+        form.classList.remove('is-sent');
+        form.reset();
+        clearFormStatus();
+        disableForm(false);
+        updateSubmitState();
+
+        var firstField = form.querySelector('input, textarea, select');
+        if (firstField && typeof firstField.focus === 'function') {
+            firstField.focus();
+        }
+
+        if (typeof form.scrollIntoView === 'function') {
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
     function disableForm(disabled) {
         if (!form) return;
         var controls = Array.from(form.querySelectorAll('input, textarea, select, button'));
@@ -86,6 +153,14 @@
         el.addEventListener('change', updateSubmitState);
     });
 
+    var resetEnquiryLink = document.querySelector('[data-contact-form-reset]');
+    if (resetEnquiryLink) {
+        resetEnquiryLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            reopenContactForm();
+        });
+    }
+
     setTimeout(updateSubmitState, 500);
 
     form.addEventListener('submit', function (e) {
@@ -113,6 +188,7 @@
         }
 
         formData.delete('consent');
+        formData.set('source', getSubmissionSource());
 
         setFormStatus('Sending...', 'pending');
         disableForm(true);
@@ -126,8 +202,20 @@
                     body: formData
                 })
                 .then(function (res) {
-                    if (res.ok) return res.text().then(function () { return {}; });
-                    return res.text().then(function (t) { throw new Error(t || 'Endpoint response error'); });
+                    return res.text().then(function (text) {
+                        var data;
+                        try {
+                            data = text ? JSON.parse(text) : {};
+                        } catch (err) {
+                            throw new Error('We could not send your enquiry right now. Please try again in a moment or contact us directly.');
+                        }
+
+                        if (!res.ok || (data && data.success === false)) {
+                            throw new Error((data && data.message) || 'We could not send your enquiry right now. Please try again in a moment or contact us directly.');
+                        }
+
+                        return data;
+                    });
                 })
                 .then(function () {
                     formEl.reset();
@@ -142,7 +230,7 @@
                     }
                 })
                 .catch(function (err) {
-                    setFormStatus('Could not send via endpoint. Please try again later.', 'error');
+                    setFormStatus(getFriendlySubmitError(err), 'error');
                     console.error('Endpoint submit error:', err);
                     disableForm(false);
                 });
