@@ -50,26 +50,80 @@
     function getSubmissionSource() {
         if (typeof window.rlbGetSource === 'function') {
             try {
-                return window.rlbGetSource() || 'Direct / unknown';
+                return normalizeSourceLabel(window.rlbGetSource()) || 'Direct / unknown';
             } catch (err) {}
         }
 
-        var fallback = 'Direct / unknown';
         var referrer = document.referrer || '';
-        if (!referrer) return fallback;
+        if (!referrer) return 'Direct / unknown';
 
+        return describeReferrerSource(referrer);
+    }
+
+    function describeReferrerSource(referrer) {
         try {
-            var referrerUrl = new URL(referrer);
-            var path = (referrerUrl.pathname || '').replace(/^\/+/, '');
+            var referrerUrl = new URL(referrer, window.location.href);
+            var path = normalizePath(referrerUrl.pathname || '');
 
             if (referrerUrl.origin !== window.location.origin) {
                 return 'External: ' + referrerUrl.hostname + (path ? ' / ' + path : '');
             }
 
-            return 'Internal: ' + (path || 'Home') + (referrerUrl.hash || '');
+            if (isHomePath(path)) {
+                return 'Homepage';
+            }
+
+            if (path.indexOf('address') !== -1) {
+                return 'Address page';
+            }
+
+            if (path.indexOf('contact') !== -1) {
+                return 'Contact page';
+            }
+
+            if (path.indexOf('privacy-policy') !== -1) {
+                return 'Privacy policy page';
+            }
+
+            if (path.indexOf('404') !== -1) {
+                return '404 page';
+            }
+
+            return toTitleCase((path.split('/').filter(Boolean).pop() || path).replace(/[-_]+/g, ' ')) + ' page';
         } catch (err) {
             return 'Referrer: ' + referrer;
         }
+    }
+
+    function normalizeSourceLabel(value) {
+        var label = String(value || '').trim();
+        if (!label) return '';
+
+        if (/^(internal:\s*)?index\.html(?:\s+page)?$/i.test(label)) return 'Homepage';
+        if (/^(internal:\s*)?home(?:page)?$/i.test(label)) return 'Homepage';
+
+        return label;
+    }
+
+    function normalizePath(pathname) {
+        return String(pathname || '')
+            .replace(/^\/+/, '')
+            .replace(/\/+$/, '')
+            .toLowerCase();
+    }
+
+    function isHomePath(pathname) {
+        return !pathname || pathname === 'index.html' || pathname === 'index.htm' || pathname === 'index';
+    }
+
+    function toTitleCase(value) {
+        return String(value || '')
+            .split(/\s+/)
+            .filter(Boolean)
+            .map(function (part) {
+                return part.charAt(0).toUpperCase() + part.slice(1);
+            })
+            .join(' ');
     }
 
     function reopenContactForm() {
