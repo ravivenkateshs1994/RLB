@@ -67,7 +67,6 @@ Root files:
 Folders that must be uploaded completely:
 
 - `assets`
-- `scripts`
 - `styles`
 - `dist`
 
@@ -201,11 +200,24 @@ If the final domain is still `www.richlandbuilders.com`, no further change is ne
 
 ## 8. Forms And Brochure Capture Must Be Tested Live
 
-This site sends enquiries and brochure leads to Google Apps Script.
+This site sends enquiries and brochure leads to Google Apps Script. The full backend setup is documented in [google-apps-script/README.md](google-apps-script/README.md).
 
 Current endpoint in the project:
 
-- `https://script.google.com/macros/s/AKfycby2s6vbsSi6wxN7Af8r0YC-hEFRyrTW5SBZlPh4ib0vkYF-LfsVcJkkvmBqx93NMlf2qQ/exec`
+- `https://script.google.com/macros/s/AKfycbzKz267S7D0dgpNygJJNo-D6AvXjnvDPphfa-NkWYfblhwfgjaOiOp1wLOxPslROceMPw/exec`
+
+Apps Script setup steps:
+
+1. Open https://script.google.com/ and create a new project.
+2. Add the backend code from [google-apps-script/Code.gs](google-apps-script/Code.gs) and the email template from [google-apps-script/EmailTemplate.html](google-apps-script/EmailTemplate.html).
+3. Open Project Settings and add the Script Properties used by the backend:
+   - `RECAPTCHA_SECRET` = your server secret key from Google reCAPTCHA
+   - `RECIPIENT_EMAIL` = email address to receive submissions
+   - `SUBMISSIONS_SHEET_ID` = optional Google Sheet ID if you want Sheet logging
+   - `RATE_LIMIT_SECONDS` and `RECAPTCHA_MIN_SCORE` = optional hardening settings
+4. Deploy the project as a Web app with `Execute as: Me` and `Who has access: Anyone` or `Anyone, even anonymous`.
+5. Copy the Web App URL into the site forms.
+6. If the endpoint changes, update the contact form `data-form-endpoint` in [contact.html](contact.html) and the brochure form endpoint in [scripts/brochure-modal.js](scripts/brochure-modal.js).
 
 Before launch, verify:
 
@@ -233,16 +245,18 @@ Confirm that the submission data includes:
 
 This site uses Google reCAPTCHA v3.
 
-Before launch:
+reCAPTCHA setup steps:
 
-1. Open Google reCAPTCHA admin.
-2. Find the key used for this project.
-3. Add the final production domain.
-4. Add both versions if both may be hit during testing:
+1. Open the Google reCAPTCHA admin console and select or create the v3 site key for this project.
+2. Add the final production domain to the key.
+3. Add both domain variants if both may be used during testing:
    - `richlandbuilders.com`
    - `www.richlandbuilders.com`
+4. Copy the site key into the contact form in [contact.html](contact.html) and the brochure form logic in [scripts/brochure-modal.js](scripts/brochure-modal.js).
+5. Store the matching secret key in Apps Script as `RECAPTCHA_SECRET`.
+6. Confirm the live forms still submit successfully after the key is added.
 
-If the live domain is not listed there, forms may fail on production.
+Before launch, confirm the key is active for both domain variants. If the live domain is not listed there, forms may fail on production.
 
 ## 10. Confirm Project-Specific Content Is Final
 
@@ -274,17 +288,44 @@ Then in Google Search Console:
 3. submit the sitemap
 4. request indexing for important pages if needed
 
+How to do each step:
+
+1. Open https://search.google.com/search-console and sign in with the Google account that will manage the site.
+2. Click Add property.
+3. Choose Domain property.
+4. Enter the root domain, such as `richlandbuilders.com`. A domain property covers `http`, `https`, `www`, and non-`www` versions. If you prefer a URL-prefix property instead, use the exact live URL such as `https://www.richlandbuilders.com/`.
+5. Search Console will show a DNS TXT record.
+6. Open GoDaddy DNS management for the domain.
+7. Add the TXT record exactly as shown by Google.
+8. Save the DNS change and wait for it to propagate.
+9. Return to Search Console and click Verify.
+10. After ownership is verified, open the Sitemaps page.
+11. Enter `sitemap.xml` or the full sitemap URL, such as `https://www.richlandbuilders.com/sitemap.xml`.
+12. Click Submit and wait for Search Console to accept the sitemap.
+13. Open URL Inspection for the homepage, address page, and contact page.
+14. Paste the full page URL, run the live test if needed, and click Request Indexing for the pages that matter most.
+
+For this site, start with the homepage, address page, and contact page. After launch, check Search Console again over the next few days for crawl errors, pages not indexed yet, or any mobile usability issues.
+
 ## 12. 404 Page Setup In GoDaddy
 
 The project includes a `404.html` page.
 
 If GoDaddy hosting supports custom error page mapping, configure `404.html` as the custom 404 page.
 
-Then test by opening a fake URL such as:
+Steps:
 
-- `https://yourdomain.com/this-page-does-not-exist`
+1. Log in to GoDaddy and open the hosting account for the live site.
+2. Open cPanel or the hosting File Manager.
+3. Make sure `404.html` is uploaded to the web root, usually `public_html`.
+4. Open the custom error page or Error Pages tool.
+5. Set the 404 Not Found page to `/404.html`.
+6. Save the setting and wait a few minutes for it to apply.
+7. Open a non-existent URL such as `https://yourdomain.com/this-page-does-not-exist` to confirm the custom page appears.
 
-You should see the custom 404 page instead of a generic host error page.
+If your hosting plan lets you edit `.htaccess`, you can use an Apache `ErrorDocument 404 /404.html` rule instead.
+
+If the fake URL shows your custom page, the 404 setup is working.
 
 ## 13. Mobile And Browser QA Checklist
 

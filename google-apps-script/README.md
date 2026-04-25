@@ -8,14 +8,27 @@ What this does
 Setup
 1. Open https://script.google.com/ and create a new project.
 2. Create a new script file and paste the contents of `Code.gs`.
-3. Open Project Settings → Script properties and add two properties:
-   - `RECAPTCHA_SECRET` = your server secret key from Google reCAPTCHA
-   - `RECIPIENT_EMAIL` = email address to receive submissions
-    - `SUBMISSIONS_SHEET_ID` = (optional) Google Sheet ID to append submissions
-4. Deploy → New deployment → select **Web app**.
+3. Create a new HTML file named `EmailTemplate` and paste the contents of `EmailTemplate.html`.
+4. Open Project Settings → Script properties and add the backend configuration values below.
+5. Deploy → New deployment → select **Web app**.
    - **Execute as:** Me
    - **Who has access:** Anyone (or Anyone, even anonymous)
-5. Copy the Web App URL and use it as the form endpoint in your site.
+6. Copy the Web App URL and use it as the form endpoint in your site.
+
+Script properties
+- `RECAPTCHA_SECRET` - required. Your Google reCAPTCHA server secret key.
+- `RECIPIENT_EMAIL` - required. The email address that should receive new enquiries.
+- `SUBMISSIONS_SHEET_ID` - optional. Google Sheet ID to append submissions for tracking.
+- `RECAPTCHA_MIN_SCORE` - optional. Minimum accepted reCAPTCHA v3 score. Default: `0.5`.
+- `RATE_LIMIT_SECONDS` - optional. Cooldown window for repeated submissions. Default: `60`.
+
+Notes on the properties
+- `RECAPTCHA_SECRET` and `RECIPIENT_EMAIL` must be set for the script to process enquiries.
+- If `SUBMISSIONS_SHEET_ID` is not set, the script still sends emails but does not write to Google Sheets.
+- `RECAPTCHA_MIN_SCORE` only matters when the browser sends a v3 score. Lower scores are rejected.
+- `RATE_LIMIT_SECONDS` helps block rapid repeated submissions from the same email address.
+
+Use the Web App URL as the form endpoint in your site.
 
 Client (example)
 Use a `fetch()` POST with `FormData` to avoid preflight complications:
@@ -58,7 +71,7 @@ HTML email template
 
 Save submissions to Google Sheets
 - To store submissions for follow-up, create a Google Sheet and set its ID in Script Properties as `SUBMISSIONS_SHEET_ID`.
-- Recommended header row (first sheet): `Timestamp | Name | Email | Phone | Interest | Message | Status | Notes`.
+- Recommended header row (first sheet): `Timestamp | Name | Email | Phone | Interest | Message | Status | Notes | Source`.
 - When a submission arrives the script will append a row with `Status` set to `New`.
 - To mark an entry as contacted, either edit the `Status` cell in the Sheet, or run the helper `setSubmissionStatus(row, status)` from the Apps Script editor (where `row` is the sheet row number).
 
