@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    var FORM_ENDPOINT   = 'https://script.google.com/macros/s/AKfycby2s6vbsSi6wxN7Af8r0YC-hEFRyrTW5SBZlPh4ib0vkYF-LfsVcJkkvmBqx93NMlf2qQ/exec';
-    var RECAPTCHA_KEY   = '6LcVZ5ssAAAAALCYHq7-b1BvtdVuRnOEqr3dnu_c';
+    var FORM_ENDPOINT   = 'https://script.google.com/macros/s/AKfycbzKz267S7D0dgpNygJJNo-D6AvXjnvDPphfa-NkWYfblhwfgjaOiOp1wLOxPslROceMPw/exec';
+    var RECAPTCHA_KEY   = '6LfXa8ksAAAAAJl6E1lS_-2dp98Sl2RQgNF0egTt';
 
     var BROCHURE_PDF    = 'assets/brochure.pdf'; // PDF path never exposed in HTML
 
