@@ -4,7 +4,7 @@
     var FORM_ENDPOINT   = 'https://script.google.com/macros/s/AKfycbzKz267S7D0dgpNygJJNo-D6AvXjnvDPphfa-NkWYfblhwfgjaOiOp1wLOxPslROceMPw/exec';
     var RECAPTCHA_KEY   = '6LfXa8ksAAAAAJl6E1lS_-2dp98Sl2RQgNF0egTt';
 
-    var BROCHURE_PDF    = 'assets/brochure.pdf'; // PDF path never exposed in HTML
+    var BROCHURE_PDF    = 'assets/others/Rich_Land_Builders_The_Address_Brochure .pdf'; // PDF path never exposed in HTML
 
     var pendingHref     = null;
     var pendingFilename = null;
