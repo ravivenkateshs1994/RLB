@@ -149,8 +149,8 @@ Choose one live version and redirect the other to it.
 
 Choose one of:
 
-- `https://richlandbuilders.com`
-- `https://www.richlandbuilders.com`
+- `https://richlandbuilders.in`
+- `https://www.richlandbuilders.in`
 
 Recommended: keep one canonical version only.
 
@@ -178,7 +178,7 @@ Then confirm:
 
 ## 7. Verify Domain URLs In The Code
 
-This project already uses `https://www.richlandbuilders.com/` in metadata.
+This project already uses `https://www.richlandbuilders.in/` in metadata.
 
 If the final live domain is different, update these files before launch:
 
@@ -196,7 +196,7 @@ Update these values wherever needed:
 - JSON-LD structured data URLs
 - alternate hreflang URLs
 
-If the final domain is still `www.richlandbuilders.com`, no further change is needed here.
+If the final domain is still `www.richlandbuilders.in`, no further change is needed here.
 
 ## 8. Forms And Brochure Capture Must Be Tested Live
 
@@ -250,8 +250,8 @@ reCAPTCHA setup steps:
 1. Open the Google reCAPTCHA admin console and select or create the v3 site key for this project.
 2. Add the final production domain to the key.
 3. Add both domain variants if both may be used during testing:
-   - `richlandbuilders.com`
-   - `www.richlandbuilders.com`
+   - `richlandbuilders.in`
+   - `www.richlandbuilders.in`
 4. Copy the site key into the contact form in [contact.html](contact.html) and the brochure form logic in [scripts/brochure-modal.js](scripts/brochure-modal.js).
 5. Store the matching secret key in Apps Script as `RECAPTCHA_SECRET`.
 6. Confirm the live forms still submit successfully after the key is added.
@@ -293,14 +293,14 @@ How to do each step:
 1. Open https://search.google.com/search-console and sign in with the Google account that will manage the site.
 2. Click Add property.
 3. Choose Domain property.
-4. Enter the root domain, such as `richlandbuilders.com`. A domain property covers `http`, `https`, `www`, and non-`www` versions. If you prefer a URL-prefix property instead, use the exact live URL such as `https://www.richlandbuilders.com/`.
+4. Enter the root domain, such as `richlandbuilders.in`. A domain property covers `http`, `https`, `www`, and non-`www` versions. If you prefer a URL-prefix property instead, use the exact live URL such as `https://www.richlandbuilders.in/`.
 5. Search Console will show a DNS TXT record.
 6. Open GoDaddy DNS management for the domain.
 7. Add the TXT record exactly as shown by Google.
 8. Save the DNS change and wait for it to propagate.
 9. Return to Search Console and click Verify.
 10. After ownership is verified, open the Sitemaps page.
-11. Enter `sitemap.xml` or the full sitemap URL, such as `https://www.richlandbuilders.com/sitemap.xml`.
+11. Enter `sitemap.xml` or the full sitemap URL, such as `https://www.richlandbuilders.in/sitemap.xml`.
 12. Click Submit and wait for Search Console to accept the sitemap.
 13. Open URL Inspection for the homepage, address page, and contact page.
 14. Paste the full page URL, run the live test if needed, and click Request Indexing for the pages that matter most.
