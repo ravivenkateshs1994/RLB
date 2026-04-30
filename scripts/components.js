@@ -92,7 +92,7 @@
                         '<li><a href="tel:+919087878414">+91 90878 78414</a></li>' +
                         '<li><a href="tel:+919087878432">+91 90878 78432</a></li>' +
                         '<li><a href="mailto:rlbenquiry@gmail.com">rlbenquiry@gmail.com</a></li>' +
-                        '<li>JV Avenue PHASE - 3,<br>Thirumurugan Nagar,<br>Kalapatti,<br>Coimbatore - 641048</li>' +
+                        '<li>4/300-6, EB Colony,<br> Mettupalayam Road,<br>Karamadai,<br>Coimbatore - 641104</li>' +
                       '</ul>' +
                     '</div>' +
                   '</div>' +
