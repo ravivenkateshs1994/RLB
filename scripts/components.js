@@ -7,9 +7,9 @@
     var is404     = path.indexOf('404.html') !== -1;
     var isHome    = !isAddress && !isContact && !is404;
 
-    var homeHref    = isHome    ? '#hero'          : 'index.html';
-    var aboutHref   = isHome    ? '#about'         : 'index.html#about';
-    var valuesHref  = isHome    ? '#values'        : 'index.html#values';
+    var homeHref    = isHome    ? '#hero'          : '/';
+    var aboutHref   = isHome    ? '#about'         : '/#about';
+    var valuesHref  = isHome    ? '#values'        : '/#values';
     var addressHref = isAddress ? '#'              : 'address.html';
     var contactHref = 'contact.html';
 
@@ -31,7 +31,7 @@
             '<header class="header" id="header">' +
               '<div class="header__container">' +
                 '<div class="header__logo-container">' +
-                  '<a href="index.html" aria-label="Rich Land Builders \u2013 Home">' +
+                  '<a href="/" aria-label="Rich Land Builders \u2013 Home">'   +
                     '<img src="assets/logo/updated_logo.png" alt="Rich Land Builders Logo" class="header-logo" loading="eager" width="140" height="48">' +
                   '</a>' +
                 '</div>' +
@@ -78,9 +78,9 @@
                     '<div class="footer-column">' +
                       '<h3>Quick Links</h3>' +
                       '<ul>' +
-                        '<li><a href="index.html">Home</a></li>' +
-                        '<li><a href="index.html#about">About</a></li>' +
-                        '<li><a href="index.html#values">Values</a></li>' +
+                        '<li><a href="/">Home</a></li>' +
+                        '<li><a href="/#about">About</a></li>' +
+                        '<li><a href="/#values">Values</a></li>' +
                         '<li><a href="address.html">The Address</a></li>' +
                         '<li><a href="contact.html">Contact</a></li>' +
                         '<li><a href="privacy-policy.html">Privacy Policy</a></li>' +
